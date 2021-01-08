@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/static/css/main.9a2d528a.chunk.css",
+    "main.js": "/static/js/main.eeeb71a2.chunk.js",
+    "main.js.map": "/static/js/main.eeeb71a2.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.ca213258.js",
+    "runtime-main.js.map": "/static/js/runtime-main.ca213258.js.map",
+    "static/js/2.dbe1ecb3.chunk.js": "/static/js/2.dbe1ecb3.chunk.js",
+    "static/js/2.dbe1ecb3.chunk.js.map": "/static/js/2.dbe1ecb3.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.9a2d528a.chunk.css.map": "/static/css/main.9a2d528a.chunk.css.map",
+    "static/js/2.dbe1ecb3.chunk.js.LICENSE.txt": "/static/js/2.dbe1ecb3.chunk.js.LICENSE.txt",
+    "static/media/bocconi.cac2f116.jpg": "/static/media/bocconi.cac2f116.jpg",
+    "static/media/cattolica.0f74b814.jpg": "/static/media/cattolica.0f74b814.jpg",
+    "static/media/favicon.57361d31.ico": "/static/media/favicon.57361d31.ico",
+    "static/media/hero-img1.3ca19ad0.svg": "/static/media/hero-img1.3ca19ad0.svg",
+    "static/media/polimi.a670da85.jpg": "/static/media/polimi.a670da85.jpg",
+    "static/media/polito.65f5ad05.jpg": "/static/media/polito.65f5ad05.jpg",
+    "static/media/sapienza.d8c7eb28.jpg": "/static/media/sapienza.d8c7eb28.jpg",
+    "static/media/statale.f9610de6.jpg": "/static/media/statale.f9610de6.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ca213258.js",
+    "static/js/2.dbe1ecb3.chunk.js",
+    "static/css/main.9a2d528a.chunk.css",
+    "static/js/main.eeeb71a2.chunk.js"
+  ]
+}
