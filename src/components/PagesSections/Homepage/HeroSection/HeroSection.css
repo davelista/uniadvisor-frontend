@@ -1,0 +1,56 @@
+.hero-section {
+    display: flex;
+    margin-bottom: 5%;
+    height: 90vh;
+    flex-direction: row;
+    margin-right: 10%;
+    margin-left: 10%;
+    justify-content: center;
+}
+
+.search-section {
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    margin-right: 20%;
+    align-self: center;
+}
+
+.title-hero {
+    display: flex;
+    margin-bottom: 25%;
+    margin-top: 15%;
+}
+
+.hero-image {
+    display: flex;
+    width: 45%;
+    align-self: center;
+}
+
+/*OTTIMIZZAZIONE TABLET*/
+@media (max-width: 1000px) {
+    .hero-section {
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: center;
+        height: auto;
+    }
+
+    .search-section {
+        display: flex;
+        flex-direction: column;
+        align-self: center;
+        margin-right: 0;
+    }
+
+    .title-hero {
+        display: none;
+    }
+
+    .hero-image {
+        display: flex;
+        width: 60%;
+        margin-bottom: 5%;
+    }
+}

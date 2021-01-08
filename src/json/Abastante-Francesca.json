@@ -1,0 +1,54 @@
+{
+  "name": "Abastante Francesca",
+  "endpoint": "Abastante-Francesca",
+  "email": "francesca.abastante@polimi.it",
+  "profilePicture": "placeholder.jpg",
+  "university": [
+    {
+      "id": 1,
+      "name": "Politecnico di Milano",
+      "typeContract": "Ricercatore legge 240/10 - t.det.",
+      "department": "Dipartimento di Architettura, Ingegneria delle Costruzioni e Ambiente Costruito",
+      "courses": [
+        {
+          "id": 1,
+          "name": "ECONOMIC EVALUATION OF PROJECT",
+          "ssd": [
+            "ICAR/22"
+          ],
+          "cfu": 4,
+          "years": [
+            "2018",
+            "2019"
+          ],
+          "school": "Architettura - Architettura delle Costruzioni",
+          "schoolYear": "2",
+          "semester": "2",
+          "language": "en",
+          "location": "MI",
+          "description": "",
+          "reviews": []
+        }
+      ]
+    }
+  ],
+  "finalEvaluation": [
+    {
+      "title": "Chiarezza spiegazioni",
+      "value": -1
+    },
+    {
+      "title": "Materiale didattico",
+      "value": -1
+    },
+    {
+      "title": "DisponibilitÃ ",
+      "value": -1
+    },
+    {
+      "title": "Correzione compiti",
+      "value": -1
+    }
+  ],
+  "oldReview": []
+}

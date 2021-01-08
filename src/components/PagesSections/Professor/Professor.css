@@ -1,0 +1,90 @@
+.professor-section{
+    display: flex;
+    flex-direction: column;
+}
+
+.professor-first-content{
+    display: flex;
+    height: 60vh;
+    background: #ffffff;
+    justify-content: space-around;
+    flex-direction: row;
+}
+
+.image-user{
+    height: 40%;
+    margin-right: 3%;
+}
+
+.professor-card{
+    display: flex;
+    margin: 5% 5% 5% 5%;
+    flex-direction: row;
+}
+
+.professor-detail{
+    margin-right: 5%;
+}
+
+.professor-evaluation-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.professor-evaluation{
+    display:flex;
+    flex-direction: row;
+}
+
+.professor-second-content{
+    display: flex;
+    height: 50vh;
+    background: #dedede;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.course-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.course-details{
+    display: flex;
+    flex-direction: column;
+    margin-top: 3%;
+}
+
+.course-title{
+    cursor: pointer;
+}
+
+.professor-third-content{
+    display: flex;
+    height: 90vh;
+    flex-direction: column;
+    background: #ffffff;
+
+}
+
+.review-container{
+    display: flex;
+    flex-direction: row;
+    margin-top:5%;
+    justify-content: space-around;
+}
+
+.review-title{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.review-evaluation{
+    display: flex;
+    flex-direction: column;
+}
+
+.review-body{
+    display: flex;
+}
