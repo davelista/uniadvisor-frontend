@@ -13,7 +13,7 @@ const HeroSection = (props) => {
             <div className={"hero-section"}>
                 <div className={"search-section"}>
                     <div className={"title-hero"}>
-                        <h2>Scopri com'è il tuo professore!</h2>
+                        <h2>Scopri com'è <br/> il tuo professore!</h2>
                     </div>
                     <SearchBar professorList={professorList} isHome={isHome} onChangeProfessor={onChangeProfessor}/>
                 </div>

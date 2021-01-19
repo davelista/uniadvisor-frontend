@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
-import logo from "../../img/favicon.ico";
+import logo from "../../img/logo.svg";
 import './Navbar.css'
 import '../Buttons/Button.css';
 import {Button} from "../Buttons/Button";
@@ -10,7 +10,7 @@ import {ApiMail} from "../../api";
 function Navbar() {
 
     const [email, setEmail] = useState();
-    const [loading, setLoading] = useState (false);
+    const [loading, setLoading] = useState (false); //loading è fondamentale per l'invio delle informazioni dal popup
 
     const TitlePopup = (props) => {
         const {titleText, onClose} = props;
@@ -39,7 +39,7 @@ function Navbar() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("la userMail è" + email);
+        //console.log("la userMail è" + email);
         sendMail(email);
     }
 
@@ -48,10 +48,9 @@ function Navbar() {
             <div className="navbar">
                 <Link to='/' className="navbar-title">
                     <img src={logo} className={'logo'} alt={logo}/>
-                    <div className={'title'}>UniAdvisor.it</div>
                 </Link>
                 <div className="menu-content">
-                    <Button buttonStyle='btn--outline' onClick={handleOpenLoginForm}>ACCEDI/REGISTRATI</Button>
+                    <Button buttonStyle='btn--outline' onClick={handleOpenLoginForm}><h6>Accedi/Registrati</h6></Button>
                     {isOpenLoginForm && <Popup onSubmit={handleSubmit}>
                         <div className={'form-content'}>
                             <TitlePopup titleText={'Siamo spiacenti!'} onClose={handleOpenLoginForm}/>

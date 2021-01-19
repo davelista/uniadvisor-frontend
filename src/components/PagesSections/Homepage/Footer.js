@@ -11,7 +11,7 @@ function Footer() {
                         Privacy Policy
                     </a>
                     <div className="text-footer">
-                        &#169; Copyright uniadvisor.it. <br/> All Rights Reserved.
+                        &#169; Copyright uniadvisor.it. All Rights Reserved.
                     </div>
                 </div>
 

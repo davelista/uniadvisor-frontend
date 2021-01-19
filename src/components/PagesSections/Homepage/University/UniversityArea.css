@@ -1,15 +1,10 @@
 .uni-container{
-    margin: 10% 15% 5% 15%;
+    padding: 4% 15% 5% 15%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-}
-
-.title{
-    font-size: 2.5rem;
-    margin-bottom: .5rem;
-    line-height: 1.2;
+    background: #efefef;
 }
 
 .wrap{
@@ -26,8 +21,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 10%;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background: #e53a1e;
 }
 
 .image {
@@ -37,7 +31,6 @@
     height: auto;
     transition: .5s ease;
     backface-visibility: hidden;
-    border-radius: 10%;
 }
 
 .middle {
@@ -50,14 +43,14 @@
 
 .cards-overlay{
     background-color: transparent;
-    color: black;
-    font-size: 20px;
+    color: white;
+    font-size: 18px;
     padding: 16px 32px;
     font-weight: 500;
 }
 
 .item-wrap:hover .image {
-    opacity: 0.2;
+    opacity: 0.4;
     cursor: pointer;
 }
 
@@ -65,8 +58,10 @@
     opacity: 1;
 }
 
+/*Rende le foto in bianco e nero*/
 .item-muted{
     filter: grayscale(100%);
+
 }
 
 @media screen and (max-width: 960px) {

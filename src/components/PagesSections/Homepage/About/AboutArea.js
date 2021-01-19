@@ -8,13 +8,13 @@ function AboutArea() {
         <>
             <div className={'about-section'}>
                 <div className={'about-container'}>
-                    <h1 className={"white"} >
-                        Cos'è UniAdvisor?
+                    <h1>
+                        Cos'è <span className={"title-red"}>UNI.</span>advisor?
                     </h1 >
 
-                    <h4 className={"white"}>
+                    <div className={"sub-title-about"}>
                         UniAdvisor è una piattaforma indipendente per la <br/> valutazione di corsi e docenti universitari.
-                    </h4>
+                    </div>
 
 
                 </div>
