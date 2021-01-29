@@ -3,8 +3,9 @@ import Navbar from "../../Navbar/Navbar";
 import './Professor.css';
 import imgUser from "../../../img/user.jpg";
 import ProfessorEvaluation from "./ProfessorEvaluation";
-import Review from "./Review";
 import ProfessorCourse from "./ProfessorCourse";
+import Review from "./Review";
+import {Button} from "../../Buttons/Button";
 
 function ProfessorDetails(props) {
     const {professor} = props;
@@ -12,49 +13,89 @@ function ProfessorDetails(props) {
 
     return (
         <>
-            <Navbar />
-            <div className="professor-section">
-                {/*informazioni del professore - nome, email, università, contratto, dipartimento, valutazioni*/}
-                <div className={"professor-first-content"}>
-                    <div className={"professor-card"}>
-                        <img src={imgUser} className={'image-user'} alt={imgUser}/>
-                        <div className={"professor-detail"}>
-                            <h2>{professor.name}</h2>
-                            <p>{professor.email}</p>
+            <Navbar/>
+            <div className={"professor-card"}>
+                <img src={imgUser} className={"professor-img"} alt={imgUser}/>
+                <div className="professor-detail">
+                    <div className="professor-title">
+                        <h1>{professor.name}</h1>
+                        {/*inserire pallini*/}
+                    </div>
+                    <div className="professor-university-section">
+                        <div className="professor-info">
                             {professor.university.map((x) => {
-                                return <p>{x.name}</p>
+                                return <h3 style={{color: "#e53a1e"}}>{x.name}</h3>
                             })}
+                            <p>{professor.email}</p>
                             {professor.university.map((x) => {
                                 return <p>{x.typeContract}</p>
                             })}
                             {professor.university.map((x) => {
                                 return <p>{x.department}</p>
                             })}
-
                         </div>
                         <ProfessorEvaluation finalEvaluation={professor.finalEvaluation}/>
                     </div>
                 </div>
+            </div>
 
-                <div className="professor-second-content">
+            <div className={"professor-title-courses"}>
+                {professor.university.map((university) => {
+                        return university.courses.map((course) => {
+                            return (
+                                <h4 className={"course-title-button"} onClick={() => {
+                                    setCouseId(course.id)
+                                }}> {course.name}</h4>
+                            )
+                        })
+                    }
+                )}
+            </div>
+            <div className={"professor-courses"}>
+                <div className="course-details-section">
                     {professor.university.map((university) => {
                             return university.courses.map((course) => {
-                                return (<div className={"course-container"}>
-                                        <h3  className={"course-title"} onClick={() => setCouseId(course.id)}>{course.name}</h3>
-                                    {courseId===course.id ? <ProfessorCourse course={course}/> : null }
-                                </div>)
+                                return (
+                                    <div className={"course-info-section"}>
+                                        {courseId === course.id ? <ProfessorCourse course={course}/> : null}
+                                    </div>
+                                )
                             })
                         }
                     )}
                 </div>
-
-                <div className={"professor-third-content"}>
-                    {professor.oldReview.map((x) => {
-                        return <Review review={x}/>
-                    })}
+                <div>
+                    {/*qui inserire overall metrics*/}
                 </div>
             </div>
 
+            <div className={"reviews-section"}>
+                <div className={"reviews-section-title"}>
+                    <h2>Leggi le recensioni</h2>
+                    <Button buttonStyle='btn--outline'><h6 style={{color: "white"}}>Scrivi una recensione</h6></Button>
+                </div>
+                <>
+                    {professor.university.map((university) => {
+                            return university.courses.map((course) => {
+                                return (
+                                    <>
+                                        {courseId === course.id && course.reviews.length !== 0 ?
+                                            <Review review={course.reviews}/> : null}
+                                    </>
+                                )
+                            })
+                        }
+                    )}
+                </>
+                <div className={"reviews-section-title"}>
+                    <h3>Vecchie recensioni</h3>
+                </div>
+                <>
+                    {professor.oldReview.map((x) => {
+                        return <Review review={x} oldReview={true}/>
+                    })}
+                </>
+            </div>
         </>
     );
 }

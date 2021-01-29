@@ -6,7 +6,6 @@ import Popup from "../components/Popup/Popup";
 
 function Professor(props) {
     let { endpoint } = useParams();
-    console.log("questo è l'end point: ", endpoint);
     let [professor, isLoading] = useProfessor(endpoint);
     const [showPopup, setShowPopup] = useState(false)
     const [isFirst, setIsFirst] = useState(true);

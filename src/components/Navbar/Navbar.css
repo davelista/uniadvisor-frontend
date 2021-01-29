@@ -9,6 +9,7 @@
     /*permette di manterene la navbar sempre in cima anche se si scorre la pagina*/
     top: 0;
     position: sticky;
+    border-bottom: solid 2px #efefef;
 }
 /*title + logo*/
 .navbar-title {
@@ -48,15 +49,6 @@ a{
         position: sticky;
     }
 
-    .title{
-         display: none;
-    }
-
-    .logo{
-        display: flex;
-        width: 3rem;
-        margin-right: 0;
-    }
     .sign-in{
         display: flex;
         font-size: 1rem;

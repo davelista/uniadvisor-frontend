@@ -1,90 +1,139 @@
-.professor-section{
-    display: flex;
-    flex-direction: column;
-}
-
-.professor-first-content{
-    display: flex;
-    height: 60vh;
-    background: #ffffff;
-    justify-content: space-around;
-    flex-direction: row;
-}
-
-.image-user{
-    height: 40%;
-    margin-right: 3%;
-}
-
 .professor-card{
     display: flex;
-    margin: 5% 5% 5% 5%;
     flex-direction: row;
+    padding: 5% 15% 0 15%;
+}
+
+.professor-img{
+    height: 15em;
+    margin-right: 10%;
 }
 
 .professor-detail{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+}
+
+.professor-title{
+    display: flex;
+    flex-direction: row;
+    border-bottom: 5px solid #e53a1e;
+}
+
+.professor-university-section{
+    padding: 2% 0 0 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.professor-info{
+    display: flex;
+    flex-direction: column;
+    align-content: space-around;
+}
+
+.professor-title-courses{
+    display: flex;
+    flex-direction: row;
+    padding: 5% 15% 2% 15%;
+}
+
+.professor-title-courses-selected{
+    display: flex;
+    flex-direction: row;
+    padding: 5% 15% 2% 15%;
+}
+
+.professor-title-courses:hover{
+    cursor:pointer;
+}
+
+.course-title-button{
     margin-right: 5%;
 }
 
-.professor-evaluation-container{
+.professor-courses{
+    background-color: #efefef;
+    padding: 2% 15% 5% 15%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 
-.professor-evaluation{
-    display:flex;
+.course-details-section{
+
+}
+
+.course-info-section{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+
+}
+
+.course-info{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 2% 0 2% 0;
+}
+
+.course-info-title{
+    display: flex;
     flex-direction: row;
 }
 
-.professor-second-content{
-    display: flex;
-    height: 50vh;
-    background: #dedede;
-    flex-direction: row;
-    justify-content: space-around;
+.course-description{
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
 }
 
-.course-container{
-    display: flex;
-    flex-direction: column;
+.user-img{
+    height: 15em;
 }
 
-.course-details{
-    display: flex;
-    flex-direction: column;
-    margin-top: 3%;
-}
-
-.course-title{
-    cursor: pointer;
-}
-
-.professor-third-content{
-    display: flex;
-    height: 90vh;
-    flex-direction: column;
-    background: #ffffff;
-
-}
-
-.review-container{
+.reviews-section-title{
     display: flex;
     flex-direction: row;
-    margin-top:5%;
-    justify-content: space-around;
+    border-bottom: 5px solid #e53a1e;
+    padding-bottom: 1%;
+    justify-content: space-between;
 }
 
-.review-title{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-}
-
-.review-evaluation{
+.reviews-section{
+    padding: 2% 15% 2% 15%;
     display: flex;
     flex-direction: column;
 }
 
-.review-body{
+.reviews-container{
     display: flex;
+    flex-direction: row;
+    padding: 2% 0 2% 0;
+    border-bottom: 1px solid #efefef;
+    justify-content: space-between;
+}
+
+.reviews-body{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.reviews-evaluation{
+    width: 30%;
+}
+
+.subtitle-red{
+    color: #e53a1e;
+    line-height: 1.2em !important;
+    margin-bottom: 0;
+    margin-top: 0;
+    font-weight: 600;
+    font-size: 20px;
 }
