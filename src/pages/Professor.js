@@ -39,13 +39,6 @@ function Professor(props) {
         if(!isLoading){
             return (
                 <React.Fragment>
-                    {showPopup && <Popup>
-                        <div className={'form-content'}>
-                            <TitlePopup titleText={'Siamo spiacenti!'} onClose={showPopupFunction}/>
-                            <p>Potreste riscontrare errori nella visualizzazione della pagina a causa della manutenzione del server.</p>
-                            <p>Ci scusiamo per il disagio.</p>
-                        </div>
-                    </Popup>}
                     <ProfessorDetails professorList={professorList} onChangeProfessor={onChangeProfessor} isHome={isHome} professor={professor}/>
                 </React.Fragment>
             );
