@@ -19,6 +19,7 @@
     display: flex;
     flex-direction: row;
     border-bottom: 5px solid #e53a1e;
+    justify-content: space-between;
 }
 
 .professor-university-section{
@@ -48,6 +49,22 @@
 
 .professor-title-courses:hover{
     cursor:pointer;
+}
+
+.professor-evaluation{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 100%;
+    align-items: flex-start;
+}
+
+.bubble-rating{
+    display: flex;
+    color: #e53a1e;
+    justify-content: flex-end;
+    align-self: center;
+    justify-self: flex-end;
 }
 
 .course-title-button{
@@ -136,4 +153,20 @@
     margin-top: 0;
     font-weight: 600;
     font-size: 20px;
+}
+
+.review-evaluation-details{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 100%;
+    align-items: flex-start;
+}
+
+.review-evaluation-details{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 100%;
+    align-items: flex-start;
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import './Professor.css';
 import imgUser from "../../../img/user.jpg";
+import Rating from "react-rating";
 
 
 function Review(props) {
@@ -21,14 +22,24 @@ function Review(props) {
                                     </div>
                                 </div>
                                 <div className={"reviews-evaluation"}>
-                                    <h5>Valutazione professore:</h5>
+                                    <h5 style={{
+                                        marginBottom: "3%", marginLeft: "50%"
+                                    }}>Valutazione professore:</h5>
                                     {x.metrics.professor.map((x) => {
-                                        return <p>{x.title} {x.value}</p>
+                                        return <div className={"review-evaluation-details"}>{x.title} <Rating
+                                            placeholderRating={x.value}
+                                            readonly
+                                            className={"bubble-rating"}/></div>
                                     })}
                                     <br/>
-                                    <h5>Valutazione corso:</h5>
+                                    <h5 style={{
+                                        marginBottom: "3%", marginLeft: "50%"
+                                    }}>Valutazione corso:</h5>
                                     {x.metrics.course.map((y) => {
-                                        return <p>{y.title} {y.value}</p>
+                                        return <div className={"review-evaluation-details"}>{y.title} <Rating
+                                            placeholderRating={y.value}
+                                            readonly
+                                            className={"bubble-rating"}/></div>
                                     })}
                                 </div>
                             </div>
@@ -50,14 +61,24 @@ function Review(props) {
                         </div>
                     </div>
                     <div className={"reviews-evaluation"}>
-                        <h5>Valutazione professore:</h5>
+                        <h5 style={{
+                            marginBottom: "3%", marginLeft: "50%"
+                        }}>Valutazione professore:</h5>
                         {review.metrics.professor.map((x) => {
-                            return <p>{x.title} {x.value}</p>
+                            return <div className={"review-evaluation-details"}>{x.title} <Rating
+                                placeholderRating={x.value}
+                                readonly
+                                className={"bubble-rating"}/></div>
                         })}
                         <br/>
-                        <h5>Valutazione corso:</h5>
+                        <h5 style={{
+                            marginBottom: "3%", marginLeft: "50%"
+                        }}>Valutazione corso:</h5>
                         {review.metrics.course.map((y) => {
-                            return <p>{y.title} {y.value}</p>
+                            return <div className={"review-evaluation-details"}>{y.title} <Rating
+                                placeholderRating={y.value}
+                                readonly
+                                className={"bubble-rating"}/></div>
                         })}
                     </div>
                 </div>

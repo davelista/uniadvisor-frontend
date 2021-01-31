@@ -6,6 +6,7 @@ import ProfessorEvaluation from "./ProfessorEvaluation";
 import ProfessorCourse from "./ProfessorCourse";
 import Review from "./Review";
 import {Button} from "../../Buttons/Button";
+import Rating from "react-rating";
 
 function ProfessorDetails(props) {
     const {professor} = props;
@@ -19,7 +20,14 @@ function ProfessorDetails(props) {
                 <div className="professor-detail">
                     <div className="professor-title">
                         <h1>{professor.name}</h1>
-                        {/*inserire pallini*/}
+                        {professor.finalEvaluation.filter(x => x.title === "Overall")
+                            .map((x) => {
+                                return (
+                                    <Rating placeholderRating={x.value}
+                                                            readonly
+                                                            className={"bubble-rating"}/>
+                                )
+                            })}
                     </div>
                     <div className="professor-university-section">
                         <div className="professor-info">
