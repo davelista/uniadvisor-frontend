@@ -20,7 +20,7 @@ function SearchBar(props) {
                 <div>
                     {
                         filteredListLower
-                            .slice(0, 5)
+                            .slice(0, 3)
                             .map((x) => {
                                 return <SearchBarResult key={x.id} professor={x} onChangeProfessor={onChangeProfessor}/>
                             })
