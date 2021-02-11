@@ -7,7 +7,6 @@
     padding-left: 10%;
     justify-content: space-around;
     background: linear-gradient(to bottom, #efefef 70vh, white 20vh, white);
-    z-index: 5;
 }
 
 .search-section {

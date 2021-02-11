@@ -7,7 +7,6 @@
     overflow: hidden;
     width: 25rem !important;
     height: auto;
-    z-index: 5;
     background-color: white;
     border-right: 3px solid #e53a1e;
     border-left: 3px solid #e53a1e;
@@ -33,7 +32,6 @@
     cursor: pointer;
     background: white !important;
     height: auto;
-    z-index: 5;
 }
 
 .search-bar-result:hover{
@@ -43,7 +41,6 @@
     padding-left: 35px!important;
     /*font-family: Poppins,sans-serif !important;*/
     cursor: pointer;
-    z-index: 5;
     border-radius: 34px;
 }
 
@@ -53,7 +50,6 @@
     width: 25rem !important;
     height: auto;
     border-radius: 34px;
-    z-index: 5;
 }
 
 a{
@@ -71,7 +67,6 @@ a{
         overflow: hidden;
         width: 20rem !important;
         height: auto;
-        z-index: 5;
         margin-bottom: 10%;
     }
 
@@ -96,7 +91,6 @@ a{
         background: white !important;
         border-radius: 34px;
         height: auto;
-        z-index: 5;
 
     }
 
@@ -107,7 +101,6 @@ a{
         padding-left: 35px!important;
         /*font-family: Poppins,sans-serif !important;*/
         cursor: pointer;
-        z-index: 5;
     }
 
     .result-container{
@@ -115,6 +108,5 @@ a{
         width: 20rem !important;
         height: auto;
         border-radius: 34px;
-        z-index: 5;
     }
 }
