@@ -70,7 +70,7 @@
         flex-direction: row;
         justify-content: space-around;
         flex-wrap: wrap;
-        margin-top: 3%;
+        margin-top: 5%;
     }
 
     .about-item{
@@ -78,7 +78,8 @@
         flex-direction: column;
         justify-content: center;
         width: 40%;
-        margin-top: 7%;
+        margin-top: 10%;
+        margin-bottom: 5%;
     }
 }
 

@@ -6,6 +6,7 @@ import imgCattolica from "../../../../img/cattolica.jpg";
 import imgPolito from "../../../../img/polito.jpg";
 import imgSapienza from "../../../../img/sapienza.jpg";
 import imgStatale from "../../../../img/statale.jpg";
+import SearchBar from "../../../SearchBar/SearchBar";
 
 
 function UniversitySection() {
@@ -13,9 +14,11 @@ function UniversitySection() {
     return (
         <>
             <div className="uni-container">
-                <h1>
-                    Le Università
-                </h1>
+                <div className="uni-title">
+                    <h1>Le Università</h1>
+                    {/*da inserire university searchbar*/}
+                </div>
+
                 Verifica che la tua universitá sia tra quelle disponibili.
                 <div className="wrap">
                     <div className="item-wrap">
