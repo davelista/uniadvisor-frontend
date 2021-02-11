@@ -1,7 +1,7 @@
 import React from 'react';
 import './HeroSection.css'
 import SearchBar from "../../../SearchBar/SearchBar";
-import heroImg from "../../../../img/hero-img1.svg";
+import heroImg from "../../../../img/hero-img.png";
 
 
 const HeroSection = (props) => {

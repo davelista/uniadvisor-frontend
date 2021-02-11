@@ -61,7 +61,7 @@
 
 .bubble-rating{
     display: flex;
-    color: #e53a1e;
+    color: #e53a1e !important;
     justify-content: flex-end;
     align-self: center;
     justify-self: flex-end;
