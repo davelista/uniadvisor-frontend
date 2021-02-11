@@ -85,6 +85,15 @@
 
 @media screen and (max-width: 700px) {
 
+    .about-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 15% 15% 5% 15%;
+        text-align: center;
+
+    }
 
     .about-items-container{
         display: flex;
