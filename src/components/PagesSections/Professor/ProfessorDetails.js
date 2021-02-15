@@ -66,12 +66,16 @@ function ProfessorDetails(props) {
             <div className={"professor-title-courses"}>
                 {professor.university.map((university) => {
                         return university.courses.map((course) => {
-                            return (
+                            return ( <>
+                                {courseId === course.id ?
                                 <h4 className={"course-title-button"} onClick={() => {
                                     setCouseId(course.id)
-                                }} style={{color: "#c9c9c9"}}> {course.name}</h4>
+                                }} style={{color: "#e53a1e"}}> {course.name}</h4> : <h4 className={"course-title-button"} onClick={() => {
+                                        setCouseId(course.id)
+                                    }} style={{color: "#c9c9c9"}}> {course.name}</h4>} </>
                             )
-                        })
+
+                        } )
                     }
                 )}
             </div>
