@@ -179,23 +179,37 @@
 @media screen and (max-width: 1000px){
     .professor-card{
         display: flex;
-        flex-wrap: wrap;
         flex-direction: row;
-        padding: 5% 15% 0 15%;
-        justify-content: center;
+        padding: 5% 5% 0 5%;
+        justify-content: space-between;
         align-items: center;
-        align-content: center;
     }
     .professor-img{
-        width: 40%;
-        margin-right: 10%;
+        height: 10em;
+        margin-right: 5%;
     }
-    .professor-detail{
+    /*Section courses*/
+    .professor-title-courses{
         display: flex;
-        flex-direction: column;
-        width: 60%;
+        flex-direction: row;
+        padding: 5% 5% 2% 5%;
     }
-    .professor-title{
+    .professor-title-courses-selected{
+        display: flex;
+        flex-direction: row;
+        padding: 5% 5% 2% 5%;
+    }
+
+    .professor-courses{
+        background-color: #efefef;
+        padding: 2% 5% 5% 5%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+    /*Section reviews*/
+    .reviews-section{
+        padding: 2% 5% 2% 5%;
         display: flex;
         flex-direction: column;
     }

@@ -16,7 +16,7 @@
 
 .btn--outline {
     background-color: #e53a1e;
-    color: black;
+    color: white;
     padding: 8px 20px;
     border: 1px solid #e53a1e;
     transition: all 0.3s ease-out;
@@ -24,7 +24,7 @@
 }
 
 .btn--outline:hover {
-    background-color: white;
+    background-color: black;
     color: #e53a1e !important;
     padding: 8px 20px;
     border: 1px solid #e53a1e;

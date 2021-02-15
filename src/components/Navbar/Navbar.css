@@ -5,11 +5,13 @@
     height: 80px;
     z-index: 3;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     /*permette di manterene la navbar sempre in cima anche se si scorre la pagina*/
     top: 0;
     position: sticky;
     border-bottom: solid 2px #efefef;
+    padding: 0 15% 0 15%;
+    box-shadow: -21.213px 21.213px 30px 0px rgba(158, 158, 158, 0.3);
 }
 /*title + logo*/
 .navbar-title {
@@ -36,7 +38,7 @@ a{
     display: flex;
 }
 
-@media screen and (max-width: 960px) {
+@media screen and (max-width: 1000px) {
     .navbar {
         display: flex;
         align-items: center;
@@ -44,9 +46,13 @@ a{
         height: 80px;
         z-index: 3;
         flex-direction: row;
-        justify-content: space-evenly;
+        justify-content: space-between;
+        /*permette di manterene la navbar sempre in cima anche se si scorre la pagina*/
         top: 0;
         position: sticky;
+        border-bottom: solid 2px #efefef;
+        padding: 0 5% 0 5%;
+        box-shadow: -21.213px 21.213px 30px 0px rgba(158, 158, 158, 0.3);
     }
 
     .sign-in{

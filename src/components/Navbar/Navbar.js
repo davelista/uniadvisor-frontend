@@ -50,7 +50,7 @@ function Navbar() {
                     <img src={logo} className={'logo'} alt={logo}/>
                 </Link>
                 <div className="menu-content">
-                    <Button buttonStyle='btn--outline' onClick={handleOpenLoginForm}><h6>Accedi/Registrati</h6></Button>
+                    <Button buttonStyle='btn--outline' onClick={handleOpenLoginForm}><h6 style={{color: "white"}}>Accedi/Registrati</h6></Button>
                     {isOpenLoginForm && <Popup onSubmit={handleSubmit}>
                         <div className={'form-content'}>
                             <TitlePopup titleText={'Siamo spiacenti!'} onClose={handleOpenLoginForm}/>
