@@ -25,7 +25,7 @@ function Review(props) {
                                 </div>
                                 <div className={"reviews-evaluation"}>
                                     <h5 style={{
-                                        marginBottom: "3%", marginLeft: "50%"
+                                        marginBottom: "3%"
                                     }}>Valutazione professore:</h5>
                                     {x.metrics.professor.map((x) => {
                                         return <div className={"review-evaluation-details"}>{x.title}:
@@ -41,7 +41,7 @@ function Review(props) {
                                     })}
                                     <br/>
                                     <h5 style={{
-                                        marginBottom: "3%", marginLeft: "50%"
+                                        marginBottom: "3%"
                                     }}>Valutazione corso:</h5>
                                     {x.metrics.course.map((y) => {
                                         return <div className={"review-evaluation-details"}>{y.title}:
@@ -74,7 +74,7 @@ function Review(props) {
                     </div>
                     <div className={"reviews-evaluation"}>
                         <h5 style={{
-                            marginBottom: "3%", marginLeft: "50%"
+                            marginBottom: "3%"
                         }}>Valutazione professore:</h5>
                         {review.metrics.professor.map((x) => {
                             return <div className={"review-evaluation-details"}>{x.title}:
@@ -90,7 +90,7 @@ function Review(props) {
                         })}
                         <br/>
                         <h5 style={{
-                            marginBottom: "3%", marginLeft: "50%"
+                            marginBottom: "3%"
                         }}>Valutazione corso:</h5>
                         {review.metrics.course.map((y) => {
                             return <div className={"review-evaluation-details"}>{y.title}:

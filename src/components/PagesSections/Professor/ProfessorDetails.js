@@ -69,7 +69,7 @@ function ProfessorDetails(props) {
                             return (
                                 <h4 className={"course-title-button"} onClick={() => {
                                     setCouseId(course.id)
-                                }}> {course.name}</h4>
+                                }} style={{color: "#c9c9c9"}}> {course.name}</h4>
                             )
                         })
                     }

@@ -42,6 +42,8 @@
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+    margin-bottom: 2%;
+
 }
 
 .professor-title-courses{
@@ -74,6 +76,8 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin-bottom: 2%;
+    border-bottom: 1px solid #e53a1e;
 }
 
 .professor-evaluation-container{
@@ -148,7 +152,7 @@
     flex-direction: row;
     padding: 2% 0 2% 0;
     border-bottom: 1px solid #efefef;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 .reviews-body{
@@ -164,6 +168,8 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin-bottom: 2%;
+    border-bottom: 1px solid #e53a1e;
 }
 
 .subtitle-red{
