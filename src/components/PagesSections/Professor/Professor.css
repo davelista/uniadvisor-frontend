@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: row;
     padding: 5% 15% 0 15%;
+    justify-content: space-between;
 }
 
 .professor-img{
@@ -12,7 +13,7 @@
 .professor-detail{
     display: flex;
     flex-direction: column;
-    width: 60%;
+    width: 100%;
 }
 
 .professor-title{
@@ -20,10 +21,11 @@
     flex-direction: row;
     border-bottom: 5px solid #e53a1e;
     justify-content: space-between;
+    padding-bottom: 1%;
 }
 
 .professor-university-section{
-    padding: 2% 0 0 0;
+    padding-top: 2%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -32,7 +34,14 @@
 .professor-info{
     display: flex;
     flex-direction: column;
-    align-content: space-around;
+    width: 50%;
+}
+
+.professor-info-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .professor-title-courses{
@@ -54,17 +63,23 @@
 .professor-evaluation{
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
-    width: 100%;
-    align-items: flex-start;
 }
-
 .bubble-rating{
     display: flex;
-    color: #e53a1e !important;
-    justify-content: flex-end;
     align-self: center;
-    justify-self: flex-end;
+    justify-self: flex-end!important;
+}
+
+.professor-evaluation-details {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.professor-evaluation-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .course-title-button{
@@ -111,7 +126,7 @@
 }
 
 .user-img{
-    height: 15em;
+    height: 10em;
 }
 
 .reviews-section-title{
@@ -133,17 +148,22 @@
     flex-direction: row;
     padding: 2% 0 2% 0;
     border-bottom: 1px solid #efefef;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .reviews-body{
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 40%;
 }
 
 .reviews-evaluation{
-    width: 30%;
+}
+
+.review-evaluation-details{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .subtitle-red{
@@ -155,18 +175,32 @@
     font-size: 20px;
 }
 
-.review-evaluation-details{
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    width: 100%;
-    align-items: flex-start;
+
+@media screen and (max-width: 1000px){
+    .professor-card{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        padding: 5% 15% 0 15%;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+    }
+    .professor-img{
+        width: 40%;
+        margin-right: 10%;
+    }
+    .professor-detail{
+        display: flex;
+        flex-direction: column;
+        width: 60%;
+    }
+    .professor-title{
+        display: flex;
+        flex-direction: column;
+    }
 }
 
-.review-evaluation-details{
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    width: 100%;
-    align-items: flex-start;
+@media screen and (max-width: 700px){
+
 }

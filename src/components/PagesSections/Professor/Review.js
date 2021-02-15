@@ -1,7 +1,9 @@
 import React from 'react';
 import './Professor.css';
 import imgUser from "../../../img/user.jpg";
-import Rating from "react-rating";
+import Rating from '@material-ui/lab/Rating';
+import FiberManualRecordOutlinedIcon from "@material-ui/icons/FiberManualRecordOutlined";
+import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 
 
 function Review(props) {
@@ -26,20 +28,30 @@ function Review(props) {
                                         marginBottom: "3%", marginLeft: "50%"
                                     }}>Valutazione professore:</h5>
                                     {x.metrics.professor.map((x) => {
-                                        return <div className={"review-evaluation-details"}>{x.title} <Rating
-                                            placeholderRating={x.value}
-                                            readonly
-                                            className={"bubble-rating"}/></div>
+                                        return <div className={"review-evaluation-details"}>{x.title}:
+                                            <Rating defaultValue={x.value}
+                                                    precision={0.5}
+                                                    readOnly
+                                                    emptyIcon={<FiberManualRecordOutlinedIcon fontSize="medium"
+                                                                                              style={{fill: "#e53a1e"}}/>}
+                                                    icon={<FiberManualRecordIcon fontSize="medium"
+                                                                                 style={{fill: "#e53a1e"}}/>}
+                                            />
+                                        </div>
                                     })}
                                     <br/>
                                     <h5 style={{
                                         marginBottom: "3%", marginLeft: "50%"
                                     }}>Valutazione corso:</h5>
                                     {x.metrics.course.map((y) => {
-                                        return <div className={"review-evaluation-details"}>{y.title} <Rating
-                                            placeholderRating={y.value}
-                                            readonly
-                                            className={"bubble-rating"}/></div>
+                                        return <div className={"review-evaluation-details"}>{y.title}:
+                                            <Rating defaultValue={y.value}
+                                                    precision={0.5}
+                                                    readOnly
+                                                    emptyIcon={<FiberManualRecordOutlinedIcon fontSize="medium" style={{fill: "#e53a1e"}}/>}
+                                                    icon={<FiberManualRecordIcon fontSize="medium" style={{fill: "#e53a1e"}}/>}
+                                            />
+                                        </div>
                                     })}
                                 </div>
                             </div>
@@ -65,24 +77,33 @@ function Review(props) {
                             marginBottom: "3%", marginLeft: "50%"
                         }}>Valutazione professore:</h5>
                         {review.metrics.professor.map((x) => {
-                            return <div className={"review-evaluation-details"}>{x.title} <Rating
-                                placeholderRating={x.value}
-                                readonly
-                                className={"bubble-rating"}/></div>
+                            return <div className={"review-evaluation-details"}>{x.title}:
+                                <Rating defaultValue={x.value}
+                                        precision={0.5}
+                                        readOnly
+                                        emptyIcon={<FiberManualRecordOutlinedIcon fontSize="medium"
+                                                                                  style={{fill: "#e53a1e"}}/>}
+                                        icon={<FiberManualRecordIcon fontSize="medium"
+                                                                     style={{fill: "#e53a1e"}}/>}
+                                />
+                            </div>
                         })}
                         <br/>
                         <h5 style={{
                             marginBottom: "3%", marginLeft: "50%"
                         }}>Valutazione corso:</h5>
                         {review.metrics.course.map((y) => {
-                            return <div className={"review-evaluation-details"}>{y.title} <Rating
-                                placeholderRating={y.value}
-                                readonly
-                                className={"bubble-rating"}/></div>
+                            return <div className={"review-evaluation-details"}>{y.title}:
+                                <Rating defaultValue={y.value}
+                                        precision={0.5}
+                                        readOnly
+                                        emptyIcon={<FiberManualRecordOutlinedIcon fontSize="medium" style={{fill: "#e53a1e"}}/>}
+                                        icon={<FiberManualRecordIcon fontSize="medium" style={{fill: "#e53a1e"}}/>}
+                                />
+                            </div>
                         })}
                     </div>
                 </div>
-
             </>
         );
     }

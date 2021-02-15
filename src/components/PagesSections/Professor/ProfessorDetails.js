@@ -6,7 +6,15 @@ import ProfessorEvaluation from "./ProfessorEvaluation";
 import ProfessorCourse from "./ProfessorCourse";
 import Review from "./Review";
 import {Button} from "../../Buttons/Button";
-import Rating from "react-rating";
+/*ICONS*/
+import EmailIcon from '@material-ui/icons/Email';
+import WorkIcon from '@material-ui/icons/Work';
+import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
+import BusinessIcon from '@material-ui/icons/Business';
+/*RATING*/
+import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
+import FiberManualRecordOutlinedIcon from '@material-ui/icons/FiberManualRecordOutlined';
+import Rating from '@material-ui/lab/Rating';
 
 function ProfessorDetails(props) {
     const {professor} = props;
@@ -23,23 +31,31 @@ function ProfessorDetails(props) {
                         {professor.finalEvaluation.filter(x => x.title === "Overall")
                             .map((x) => {
                                 return (
-                                    <Rating placeholderRating={x.value}
-                                                            readonly
-                                                            className={"bubble-rating"}/>
+                                    <div className={"bubble-rating"}>
+                                    <Rating name="half-rating-read"
+                                            defaultValue={x.value}
+                                            precision={0.5}
+                                            readOnly
+                                            emptyIcon={<FiberManualRecordOutlinedIcon fontSize="large" style={{fill: "#e53a1e"}}/>}
+                                            icon={<FiberManualRecordIcon fontSize="large" style={{fill: "#e53a1e"}}/>}
+                                    />
+                                    </div>
                                 )
                             })}
                     </div>
                     <div className="professor-university-section">
                         <div className="professor-info">
                             {professor.university.map((x) => {
-                                return <h3 style={{color: "#e53a1e"}}>{x.name}</h3>
-                            })}
-                            <p>{professor.email}</p>
-                            {professor.university.map((x) => {
-                                return <p>{x.typeContract}</p>
+                                return <div className={"professor-info-row"}><AccountBalanceIcon fontSize="small" style={{fill: "#e53a1e", marginRight: "3%"}}/><h3 style={{color: "#e53a1e"}}>{x.name}</h3></div>
                             })}
                             {professor.university.map((x) => {
-                                return <p>{x.department}</p>
+                                return <div className={"professor-info-row"}><EmailIcon fontSize="small" style={{marginRight: "3%"}}/><p>{professor.email}</p></div>
+                            })}
+                            {professor.university.map((x) => {
+                                return <div className={"professor-info-row"}><WorkIcon fontSize="small" style={{marginRight: "3%"}}/><p>{x.typeContract}</p> </div>
+                            })}
+                            {professor.university.map((x) => {
+                                return <div className={"professor-info-row"}><BusinessIcon fontSize="small" style={{marginRight: "3%"}}/><p>{x.department}</p> </div>
                             })}
                         </div>
                         <ProfessorEvaluation finalEvaluation={professor.finalEvaluation}/>
