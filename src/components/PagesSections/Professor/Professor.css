@@ -222,5 +222,61 @@
 }
 
 @media screen and (max-width: 700px){
+    .professor-card{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 5% 0 0 0;
+        justify-content: center;
+        align-items: center;
+    }
+    .professor-img{
+        height: 10em;
+        margin-right: 5%;
+    }
 
+    .professor-title{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding-bottom: 1%;
+        border-bottom:none;
+    }
+
+    .professor-university-section{
+        padding-top: 2%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    /*Section courses*/
+    .professor-title-courses{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 5% 0 2% 0
+    }
+    .professor-title-courses-selected{
+        display: flex;
+        flex-direction: row;
+        padding: 5% 5% 2% 5%;
+    }
+
+    .professor-courses{
+        background-color: #efefef;
+        padding: 2% 5% 5% 5%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    /*Section reviews*/
+    .reviews-section{
+        padding: 2% 5% 2% 5%;
+        display: flex;
+        flex-direction: column;
+    }
 }

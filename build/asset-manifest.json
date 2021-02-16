@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/static/css/main.ac9c767b.chunk.css",
-    "main.js": "/static/js/main.31c719a0.chunk.js",
-    "main.js.map": "/static/js/main.31c719a0.chunk.js.map",
+    "main.css": "/static/css/main.a8f158d1.chunk.css",
+    "main.js": "/static/js/main.a67add62.chunk.js",
+    "main.js.map": "/static/js/main.a67add62.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.ca213258.js",
     "runtime-main.js.map": "/static/js/runtime-main.ca213258.js.map",
     "static/js/2.f06c00a1.chunk.js": "/static/js/2.f06c00a1.chunk.js",
     "static/js/2.f06c00a1.chunk.js.map": "/static/js/2.f06c00a1.chunk.js.map",
     "index.html": "/index.html",
-    "static/css/main.ac9c767b.chunk.css.map": "/static/css/main.ac9c767b.chunk.css.map",
+    "static/css/main.a8f158d1.chunk.css.map": "/static/css/main.a8f158d1.chunk.css.map",
     "static/js/2.f06c00a1.chunk.js.LICENSE.txt": "/static/js/2.f06c00a1.chunk.js.LICENSE.txt",
     "static/media/bocconi.cac2f116.jpg": "/static/media/bocconi.cac2f116.jpg",
     "static/media/cattolica.0f74b814.jpg": "/static/media/cattolica.0f74b814.jpg",
@@ -25,7 +25,7 @@
   "entrypoints": [
     "static/js/runtime-main.ca213258.js",
     "static/js/2.f06c00a1.chunk.js",
-    "static/css/main.ac9c767b.chunk.css",
-    "static/js/main.31c719a0.chunk.js"
+    "static/css/main.a8f158d1.chunk.css",
+    "static/js/main.a67add62.chunk.js"
   ]
 }

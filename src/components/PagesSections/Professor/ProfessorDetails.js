@@ -92,9 +92,6 @@ function ProfessorDetails(props) {
                         }
                     )}
                 </div>
-                <div>
-                    {/*qui inserire overall metrics*/}
-                </div>
             </div>
 
             <div className={"reviews-section"}>
