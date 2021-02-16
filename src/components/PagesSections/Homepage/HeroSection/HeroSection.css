@@ -23,7 +23,8 @@
 .hero-image {
     padding-top: 10%;
     padding-bottom: -10%;
-    max-width: 25em;
+    height: 100%;
+    width: 35%;
 }
 
 /*OTTIMIZZAZIONE TABLET*/
