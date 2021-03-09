@@ -7,7 +7,7 @@ import {Button} from "../Buttons/Button";
 import Popup from "../Popup/Popup";
 import {ApiMail} from "../../api";
 
-function Navbar() {
+const Navbar = () => {
 
     const [email, setEmail] = useState();
     const [loading, setLoading] = useState (false); //loading è fondamentale per l'invio delle informazioni dal popup
@@ -49,26 +49,11 @@ function Navbar() {
                 <Link to='/' className="navbar-title">
                     <img src={logo} className={'logo'} alt={logo}/>
                 </Link>
+                <Link to='/login' className="navbar-title">
                 <div className="menu-content">
                     <Button buttonStyle='btn--outline' onClick={handleOpenLoginForm}><h6 style={{color: "white"}}>Accedi/Registrati</h6></Button>
-                    {isOpenLoginForm && <Popup onSubmit={handleSubmit}>
-                        <div className={'form-content'}>
-                            <TitlePopup titleText={'Siamo spiacenti!'} onClose={handleOpenLoginForm}/>
-                            <p>Il sito è in fase di manutenzione e questa funzione non è al momento disponibile.</p>
-                            <p>Ti chiediamo di lasciarci la mail in modo da poterti avvisare quando è pronto</p>
-                            <input
-                                className={"form-input"}
-                                placeholder="Mail"
-                                onChange={e => setEmail(e.target.value)}
-                                required
-                                value={email}
-                            />
-                            <div className={'form-buttons'}>
-                                <button className={'send-button'} onClick={handleSubmit}>Invia</button>
-                            </div>
-                        </div>
-                    </Popup>}
                 </div>
+                </Link>
             </div>
         </>
     );

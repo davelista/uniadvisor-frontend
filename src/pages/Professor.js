@@ -1,8 +1,7 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import ProfessorDetails from "../components/PagesSections/Professor/ProfessorDetails";
 import {useParams} from "react-router";
 import useProfessor from "../hooks/useProfessor";
-import Popup from "../components/Popup/Popup";
 
 function Professor(props) {
     let { endpoint } = useParams();
