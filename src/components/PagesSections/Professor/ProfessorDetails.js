@@ -22,7 +22,6 @@ function ProfessorDetails(props) {
 
     return (
         <>
-            <Navbar/>
             <div className={"professor-card"}>
                 <img src={imgUser} className={"professor-img"} alt={imgUser}/>
                 <div className="professor-detail">

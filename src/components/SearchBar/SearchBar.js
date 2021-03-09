@@ -14,20 +14,37 @@ function SearchBar(props) {
 
     let professorDetails;
 
+
     if (filteredListLower.length > 0) {
-        professorDetails = (
-            <React.Fragment>
-                <div>
-                    {
-                        filteredListLower
-                            .slice(0, 3)
-                            .map((x) => {
-                                return <SearchBarResult key={x.id} professor={x} onChangeProfessor={onChangeProfessor}/>
-                            })
-                    }
-                </div>
-            </React.Fragment>
-        )
+        if(isHome === false){
+            professorDetails = (
+                <React.Fragment>
+                    <div>
+                        {
+                            filteredListLower
+                                .slice(0, 1)
+                                .map((x) => {
+                                    return <SearchBarResult key={x.id} professor={x} onChangeProfessor={onChangeProfessor}/>
+                                })
+                        }
+                    </div>
+                </React.Fragment>
+            )
+        } else {
+            professorDetails = (
+                <React.Fragment>
+                    <div>
+                        {
+                            filteredListLower
+                                .slice(0, 3)
+                                .map((x) => {
+                                    return <SearchBarResult key={x.id} professor={x} onChangeProfessor={onChangeProfessor}/>
+                                })
+                        }
+                    </div>
+                </React.Fragment>
+            )
+        }
     } else {
         professorDetails = (
             <div className={"result"}>Non ci sono professori con questo nome</div>)

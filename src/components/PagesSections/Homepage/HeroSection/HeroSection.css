@@ -23,8 +23,7 @@
 .hero-image {
     padding-top: 10%;
     padding-bottom: -10%;
-    height: 100%;
-    width: 35%;
+
 }
 
 /*OTTIMIZZAZIONE TABLET*/
@@ -36,6 +35,7 @@
         align-content: center;
         align-items: center;
         height: auto;
+        background: linear-gradient(to bottom, #efefef 100vh, white);
     }
 
     .search-section {

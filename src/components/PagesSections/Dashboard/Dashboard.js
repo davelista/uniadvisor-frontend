@@ -1,12 +1,14 @@
 import React, {useEffect, useState} from 'react';
-import {Button} from "../Buttons/Button";
+import './Dashboard.css'
+import NavSearchBar from "../../Navbar/NavSearchBar";
 
 const Dashboard = (props) => {
 
-    let {name} = props;
+    const {name, professorList, onChangeProfessor, professor} = props;
 
     return (
         <>
+            <NavSearchBar professorList={professorList} onChangeProfessor={onChangeProfessor} professor={professor}/>
 
             {
                 console.log(name)}

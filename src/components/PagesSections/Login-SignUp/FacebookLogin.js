@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import FacebookLoginBtn from 'react-facebook-login'
-import {Redirect} from "react-router";
+import {Redirect, Route} from "react-router";
+import Dashboard from "../Dashboard/Dashboard";
+import {BrowserRouter as Router, Switch} from "react-router-dom";
 
 const FacebookLogin = () => {
     const [state, setState] = useState({auth: false, name: '', email: '', picture: ''});
@@ -21,21 +23,17 @@ const FacebookLogin = () => {
 
     let facebookData;
     state.name!=='' ? facebookData = (
-
-            <React.Fragment>
-                {console.log(state.name)}
-                <Redirect to={{
-                    pathname: '/dashboard',
-                    props: { name: 'Piero' }
-                }} />
-                {console.log(state.name)}
-            </React.Fragment>
+        <Router>
+            <Switch>
+            <Route path='/dashboard' exact component={() => <Dashboard name={"Piero"} />} />
+            </Switch>
+        </Router>
 
     ) : facebookData = (
         <React.Fragment>
         <FacebookLoginBtn
             appId="207812577218371"
-            autoLoad={true}
+            autoLoad={false}
             fields="name, email, picture"
             onClick={componentClicked}
             callback={responseFacebook}
