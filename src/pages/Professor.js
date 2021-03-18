@@ -2,18 +2,18 @@ import React from 'react';
 import ProfessorDetails from "../components/PagesSections/Professor/ProfessorDetails";
 import {useParams} from "react-router";
 import useProfessor from "../hooks/useProfessor";
-import NavSearchBar from "../components/Navbar/NavSearchBar";
+import Navbar from "../components/Navbar/Navbar";
 
 function Professor(props) {
+    const {professorList, user, isHome} = props;
     let { endpoint } = useParams();
-    let [professor, isLoading] = useProfessor(endpoint);
-    const {professorList, onChangeProfessor} = props;
+    let [professor, professorImg, isLoading] = useProfessor(endpoint);
 
     const getContent = () => {
         if(!isLoading){
             return (
                 <React.Fragment>
-                    <ProfessorDetails professorList={professorList} onChangeProfessor={onChangeProfessor} professor={professor}/>
+                    <ProfessorDetails professorList={professorList} professor={professor} professorImg={professorImg}/>
                 </React.Fragment>
             );
         }
@@ -21,7 +21,8 @@ function Professor(props) {
 
     return (
         <div>
-            <NavSearchBar professorList={professorList} onChangeProfessor={onChangeProfessor} professor={professor}/>
+            {/*<NavSearchBar professorList={professorList} user={user}/>*/}
+            <Navbar professorList={professorList} user={user} isHome={isHome}/>
             {getContent()}
         </div>
     )

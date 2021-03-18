@@ -3,120 +3,195 @@ import TextField from "@material-ui/core/TextField";
 import {Button} from "../../Buttons/Button";
 import {ApiRegister} from "../../../api";
 import {Redirect} from "react-router";
+import LoginFacebook from "./LoginFacebook";
 
-const SignUpForm = () => {
-    const [name, setName] = useState('');
+const SignUpForm = (props) => {
+    const {onChangeUser} = props;
+
+    const [firstname, setFirstname] = useState('');
     const [lastname, setLastname] = useState('');
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
     const [university, setUniversity] = useState('');
-    const [loading, setLoading] = useState('');
-    const [done, setDone] = useState(false);
-    const [error, setError] = useState(false);
+    const [password, setPassword] = useState('');
+    const [passwordControl, setPasswordControl] = useState('');
 
-    /*const nameValidation = (fieldName, fieldValue) => {
-        if (fieldValue.trim() === '') {
-            return `${fieldName} is required`;
-        }
-        if (/[^a-zA-Z -]/.test(fieldValue)) {
-            return 'Invalid characters';
-        }
-        if (fieldValue.trim().length < 3) {
-            return `${fieldName} needs to be at least three characters`;
-        }
-        return null;
-    };
+    const [error, setError] = useState(true);
+    const [msgError, setMsgError] = useState('');
+    const [typeError, setTypeError] = useState('');
 
-    const emailValidation = (email) => {
-        if (
-            /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(
-                email,
-            )
-        ) {
-            return null;
+    const displayError = () => {
+        switch (typeError) {
+            case 'Empty':
+                setMsgError("ATTENZIONE, compilare tutti i campi");
+                break;
+            case 'Different passwords':
+                setMsgError("ATTENZIONE, le password non coincidono");
+                break;
+            case 'Invalid email':
+                setMsgError("ATTENZIONE, la mail non è valida");
+                break;
+            case 'Short Password':
+                setMsgError("ATTENZIONE, la password è troppo corta");
+                break;
+            default:
+                setMsgError('');
+                break;
         }
-        if (email.trim() === '') {
-            return 'Email is required';
+    }
+
+    const validation = () => {
+        if(firstname.length < 1 || lastname.length < 1 || email.length < 1 || university.length < 1 || password.length < 1 || passwordControl.length < 1){
+            setTypeError('Empty');
+            setError(true);
         }
-        return 'Please enter a valid email';
-    };
+        else if (!email.includes('@')){
+            setTypeError('Invalid email');
+            setError(true);
+            return false;
+        } else if (password.length < 8) {
+            setTypeError('Short Password');
+            setError(true);
+            return false;
+        } else if (password !== passwordControl){
+            setTypeError('Different passwords');
+            setError(true);
+            return false;
+        } else {
+            setTypeError('No Error');
+            setError(false);
+            return true;
+        }
+    }
 
-    const validate = (name, email, university, password) => {
-        nameValidation('Name', name);
-        emailValidation(email);
-    };*/
-
-    const submit = async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        setLoading(true);
-        if (name !== '') {
+
+        if(validation()){
             try {
-                await ApiRegister(name, lastname, email, password, university);
+                await ApiRegister(firstname, lastname, email, password, university);
             } catch (e) {
                 throw e;
             }
-            setLoading(false);
-            setDone(true);
-        }
-        else {
-            setError(true);
+        } else {
+            displayError();
         }
     }
 
 
-
     return (
         <>
+            <div className={"login-title-container"}>
+                <div className={"title-red"}>Registrati</div>
+            </div>
             <div className={"form-container"}>
-                <form className={"login-form"} noValidate autoComplete="off" onSubmit={submit}>
-                    <TextField
-                        id="outlined-textarea"
-                        label="Nome"
-                        placeholder="Inserisci il tuo nome"
-                        multiline
-                        variant="outlined"
-                        aria-required="true"
-                        onChange={e => setName(e.target.value)}
-                    />
-                    <TextField
-                        id="outlined-textarea"
-                        label="Cognome"
-                        placeholder="Inserisci il tuo cognome"
-                        multiline
-                        variant="outlined"
-                        aria-required="true"
-                        onChange={e => setLastname(e.target.value)}
-                    />
-                    <TextField
-                        id="outlined-textarea"
-                        label="Email"
-                        placeholder="Inserisci la tua email"
-                        multiline
-                        variant="outlined"
-                        aria-required="true"
-                        onChange={e => setEmail(e.target.value)}
-                    />
-                    <TextField
-                        id="outlined-textarea"
-                        label="Università"
-                        placeholder="Inserisci la tua università"
-                        multiline
-                        variant="outlined"
-                        aria-required="true"
-                        onChange={e => setPassword(e.target.value)}
-                    />
-                    <TextField
-                        id="outlined-textarea"
-                        label="Password"
-                        placeholder="Inserisci la tua password"
-                        multiline
-                        variant="outlined"
-                        aria-required="true"
-                        onChange={e => setPassword(e.target.value)}
-                    />
-
-                    <Button buttonStyle='btn--outline' type="submit"><h6 style={{color: "white"}}>Registrati</h6></Button>
-                    {done ? <Redirect to="/login" /> : (error ? "errore" : null)} {/*Una volta che ha mandato i dati, viene reindirizzato a login*/}
+                <form className={"login-form"} noValidate autoComplete="off" onSubmit={handleSubmit}>
+                    <div className={"form-row"}>
+                        <div className={"form-input"}>
+                            <TextField
+                                className={"TextField"}
+                                InputProps={{
+                                    className: "TextField",
+                                }}
+                                name="firstname"
+                                id="outlined-textarea"
+                                label="Nome"
+                                placeholder="Inserisci il tuo nome"
+                                variant="outlined"
+                                aria-required="true"
+                                onChange={e => setFirstname(e.target.value)}
+                            />
+                        </div>
+                        <div className={"form-input"}>
+                            <TextField
+                                className={"TextField"}
+                                InputProps={{
+                                    className: "TextField"
+                                }}
+                                name="lastname"
+                                id="outlined-textarea"
+                                label="Cognome"
+                                placeholder="Inserisci il tuo cognome"
+                                variant="outlined"
+                                aria-required="true"
+                                onChange={e => setLastname(e.target.value)}
+                            />
+                        </div>
+                    </div>
+                    <div className={"form-input"}>
+                        <TextField
+                            className={"TextField"}
+                            InputProps={{
+                                className: "TextField"
+                            }}
+                            name="email"
+                            id="outlined-textarea"
+                            label="Email"
+                            placeholder="Inserisci la tua email"
+                            variant="outlined"
+                            aria-required="true"
+                            onChange={e => setEmail(e.target.value)}
+                        />
+                    </div>
+                    <div className={"form-input"}>
+                        <TextField
+                            className={"TextField"}
+                            InputProps={{
+                                className: "TextField"
+                            }}
+                            name="university"
+                            id="outlined-textarea"
+                            label="Università"
+                            placeholder="Inserisci la tua università"
+                            variant="outlined"
+                            aria-required="true"
+                            onChange={e => setUniversity(e.target.value)}
+                        />
+                    </div>
+                    <div className={"form-row"}>
+                        <div className={"form-input"}>
+                            <TextField
+                                className={"TextField"}
+                                InputProps={{
+                                    className: "TextField",
+                                }}
+                                name="password"
+                                id="outlined-textarea"
+                                label="Password"
+                                placeholder="Inserisci la tua password"
+                                variant="outlined"
+                                aria-required="true"
+                                type="password"
+                                onChange={e => setPassword(e.target.value)}
+                            />
+                        </div>
+                        <div className={"form-input"}>
+                            <TextField
+                                className={"TextField"}
+                                InputProps={{
+                                    className: "TextField",
+                                }}
+                                name="passwordControl"
+                                id="outlined-textarea"
+                                label="Conferma Password"
+                                placeholder="Inserisci di nuovo la tua password"
+                                variant="outlined"
+                                aria-required="true"
+                                type="password"
+                                onChange={e => setPasswordControl(e.target.value)}
+                            />
+                        </div>
+                    </div>
+                    <div className={"form-input"}>
+                        <Button buttonStyle='btn--outline' type="submit" onClick={validation}><h6
+                            style={{color: "white"}}>Registrati</h6>
+                        </Button>
+                    </div>
+                    {error === false ? <Redirect
+                            to="/login"/> : <div>{msgError}</div> } {/*Una volta che ha mandato i dati, viene reindirizzato a login*/}
+                    <div>
+                        oppure registrati con
+                    </div>
+                    <LoginFacebook onChangeUser={onChangeUser}/>
                 </form>
             </div>
         </>
@@ -124,3 +199,17 @@ const SignUpForm = () => {
 }
 
 export default SignUpForm;
+
+/*  const [firstname, setFirstname] = useState('');
+    const [lastname, setLastname] = useState('');
+    const [email, setEmail] = useState('');
+    const [university, setUniversity] = useState('');
+    const [password, setPassword] = useState('');
+    const [passwordControl, setPasswordControl] = useState('');
+    const [loading, setLoading] = useState(false);
+
+const fieldValidation = (firstname, lastname, email, university, password, passwordControl) => {
+
+};
+
+*/

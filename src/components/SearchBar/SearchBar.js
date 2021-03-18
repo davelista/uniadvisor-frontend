@@ -3,7 +3,7 @@ import './SearchBar.css'
 import SearchBarResult from "./SearchBarResult";
 
 function SearchBar(props) {
-    const {professorList, onChangeProfessor, isHome} = props;
+    const {professorList, isHome} = props;
     const [search, setSearch] = useState('');
     const handleChange = event => {
         setSearch(event.target.value);
@@ -24,7 +24,7 @@ function SearchBar(props) {
                             filteredListLower
                                 .slice(0, 1)
                                 .map((x) => {
-                                    return <SearchBarResult key={x.id} professor={x} onChangeProfessor={onChangeProfessor}/>
+                                    return <SearchBarResult key={x.id} professor={x} />
                                 })
                         }
                     </div>
@@ -38,7 +38,7 @@ function SearchBar(props) {
                             filteredListLower
                                 .slice(0, 3)
                                 .map((x) => {
-                                    return <SearchBarResult key={x.id} professor={x} onChangeProfessor={onChangeProfessor}/>
+                                    return <SearchBarResult key={x.id} professor={x} />
                                 })
                         }
                     </div>

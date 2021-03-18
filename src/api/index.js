@@ -7,8 +7,21 @@ export const ApiProfessor = async (professorEndpoint) => {
     } catch (e){
         throw e;
     }
-
 };
+
+export const ApiProfessorImage = async (professorEndpoint) => {
+    try{
+        const img = await axios.get("/api/professor_image/" + professorEndpoint)
+        return img;
+    } catch (e){
+        console.log(JSON.stringify(e));
+        if(e.message === "Request failed with status code 404"){
+            return "Not Found Image";
+        }
+        throw e;
+    }
+};
+
 export const ApiMail = async (email) => {
     try{
         const res = await axios.post("/api/email", {email})
@@ -36,7 +49,7 @@ export const ApiRegister = async (name, surname, email, password, university) =>
                 console.log(error)
             });
 
-        //return res.data;
+        return res;
     } catch (e) {
         throw e;
     }
@@ -44,18 +57,20 @@ export const ApiRegister = async (name, surname, email, password, university) =>
 
 export const ApiLogin = async (email, password) => {
     try{
-        const res = await axios.post("/api/login", {email, password}, { withCredentials: true })/*withCredentials: true è per i cookies*/
-            .then(response => {
-                console.log(response)
-            })
-            .catch(error => {
-                console.log(error)
-            });
+        /*withCredentials: true è per i cookies*/
+        return await axios.post("/api/user_login", {email, password}, {withCredentials: true});
 
-        //return res.data;
     } catch (e) {
+        console.log(JSON.stringify(e));
+        if(e.message === "Request failed with status code 406"){
+            return null;
+        }
+        else if(e.message === "Request failed with status code 400"){
+            return null;
+        }
         throw e;
+
     }
 }
 
-export default {ApiProfessor, ApiMail, ApiRegister};
+export default {ApiProfessor, ApiProfessorImage, ApiMail, ApiRegister, ApiLogin};

@@ -17,13 +17,16 @@ import FiberManualRecordOutlinedIcon from '@material-ui/icons/FiberManualRecordO
 import Rating from '@material-ui/lab/Rating';
 
 function ProfessorDetails(props) {
-    const {professor} = props;
+    const {professor, professorImg} = props;
     const [courseId, setCouseId] = useState(1);
+
+    let image;
+    professorImg === "Not Found Image" ? image = (<img src={imgUser} className={"professor-img"} alt={imgUser}/>) : image = (<img src={professorImg} className={"professor-img"} alt={professorImg}/>)
 
     return (
         <>
             <div className={"professor-card"}>
-                <img src={imgUser} className={"professor-img"} alt={imgUser}/>
+                {image}
                 <div className="professor-detail">
                     <div className="professor-title">
                         <h1>{professor.name}</h1>

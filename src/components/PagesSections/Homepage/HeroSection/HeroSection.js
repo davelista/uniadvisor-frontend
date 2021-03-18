@@ -5,7 +5,7 @@ import heroImg from "../../../../img/hero-img.png";
 
 
 const HeroSection = (props) => {
-    const {professorList, onChangeProfessor} = props;
+    const {professorList} = props;
 
     return (
         <>
@@ -14,7 +14,7 @@ const HeroSection = (props) => {
                     <div className={"title-hero"}>
                         <h2>Scopri com'è <br/> il tuo professore!</h2>
                     </div>
-                    <SearchBar professorList={professorList} onChangeProfessor={onChangeProfessor}/>
+                    <SearchBar professorList={professorList} />
                 </div>
                 <img src={heroImg} className={'hero-image'} alt={heroImg}/>
             </div>

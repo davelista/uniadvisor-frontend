@@ -1,0 +1,30 @@
+.user-details-container{
+    display: flex;
+    flex-direction: column;
+    padding: 5% 15% 0 15%;
+    background-color: #efefef;
+}
+
+.user-img{
+    height: 15em;
+    margin-right: 10%;
+}
+
+.user-card{
+    padding-top: 2%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.user-name{
+
+}
+
+.user-nickname{
+
+}
+
+.user-info-row{
+
+}

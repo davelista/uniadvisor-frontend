@@ -1,13 +1,97 @@
+/**LOGIN e SIGNUP**/
+
+.login-title-container{
+    display: flex;
+    background-color: white;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 3% 0 3% 0;
+}
+
 .form-container{
     display: flex;
-    padding-top: 10%;
     justify-content: center;
-    align-items: center;
-    height: 35vh;
+    padding: 1% 0 2% 0;
+    background-color: #efefef;
 }
 
 .login-form{
     display: flex;
     flex-direction: column;
-    justify-content: space-around !important;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 50rem;
+}
+
+.form-input{
+    display: flex;
+    margin-top:5%;
+    border:none;
+    padding: 5px 10px;
+    outline: none;
+    width: 100%;
+    justify-content: center;
+}
+
+.form-row{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.register-option-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+.register-option-text{
+    margin-top: 3%;
+}
+
+.register-option-button{
+    margin-top: 1%;
+    margin-bottom: 7%;
+}
+
+.TextField{
+    border: 2px solid #e53a1e;
+    background-color: white;
+    border-radius: 40px !important;
+    margin: 0;
+    height: 3rem;
+    width: 100%;
+}
+
+.TextField:hover {
+    border:none;
+    background-color: white;
+    border-radius: 40px !important;
+    margin: 0;
+}
+
+.TextField:focus {
+    border:none !important;
+    background-color: white;
+    border-radius: 40px !important;
+    margin: 0;
+}
+
+/**FACEBOOK BTN**/
+
+.facebook-btn{
+    background-color: #385898;
+    color: white !important;
+    border: none;
+    border-radius: 50%;
+    height: 3rem;
+    width: 3rem;
+}
+
+.facebook-btn:hover{
+    cursor: pointer;
+
 }

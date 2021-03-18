@@ -1,16 +1,15 @@
 import React from 'react';
-import Navbar from "../components/Navbar/Navbar";
 import SignUpForm from "../components/PagesSections/Login-SignUp/SignUpForm";
-import FacebookLogin from "../components/PagesSections/Login-SignUp/FacebookLogin";
+import Navbar from "../components/Navbar/Navbar";
 
-const SignUp = () => {
+const SignUp = (props) => {
 
+    const {onChangeUser, professorList, isHome} = props
     return (
         <>
-            <Navbar/>
-            <SignUpForm/>
-            <FacebookLogin/>
-        </>
+            <Navbar professorList={professorList} user={''} isHome={isHome}/>
+            <SignUpForm onChangeUser={onChangeUser}/>
+            </>
     );
 }
 
