@@ -15,7 +15,7 @@ function Review(props) {
                 {review.map((x) => {
                         return (
                             <div className={"reviews-container"}>
-                                <img src={imgUser} className={"user-img"} alt={imgUser}/>
+                                <img src={imgUser} className={"reviews-user-img"} alt={imgUser}/>
                                 <div className={"reviews-body"}>
                                     <h4>Titolo</h4>
                                     <h5 style={{color: "grey"}}>A.A. {x.year}</h5>
@@ -64,7 +64,7 @@ function Review(props) {
         return (
             <>
                 <div className={"reviews-container"}>
-                    <img src={imgUser} className={"user-img"} alt={imgUser}/>
+                    <img src={imgUser} className={"reviews-user-img"} alt={imgUser}/>
                     <div className={"reviews-body"}>
                         <h4>Titolo</h4>
                         <h5 style={{color: "grey"}}>A.A. {review.year}</h5>

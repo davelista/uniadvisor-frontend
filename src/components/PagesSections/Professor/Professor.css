@@ -129,7 +129,7 @@
     -webkit-box-orient: vertical;
 }
 
-.user-img{
+.reviews-user-img{
     height: 10em;
 }
 
@@ -254,15 +254,20 @@
     /*Section courses*/
     .professor-title-courses{
         display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        padding: 5% 0 2% 0
+        flex-direction: column;
+        align-items: center;
+        padding: 5% 5% 0% 5%;
     }
     .professor-title-courses-selected{
         display: flex;
         flex-direction: row;
         padding: 5% 5% 2% 5%;
+    }
+
+    .course-title-button{
+        margin: 0;
+        padding-bottom: 2%;
+        text-align: center;
     }
 
     .professor-courses{
@@ -273,10 +278,35 @@
         flex-wrap: wrap;
         justify-content: center;
     }
+
+    .course-info-section{
+        width: 100%;
+    }
+
+    .course-info{
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-rows: repeat(2, minmax(0, 1fr));
+    }
+
     /*Section reviews*/
     .reviews-section{
         padding: 2% 5% 2% 5%;
         display: flex;
         flex-direction: column;
+    }
+
+    .reviews-container{
+        flex-direction: column;
+        padding: 5% 0 3% 0;
+    }
+
+    .reviews-user-img{
+        align-self: center;
+    }
+
+    .reviews-body{
+        width: 100%;
+        padding: 5% 0;
     }
 }
