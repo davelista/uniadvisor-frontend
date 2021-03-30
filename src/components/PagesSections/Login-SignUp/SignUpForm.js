@@ -6,7 +6,7 @@ import {Redirect} from "react-router";
 import LoginFacebook from "./LoginFacebook";
 
 const SignUpForm = (props) => {
-    const {onChangeUser} = props;
+    const {onChangeUserFb, onChangeFb} = props;
 
     const [firstname, setFirstname] = useState('');
     const [lastname, setLastname] = useState('');
@@ -18,6 +18,8 @@ const SignUpForm = (props) => {
     const [error, setError] = useState(true);
     const [msgError, setMsgError] = useState('');
     const [typeError, setTypeError] = useState('');
+    const [done, setDone] = useState(false);
+
 
     const displayError = () => {
         switch (typeError) {
@@ -33,6 +35,9 @@ const SignUpForm = (props) => {
             case 'Short Password':
                 setMsgError("ATTENZIONE, la password è troppo corta");
                 break;
+            case 'Already registered':
+                setMsgError("ATTENZIONE, utente già registrato");
+                break;
             default:
                 setMsgError('');
                 break;
@@ -40,41 +45,47 @@ const SignUpForm = (props) => {
     }
 
     const validation = () => {
-        if(firstname.length < 1 || lastname.length < 1 || email.length < 1 || university.length < 1 || password.length < 1 || passwordControl.length < 1){
+
+        if (firstname.length < 1 || lastname.length < 1 || email.length < 1 || university.length < 1 || password.length < 1 || passwordControl.length < 1) {
             setTypeError('Empty');
             setError(true);
-        }
-        else if (!email.includes('@')){
+        } else if (!email.includes('@')) {
             setTypeError('Invalid email');
             setError(true);
-            return false;
         } else if (password.length < 8) {
             setTypeError('Short Password');
             setError(true);
-            return false;
-        } else if (password !== passwordControl){
+        } else if (password !== passwordControl) {
             setTypeError('Different passwords');
             setError(true);
-            return false;
         } else {
             setTypeError('No Error');
             setError(false);
-            return true;
         }
     }
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        if(validation()){
+        if (e) e.preventDefault();
+        if (!error) {
             try {
-                await ApiRegister(firstname, lastname, email, password, university);
+                let res = await ApiRegister(firstname, lastname, email, password, university, "Unihub", null);
+
+                switch (res.data) {
+                    case "OK":
+                        setDone(true);
+                        break;
+                    case "Already registered":
+                        console.log("UTENTE GIÀ REGISTRATO");
+                        break;
+                    default:
+                        break;
+                }
             } catch (e) {
                 throw e;
             }
-        } else {
-            displayError();
+
         }
+        displayError();
     }
 
 
@@ -186,12 +197,13 @@ const SignUpForm = (props) => {
                             style={{color: "white"}}>Registrati</h6>
                         </Button>
                     </div>
-                    {error === false ? <Redirect
-                            to="/login"/> : <div>{msgError}</div> } {/*Una volta che ha mandato i dati, viene reindirizzato a login*/}
+                    {done ? <Redirect
+                            to="/login"/> :
+                        <div>{msgError}</div>} {/*Una volta che ha mandato i dati, viene reindirizzato a login*/}
                     <div>
                         oppure registrati con
                     </div>
-                    <LoginFacebook onChangeUser={onChangeUser}/>
+                    <LoginFacebook onChangeUserFb={onChangeUserFb} onChangeFb={onChangeFb}/>
                 </form>
             </div>
         </>
@@ -199,17 +211,3 @@ const SignUpForm = (props) => {
 }
 
 export default SignUpForm;
-
-/*  const [firstname, setFirstname] = useState('');
-    const [lastname, setLastname] = useState('');
-    const [email, setEmail] = useState('');
-    const [university, setUniversity] = useState('');
-    const [password, setPassword] = useState('');
-    const [passwordControl, setPasswordControl] = useState('');
-    const [loading, setLoading] = useState(false);
-
-const fieldValidation = (firstname, lastname, email, university, password, passwordControl) => {
-
-};
-
-*/

@@ -6,7 +6,7 @@ import FiberManualRecordOutlinedIcon from "@material-ui/icons/FiberManualRecordO
 import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 
 
-function Review(props) {
+function ProfessorReview(props) {
     const {review, oldReview} = props
 
     if (!oldReview) {
@@ -110,4 +110,4 @@ function Review(props) {
 
 }
 
-export default Review;
+export default ProfessorReview;

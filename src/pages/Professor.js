@@ -1,21 +1,26 @@
 import React from 'react';
 import ProfessorDetails from "../components/PagesSections/Professor/ProfessorDetails";
-import {useParams} from "react-router";
+import {Redirect, useParams} from "react-router";
 import useProfessor from "../hooks/useProfessor";
 import Navbar from "../components/Navbar/Navbar";
 
 function Professor(props) {
     const {professorList, user, isHome} = props;
-    let { endpoint } = useParams();
+    let {endpoint} = useParams();
     let [professor, professorImg, isLoading] = useProfessor(endpoint);
 
     const getContent = () => {
         if(!isLoading){
-            return (
-                <React.Fragment>
-                    <ProfessorDetails professorList={professorList} professor={professor} professorImg={professorImg}/>
-                </React.Fragment>
-            );
+            if (professor === null){
+                return(<Redirect to={"/"} />);
+            } else {
+                return (
+                    <React.Fragment>
+                        <ProfessorDetails professorList={professorList} professor={professor} professorImg={professorImg}/>
+                    </React.Fragment>
+                );
+            }
+
         }
     }
 

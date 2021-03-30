@@ -14,10 +14,14 @@ const useProfessor = (endpoint) => {
         const professorEndpoint = endpoint ? endpoint : undefined
         if (professorEndpoint != null) {
             const selectedProfessor = await ApiProfessor(professorEndpoint);
-            const imgProfessor = await ApiProfessorImage(professorEndpoint);
-            setState(selectedProfessor);
-            setProfessorImg(imgProfessor);
-            setLoading(false);
+            if(selectedProfessor === "No professor"){
+                setState(null);
+            } else {
+                const imgProfessor = await ApiProfessorImage(professorEndpoint);
+                setState(selectedProfessor);
+                setProfessorImg(imgProfessor);
+                setLoading(false);
+            }
         }
 
     };

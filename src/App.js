@@ -11,7 +11,34 @@ import SignUp from "./pages/SignUp";
 import Dashboard from "./pages/Dashboard";
 import Footer from "./components/Footer/Footer";
 import {Redirect} from "react-router";
+import {ApiLogin} from "./api";
 
+const getCookie = (cname) => {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for(let i = 0; i <ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) === ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) === 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+const setCookie = (cname, cvalue, exdays) => {
+    let d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    let expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+/* funzione per eliminare cookies
+document.cookie = "session=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+*/
 
 function App() {
     useEffect(() => {
@@ -20,23 +47,14 @@ function App() {
         ReactGA.pageview(window.location.pathname + window.location.search)
     }, [])
 
-    const [user, setUser] = useState('');
-    /*INSERITO PER MANTENERE LA SESSIONE CHIEDERE MEGLIO A LUIGI ED ALAIN
+    const [user, setUser] = useState(null);
 
-    useEffect(() => {
-        (
-            async () => {
-                const response = await fetch ('http://localhost:5000/api/user_login', {
-                    headers: {'Content-Type': 'application/json'},
-                    credentials: "include",
-                });
+    // getCookie("session") === "" ? setUser(null) : ApiLogin("davide.lista.polimi@gmail.com", "prova"); /*Api speficia per i cookies*/
 
-                const content = await response.json();
+    if(user !== null) {
+        setCookie("session", user, 7);
+    }
 
-                setName(content.name);
-        }
-        )();
-    });*/
     return (
         <Router>
             <Switch>

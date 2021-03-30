@@ -4,7 +4,7 @@ import './Professor.css';
 import imgUser from "../../../img/user.jpg";
 import ProfessorEvaluation from "./ProfessorEvaluation";
 import ProfessorCourse from "./ProfessorCourse";
-import Review from "./Review";
+import ProfessorReview from "./ProfessorReview";
 import {Button} from "../../Buttons/Button";
 /*ICONS*/
 import EmailIcon from '@material-ui/icons/Email';
@@ -21,7 +21,7 @@ function ProfessorDetails(props) {
     const [courseId, setCouseId] = useState(1);
 
     let image;
-    professorImg === "Not Found Image" ? image = (<img src={imgUser} className={"professor-img"} alt={imgUser}/>) : image = (<img src={professorImg} className={"professor-img"} alt={professorImg}/>)
+    professorImg === "Image Not Found" ? image = (<img src={imgUser} className={"professor-img"} alt={imgUser}/>) : image = (<img src={professorImg} className={"professor-img"} alt={professorImg}/>)
 
     return (
         <>
@@ -107,7 +107,7 @@ function ProfessorDetails(props) {
                                 return (
                                     <>
                                         {courseId === course.id && course.reviews.length !== 0 ?
-                                            <Review review={course.reviews}/> : null}
+                                            <ProfessorReview review={course.reviews}/> : null}
                                     </>
                                 )
                             })
@@ -119,7 +119,7 @@ function ProfessorDetails(props) {
                 </div>
                 <>
                     {professor.oldReview.map((x) => {
-                        return <Review review={x} oldReview={true}/>
+                        return <ProfessorReview review={x} oldReview={true}/>
                     })}
                 </>
             </div>

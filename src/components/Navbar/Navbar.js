@@ -9,14 +9,14 @@ import SearchBar from "../SearchBar/SearchBar";
 const Navbar = (props) => {
 
     const {professorList, user, isHome} = props;
-    const [isOpenLoginForm, setOpenLoginForm] = React.useState(false);
+    const [isOpenLoginForm, setOpenLoginForm] = useState(false);
 
     const handleOpenLoginForm = () => {
         setOpenLoginForm(!isOpenLoginForm);
     }
 
     let button;
-    user === '' ? button = (
+    user === null ? button = (
             <Link to='/login' className="navbar-title">
                 <Button buttonStyle='btn--outline'><h6 style={{color: "white"}}>Accedi/Registrati</h6></Button>
             </Link>
