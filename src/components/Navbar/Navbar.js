@@ -5,11 +5,16 @@ import './Navbar.css'
 import '../Buttons/Button.css';
 import {Button} from "../Buttons/Button";
 import SearchBar from "../SearchBar/SearchBar";
+import useMediaQuery, { Device } from '../../hooks/useMediaQuery';
+import SearchIcon from '@material-ui/icons/Search';
 
 const Navbar = (props) => {
 
     const {professorList, user, isHome} = props;
     const [isOpenLoginForm, setOpenLoginForm] = useState(false);
+    
+    const isMobile = useMediaQuery(Device.sm);
+    const [mobileSearchHidden, setMobileSearchHidden] = useState(true);
 
     const handleOpenLoginForm = () => {
         setOpenLoginForm(!isOpenLoginForm);
@@ -18,7 +23,8 @@ const Navbar = (props) => {
     let button;
     user === null ? button = (
             <Link to='/login' className="navbar-title">
-                <Button buttonStyle='btn--outline'><h6 style={{color: "white"}}>Accedi/Registrati</h6></Button>
+                {/* <Button buttonStyle='btn--outline'><h6 style={{color: "white"}}>Accedi/Registrati</h6></Button> */}
+                <Button buttonStyle='btn--outline'><h6 style={{color: "white"}}>{isMobile ? "Accedi" : "Accedi/Registrati"}</h6></Button>
             </Link>
         )
         : button = (<Link to='/dashboard'><div>{user}</div></Link>)
@@ -32,7 +38,7 @@ const Navbar = (props) => {
                 <Link to='/' className="navbar-title">
                     <img src={logo} className={'logo'} alt={logo}/>
                 </Link>
-                {search}
+                {isMobile ? <SearchIcon onClick={() => setMobileSearchHidden(value => !value)} /> : search}
                 {/* LOGIN POPUP
                 <div className="menu-content">
                     <Button buttonStyle='btn--outline' onClick={handleOpenLoginForm}><h6 style={{color: "white"}}>Accedi/Registrati</h6></Button>
@@ -42,6 +48,8 @@ const Navbar = (props) => {
                     </Popup>}
                 </div>*/}
                 {button}
+
+                {!mobileSearchHidden && isMobile && !isHome ? <div className="navbar-mobile-search">{search}</div> : null}
             </div>
         </>
     );
