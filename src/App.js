@@ -1,3 +1,4 @@
+
 import React, {useEffect, useState} from 'react'
 import './App.css';
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
@@ -44,7 +45,8 @@ function App() {
     useEffect(() => {
         ReactGA.initialize('UA-185661222-1 ');
         //to report page view
-        ReactGA.pageview(window.location.pathname + window.location.search)
+        ReactGA.pageview(window.location.pathname + window.location.search);
+        readCookie();
     }, [])
 
     const [user, setUser] = useState(null);
@@ -53,6 +55,11 @@ function App() {
 
     if(user !== null) {
         setCookie("session", user, 7);
+        console.log(getCookie("session"));
+    }
+
+    const readCookie = () => {
+        getCookie("session");
     }
 
     return (
@@ -68,7 +75,7 @@ function App() {
             <Footer/>
         </Router>
 
-);
+    );
 }
 
 export default App;

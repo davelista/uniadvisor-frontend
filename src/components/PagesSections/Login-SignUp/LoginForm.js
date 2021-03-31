@@ -13,31 +13,25 @@ const LoginForm = (props) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
-    const [done, setDone] = useState(false);
-    const [error, setError] = useState('');
+    const [msgError, setMsgError] = useState('');
 
-    let result;
     const submit = async (e) => {
-        e.preventDefault();
+        if(e) e.preventDefault();
 
         if (email !== '' && password !== '') {
             try {
-                result = await ApiLogin(email, password);
-                //console.log(result);
-                setLoading(!loading);
+                let result = await ApiLogin(email, password);
                 if (result !== null) {
                     console.log(result);
-                    setDone(true);
                     onChangeError(false);
-                } else onChangeError(true)
-                setDone(!done);
+                } else onChangeError(true);
                 onChangeUser(email);
-                setLoading(!loading);
+                setLoading(false);
             } catch (e) {
                 throw e;
             }
         } else {
-            onChangeError("ERRORE! I campi sono vuoti")
+                setMsgError("ATTENZIONE! I campi sono vuoti")
         }
     }
 
@@ -80,16 +74,17 @@ const LoginForm = (props) => {
                         <Button buttonStyle='btn--outline' type="submit"><h6 style={{color: "white"}}>Accedi</h6>
                         </Button>
                     </div>
+                    {msgError !== '' ? <div>{msgError}</div> : null}
                     {/*<FormControlLabel
                         value="ricordami"
                         control={<Checkbox color="primary" />}
                         label="Ricordami"
                         labelPlacement="end"
                     />*/}
-                    <div>
+                    {/*<div>
                         oppure
                     </div>
-                    <LoginFacebook onChangeUser={onChangeUser}/>
+                    <LoginFacebook onChangeUserFb={onChangeUser}/>*/}
                 </form>
 
 

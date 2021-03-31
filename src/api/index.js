@@ -54,7 +54,6 @@ export const ApiLogin = async (email, password) => {
     try{
         /*withCredentials: true è per i cookies*/
         const res = await axios.post("/api/user_login", {email, password}, {withCredentials: true});
-        console.log(JSON.stringify(res));
         return res.data;
     } catch (e) {
         console.log(JSON.stringify(e));

@@ -200,10 +200,10 @@ const SignUpForm = (props) => {
                     {done ? <Redirect
                             to="/login"/> :
                         <div>{msgError}</div>} {/*Una volta che ha mandato i dati, viene reindirizzato a login*/}
-                    <div>
+                    {/*<div>
                         oppure registrati con
                     </div>
-                    <LoginFacebook onChangeUserFb={onChangeUserFb} onChangeFb={onChangeFb}/>
+                    <LoginFacebook onChangeUserFb={onChangeUserFb} onChangeFb={onChangeFb}/>*/}
                 </form>
             </div>
         </>

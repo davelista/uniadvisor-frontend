@@ -1,3 +1,4 @@
+
 import React, {useState} from 'react';
 import LoginForm from "../components/PagesSections/Login-SignUp/LoginForm";
 import {Redirect} from "react-router";
@@ -8,14 +9,6 @@ const Login = (props) => {
 
     const [error, setError] = useState('');
 
-    const login = details => {
-        console.log(details);
-    }
-
-    /*const Logout = () => {
-        console.log("logout");
-    }*/
-
     let userPage;
     error !== false ? userPage = (
         <React.Fragment>
@@ -25,8 +18,8 @@ const Login = (props) => {
                 <div className={"title-red"}>Login</div>
             </div>
             {/* FINE */}
-            <LoginForm login={login} onChangeError={setError} onChangeUser={onChangeUser}/>
-            {error !== '' ? <div>{error}</div> : null}
+            <LoginForm onChangeError={setError} onChangeUser={onChangeUser}/>
+
         </React.Fragment>
     ) : userPage = <Redirect to={'/dashboard'}/>
 
