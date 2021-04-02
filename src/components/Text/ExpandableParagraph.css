@@ -1,0 +1,15 @@
+.expandable-paragraph-text {
+    overflow: hidden;
+}
+
+.expandable-paragraph-button {
+    background: transparent;
+    border: 0;
+    color: #e53a1e;
+    font-size: small;
+    cursor: pointer;
+}
+
+.expandable-paragraph-button-hidden {
+    display: none;
+}

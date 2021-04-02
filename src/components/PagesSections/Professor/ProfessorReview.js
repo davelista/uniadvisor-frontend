@@ -4,6 +4,7 @@ import imgUser from "../../../img/user.jpg";
 import Rating from '@material-ui/lab/Rating';
 import FiberManualRecordOutlinedIcon from "@material-ui/icons/FiberManualRecordOutlined";
 import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
+import ExpandableParagraph from '../../Text/ExpandableParagraph';
 
 
 function ProfessorReview(props) {
@@ -19,9 +20,9 @@ function ProfessorReview(props) {
                                 <div className={"reviews-body"}>
                                     <h4>Titolo</h4>
                                     <h5 style={{color: "grey"}}>A.A. {x.year}</h5>
-                                    <div>
+                                    <ExpandableParagraph>
                                         {x.body}
-                                    </div>
+                                    </ExpandableParagraph>
                                 </div>
                                 <div className={"reviews-evaluation"}>
                                     <h5 style={{
@@ -68,9 +69,9 @@ function ProfessorReview(props) {
                     <div className={"reviews-body"}>
                         <h4>Titolo</h4>
                         <h5 style={{color: "grey"}}>A.A. {review.year}</h5>
-                        <div>
+                        <ExpandableParagraph>
                             {review.body}
-                        </div>
+                        </ExpandableParagraph>
                     </div>
                     <div className={"reviews-evaluation"}>
                         <h5 style={{
