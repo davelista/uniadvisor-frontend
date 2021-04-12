@@ -1,25 +1,41 @@
 import axios from "axios";
 
 /*API to request professor detail*/
-export const ApiProfessor = async (professorEndpoint) => {
+export const ApiProfessorsList = async () => {
     try{
-        const res = await axios.get("/api/professors/"+professorEndpoint);
+        const res = await axios.get("/api/professors_list");
+        return res.data.results;
+    } catch (e){
+        if(e != null){
+            console.log(JSON.stringify(e));
+            return null;
+        }
+        throw e;
+    }
+};
+
+/*API to request professor detail*/
+export const ApiProfessor = async (professorId) => {
+    try{
+        const res = await axios.get("/api/professors/"+professorId);
         return res.data;
     } catch (e){
         switch (e.message){
             case "Request failed with status code 400":
                 return "No professor";
+            case "Request failed with status code 500":
+                return "Internal error";
             default:
-                break;
+                return "Error";
         }
         throw e;
     }
 };
 
 /*API to request professor image*/
-export const ApiProfessorImage = async (professorEndpoint) => {
+/*export const ApiProfessorImage = async (professorId) => {
     try{
-        const img = await axios.get("/api/professor_image/" + professorEndpoint)
+        const img = await axios.get("/api/professor_image/" + professorId)
         return img;
     } catch (e){
         switch (e.message){
@@ -30,7 +46,7 @@ export const ApiProfessorImage = async (professorEndpoint) => {
         }
         throw e;
     }
-};
+};*/
 
 /*API to register new users*/
 export const ApiRegister = async (name, surname, email, password, university, type, externalId) =>{
@@ -79,4 +95,4 @@ export const ApiMail = async (email) => {
 
 };
 
-export default {ApiProfessor, ApiProfessorImage, ApiMail, ApiRegister, ApiLogin};
+export default {ApiProfessor, ApiMail, ApiRegister, ApiLogin};

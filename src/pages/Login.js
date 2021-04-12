@@ -5,7 +5,7 @@ import {Redirect} from "react-router";
 import Navbar from "../components/Navbar/Navbar";
 
 const Login = (props) => {
-    const {onChangeUser, professorList, isHome} = props
+    const {onChangeUser, professorsList, isHome} = props
 
     const [error, setError] = useState('');
 
@@ -13,7 +13,7 @@ const Login = (props) => {
     error !== false ? userPage = (
         <React.Fragment>
             {/* INIZIO --- DA TOGLIERE NEL MOMENTO IN CUI SI SOSTITUISCE COL POPUP */}
-            <Navbar professorList={professorList} user={''} isHome={isHome}/>
+            <Navbar professorsList={professorsList} user={''} isHome={isHome}/>
             <div className={'element-center'}>
                 <div className={"title-red"}>Login</div>
             </div>

@@ -5,7 +5,7 @@ import SignUpFb from "../components/PagesSections/Login-SignUp/SignUpFb";
 
 const SignUp = (props) => {
 
-    const {professorList, onChangeUser, isHome} = props
+    const {professorsList, onChangeUser, isHome} = props
     const [fbRegister, setFacebookRegister] = useState(false);
     const [userFb, setUserFb] = useState();
 
@@ -15,7 +15,7 @@ const SignUp = (props) => {
 
     return (
         <>
-            <Navbar professorList={professorList} user={''} isHome={isHome}/>
+            <Navbar professorsList={professorsList} user={''} isHome={isHome}/>
             {signUp}
             </>
     );

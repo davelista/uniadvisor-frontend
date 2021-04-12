@@ -24,8 +24,8 @@ const LoginForm = (props) => {
                 if (result !== null) {
                     console.log(result);
                     onChangeError(false);
+                    onChangeUser(email);
                 } else onChangeError(true);
-                onChangeUser(email);
                 setLoading(false);
             } catch (e) {
                 throw e;

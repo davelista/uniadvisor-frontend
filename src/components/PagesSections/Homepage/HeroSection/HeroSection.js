@@ -5,7 +5,7 @@ import heroImg from "../../../../img/hero-img.png";
 
 
 const HeroSection = (props) => {
-    const {professorList} = props;
+    const {professorsList, isLoadingList} = props;
 
     return (
         <>
@@ -14,7 +14,11 @@ const HeroSection = (props) => {
                     <div className={"title-hero"}>
                         <h2>Scopri com'è <br/> il tuo professore!</h2>
                     </div>
-                    <SearchBar professorList={professorList} />
+                    {!isLoadingList ?
+                        <SearchBar professorsList={professorsList}/>
+                        : <div> </div>
+                    }
+
                 </div>
                 <img src={heroImg} className={'hero-image'} alt={heroImg}/>
             </div>
