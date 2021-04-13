@@ -10,6 +10,8 @@ import styles from "./AddReview.module.css";
 import useAddReviewForm from "./useAddReviewForm";
 
 export default function AddReviewForm(props) {
+    const { professorsList } = props;
+
     const [course, setCourse] = useState("");
 
     const form = useAddReviewForm();
@@ -19,7 +21,7 @@ export default function AddReviewForm(props) {
             <h2 className={styles["section-title"]}>Crea una recensione</h2>
 
             <div className={styles["search-section"]}>
-                <SearchBar professorList={props.professorList} />
+                <SearchBar professorsList={professorsList} />
                 <img className={styles["professor-img"]} alt="" />
             </div>
 

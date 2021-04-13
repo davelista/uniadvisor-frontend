@@ -10,7 +10,7 @@ import SearchIcon from '@material-ui/icons/Search';
 
 const Navbar = (props) => {
 
-    const {professorList, user, isHome} = props;
+    const {professorsList, user, isHome, isLoadingList} = props;
     const [isOpenLoginForm, setOpenLoginForm] = useState(false);
     
     const isMobile = useMediaQuery(Device.sm);
@@ -30,7 +30,7 @@ const Navbar = (props) => {
         : button = (<Link to='/dashboard'><div>{user}</div></Link>)
 
     let search;
-    isHome === false ? search=(<SearchBar professorList={professorList} isHome={isHome}/>) : search=(<div></div>)
+    isHome === false && isLoadingList === false ? search=(<SearchBar professorsList={professorsList} isHome={isHome}/>) : search=(<div></div>)
 
     return (
         <>

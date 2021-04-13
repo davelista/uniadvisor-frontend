@@ -6,7 +6,7 @@ import {Button} from "../components/Buttons/Button";
 
 const Dashboard = (props) => {
 
-    const {user, professorList, isHome, onChangeAuth} = props;
+    const {user, professorsList, isHome, onChangeAuth} = props;
 
     let dashboard;
 
@@ -14,7 +14,7 @@ const Dashboard = (props) => {
     /*dashboard=(<Redirect to={'/login'} />) NON va bene perché effettua prima il redirect*/
     return (
         <>
-            <Navbar professorList={professorList} user={user} isHome={isHome}/>
+            <Navbar professorsList={professorsList} user={user} isHome={isHome}/>
             {dashboard}
             <Button onClick={onChangeAuth} />
         </>

@@ -1,13 +1,12 @@
 import React from 'react';
-import ProfessorDetails from "../components/PagesSections/Professor/ProfessorDetails";
 import {Redirect, useParams} from "react-router";
 import useProfessor from "../hooks/useProfessor";
 import Navbar from "../components/Navbar/Navbar";
 
 function Professor(props) {
-    const {professorList, user, isHome} = props;
-    let {endpoint} = useParams();
-    let [professor, professorImg, isLoading] = useProfessor(endpoint);
+    const {professorsList, user, isHome, isLoadingList} = props;
+    let {professorId} = useParams();
+    let [professor, isLoading] = useProfessor(professorId);
 
     const getContent = () => {
         if(!isLoading){
@@ -16,7 +15,8 @@ function Professor(props) {
             } else {
                 return (
                     <React.Fragment>
-                        <ProfessorDetails professorList={professorList} professor={professor} professorImg={professorImg}/>
+                        {/*<ProfessorDetails professorsList={professorsList} professor={professor} professorImg={professorImg}/>*/}
+                        <div> prova </div>
                     </React.Fragment>
                 );
             }
@@ -26,8 +26,8 @@ function Professor(props) {
 
     return (
         <div>
-            {/*<NavSearchBar professorList={professorList} user={user}/>*/}
-            <Navbar professorList={professorList} user={user} isHome={isHome}/>
+            <Navbar professorsList={professorsList} user={user} isHome={isHome} isLoadingList={isLoadingList}/>
+            {console.log(professor)}
             {getContent()}
         </div>
     )

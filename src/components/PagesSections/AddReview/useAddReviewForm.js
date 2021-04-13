@@ -102,17 +102,52 @@ export default function useAddReviewForm() {
     return form;
 }
 
-/// form: {
-///     [apiID: string]: {
-///         value: any;
-///         label: string;
-///         set: React.Dispatch<React.SetStateAction< any >>
-///         validate: (any) => boolwan
-///     }
-/// }
+/**
+# form hook
 
-/// e.g.:
-/// form.chiarezza.value: any
-/// form.chiarezza.set(value: any): void
-/// form.chiarezza.label: string
-/// form.chiarezza.validate(value: any): bool
+```ts
+// component.js
+const form = useComponentForm();
+```
+
+```ts
+// useComponentForm.js
+const form: IForm;
+
+interface IForm {
+    [apiID: string]: {
+        value: any;
+        label: string;
+        set: React.Dispatch<React.SetStateAction<any>>;
+        validate: (any) => boolwan;
+        error?: string;
+        type?: FormType;
+        apiID?: string;
+    };
+}
+
+enum FormType {
+    TextField,
+    Radio,
+    Rating,
+}
+```
+
+handleSubmit dentro hook ed esportato tipo questo
+
+```ts
+const submit = () => {
+    for (const key in form) {
+        if (Object.hasOwnProperty.call(form, key)) {
+            const item = form[key];
+            if (item.validate(item.value))
+                // ...do something
+            else
+                // ...something else
+        }
+    }
+};
+```
+
+se tutti gli elementi vanno bene, chiama l'api endpoint, altrimenti errore?
+ */

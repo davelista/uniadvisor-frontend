@@ -6,12 +6,13 @@ import HeroSection from "../components/PagesSections/Homepage/HeroSection/HeroSe
 
 function Home(props) {
 
-    const {professorList, professor, user, isHome} = props;
+    const {professorsList, professor, user, isHome, isLoadingList} = props;
+
     return (
         <>
             <div>
                 <Navbar user={user} isHome={isHome}/>
-                <HeroSection professorList={professorList} professor={professor} isHome={isHome}/>
+                <HeroSection professorsList={professorsList} professor={professor} isHome={isHome} isLoadingList={isLoadingList}/>
                 <AboutArea/>
                 <UniversitySection/>
             </div>
