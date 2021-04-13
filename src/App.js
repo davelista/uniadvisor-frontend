@@ -13,6 +13,7 @@ import Dashboard from "./pages/Dashboard";
 import Footer from "./components/Footer/Footer";
 import {Redirect} from "react-router";
 import {ApiLogin} from "./api";
+import AddReview from './pages/AddReview';
 
 const getCookie = (cname) => {
     let name = cname + "=";
@@ -68,6 +69,7 @@ function App() {
                 <Route exact path='/' component={() => <Home professorList={professorList} user={user} isHome={true} />}/>
                 <Route exact path="/professors/:endpoint" component={() => <Professor professorList={professorList}  user={user} isHome={false}/>} />
                 <Route exact path="/dashboard" component={() => <Dashboard professorList={professorList} user={user} isHome={false}/>}/>
+                <Route exact path="/add-review" component={() => <AddReview professorList={professorList} user={user} isHome={false}/>}/>
                 <Route exact path="/login" component={() => <Login professorList={professorList} onChangeUser={setUser} isHome={false}/>} />
                 <Route exact path="/sign-up" component={() => <SignUp professorList={professorList} onChangeUser={setUser} isHome={false}/>} />
                 <Route render={() => <Redirect to={{pathname: "/"}} />} />
