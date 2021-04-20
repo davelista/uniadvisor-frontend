@@ -1,0 +1,89 @@
+.section {
+    padding: 5% 15%;
+}
+
+.section-title {
+    border-bottom: 5px solid #e53a1e;
+    padding-bottom: 1%;
+}
+
+.search-section {
+    padding: 3rem 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.professor-img {
+    height: 15em;
+    width: 15em;
+    background-color: lightgray;
+}
+
+.form-section {
+    padding: 3rem 0;
+}
+
+.form-section-title {
+    background-color: #eee;
+    padding: 0 2%;
+    text-transform: uppercase;
+    line-height: 2em;
+    font-weight: 600;
+    font-size: small;
+}
+
+.form-section-body {
+}
+
+.course {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.course-name {
+    font-weight: 600;
+    padding-right: 1rem;
+}
+
+.course-detail {
+    padding: 0 1rem;
+    border-left: 2px solid lightgrey;
+    color: gray;
+}
+
+.form-cols {
+    display: flex;
+    flex-direction: row;
+}
+
+.form-cols-item {
+    flex-grow: 1;
+    flex-basis: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-item {
+    margin-top: 1.5rem;
+}
+
+.form-label {
+    color: rgba(0,0,0,0.54);
+    font-size: 0.75em;
+}
+
+.ranking-node {
+    margin-top: 1.5rem;
+    border-bottom: 1px solid lightgray;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ranking-label {
+    color: rgba(0,0,0,0.54);
+    /* font-size: 0.75em; */
+}

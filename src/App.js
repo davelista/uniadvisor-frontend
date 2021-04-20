@@ -7,6 +7,7 @@ import ReactGA from 'react-ga';
 import {Dashboard, Home, Login, Professor, SignUp} from './pages'
 import {Footer} from './components'
 import {Redirect} from "react-router";
+import AddReview from './pages/AddReview';
 import useProfessorsList from "./hooks/useProfessorsList";
 
 const getCookie = (cname) => {
@@ -52,6 +53,7 @@ function App() {
                        component={() => <Professor professorsList={professorsList} user={user} isHome={false} isLoadingList={isLoadingList}/>}/>
                 <Route exact path="/dashboard"
                        component={() => <Dashboard professorsList={professorsList} user={user} isHome={false} isLoadingList={isLoadingList}/>}/>
+                <Route exact path="/add-review" component={() => <AddReview professorsList={professorsList} user={user} isHome={false} isLoadingList={isLoadingList}/>}/>
                 <Route exact path="/login"
                        component={() => <Login professorsList={professorsList} onChangeUser={setUser}
                                                isHome={false}/>}/>
