@@ -1,29 +1,31 @@
 import {useEffect, useState} from 'react';
-import {ApiProfessor} from "../api";
+import {ApiProfessor, ApiProfessorImage} from "../api";
 
 const useProfessor = (ProfessorId) => {
     const [state, setState] = useState();
+    const [professorImg, setProfessorImg] = useState();
     const [isLoading, setLoading] = useState(true);
     useEffect(() => {
-        if(ProfessorId){
-            setProfessor();
-        } else {
-            setState(null);
-        }
-
+        setProfessor();
     }, [ProfessorId]);
 
     const setProfessor = async () => {
         const professorId = ProfessorId ? ProfessorId : undefined;
         if (professorId) {
             setLoading(true);
-            const professor = await ApiProfessor(professorId);
-            setState(professor);
-            setLoading(false);
+            const selectedProfessor = await ApiProfessor(professorId);
+            if(selectedProfessor === "No professor"){
+                setState(null);
+            } else {
+                const img = await ApiProfessorImage(professorId);
+                setState(selectedProfessor);
+                setProfessorImg(img);
+                setLoading(false);
+            }
         }
 
     };
-    return [state, isLoading, setProfessor];
+    return [state, professorImg, isLoading, setProfessor];
 };
 
 export default useProfessor;

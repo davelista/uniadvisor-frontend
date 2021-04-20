@@ -22,7 +22,6 @@ const LoginForm = (props) => {
             try {
                 let result = await ApiLogin(email, password);
                 if (result !== null) {
-                    console.log(result);
                     onChangeError(false);
                     onChangeUser(email);
                 } else onChangeError(true);

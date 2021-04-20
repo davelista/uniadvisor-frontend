@@ -33,7 +33,7 @@ export const ApiProfessor = async (professorId) => {
 };
 
 /*API to request professor image*/
-/*export const ApiProfessorImage = async (professorId) => {
+export const ApiProfessorImage = async (professorId) => {
     try{
         const img = await axios.get("/api/professor_image/" + professorId)
         return img;
@@ -46,7 +46,7 @@ export const ApiProfessor = async (professorId) => {
         }
         throw e;
     }
-};*/
+};
 
 /*API to register new users*/
 export const ApiRegister = async (name, surname, email, password, university, type, externalId) =>{

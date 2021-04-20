@@ -14,7 +14,7 @@ function ProfessorCourse(props) {
             </div>
             <div className={"course-info"}>
                 <h4>CFU: <span className={"subtitle-red"}>{course.cfu}</span></h4>
-                <h4>Anno: <span className={"subtitle-red"}>{course.schoolYear}</span></h4>
+                <h4>Anno: <span className={"subtitle-red"}>{course.school_year}</span></h4>
                 <h4>Lingua: <span className={"subtitle-red"}>{course.language}</span></h4>
                 <h4>SSD: <span className={"subtitle-red"}>{course.ssd}</span></h4>
             </div>

@@ -10,11 +10,13 @@ function ProfessorEvaluation(props) {
     return (
         <>
             <div className={"professor-evaluation-container"}>
-                {finalEvaluation.filter(x => x.title !== "Overall")
-                    .map((x) => {
+                {Object.entries(finalEvaluation).filter(([key, value]) => key !== "overall")
+                    .map(([key, value]) => {
+                        console.log(key + value)
                         return (
-                            <div className={"professor-evaluation-details"}>{x.title}:
-                                    <Rating defaultValue={x.value}
+
+                            <div className={"professor-evaluation-details"}>{key}:
+                                    <Rating defaultValue={value}
                                             precision={0.5}
                                             readOnly
                                             emptyIcon={<FiberManualRecordOutlinedIcon fontSize="medium" style={{fill: "#e53a1e"}}/>}

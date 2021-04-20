@@ -11,7 +11,6 @@ const LoginFacebook = (props) => {
     }
 
     const responseFacebook = async (response) => {
-        console.log(response);
         onChangeUserFb(response);
         onChangeFb(true);
         setLoading(false)

@@ -75,7 +75,6 @@ const SignUpForm = (props) => {
                         setDone(true);
                         break;
                     case "Already registered":
-                        console.log("UTENTE GIÀ REGISTRATO");
                         break;
                     default:
                         break;

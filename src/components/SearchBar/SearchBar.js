@@ -9,14 +9,12 @@ function SearchBar(props) {
         setSearch(event.target.value);
     };
 
-    console.log(professorsList);
     if(professorsList != null) {
         const filteredListLower = professorsList
             .filter(listItem => listItem.name.toLowerCase().includes(search.toLowerCase()) ||
                 listItem.surname.toLowerCase().includes(search.toLowerCase()));
         let professorDetails;
 
-        console.log(filteredListLower);
         if (filteredListLower.length > 0) {
             if(isHome === false){
                 professorDetails = (
@@ -36,7 +34,6 @@ function SearchBar(props) {
                 professorDetails = (
                     <React.Fragment>
                         <div>
-                            {console.log("la filtered è: ", filteredListLower)}
                             {
                                 filteredListLower
                                     .slice(0, 3)
