@@ -4,10 +4,9 @@ import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import ReactGA from 'react-ga';
 //import professorsList from './json/professorsList.json'
 //Pages
-import {Dashboard, Home, Login, Professor, SignUp} from './pages'
+import {Dashboard, Home, Login, Professor, SignUp, AddReview} from './pages'
 import {Footer} from './components'
 import {Redirect} from "react-router";
-import AddReview from './pages/AddReview';
 import useProfessorsList from "./hooks/useProfessorsList";
 
 const getCookie = (cname) => {
@@ -48,18 +47,18 @@ function App() {
         <Router>
             <Switch>
                 <Route exact path='/'
-                       component={() => <Home professorsList={professorsList} user={user} isHome={true} isLoadingList={isLoadingList}/>}/>
+                    component={() => <Home professorsList={professorsList} user={user} isHome={true} isLoadingList={isLoadingList}/>}/>
                 <Route exact path="/professors/:professorId"
-                       component={() => <Professor professorsList={professorsList} user={user} isHome={false} isLoadingList={isLoadingList}/>}/>
+                    component={() => <Professor professorsList={professorsList} user={user} isHome={false} isLoadingList={isLoadingList}/>}/>
                 <Route exact path="/dashboard"
-                       component={() => <Dashboard professorsList={professorsList} user={user} isHome={false} isLoadingList={isLoadingList}/>}/>
+                    component={() => <Dashboard professorsList={professorsList} user={user} isHome={false} isLoadingList={isLoadingList}/>}/>
                 <Route exact path="/add-review" component={() => <AddReview professorsList={professorsList} user={user} isHome={false} isLoadingList={isLoadingList}/>}/>
                 <Route exact path="/login"
-                       component={() => <Login professorsList={professorsList} onChangeUser={setUser}
-                                               isHome={false}/>}/>
+                    component={() => <Login professorsList={professorsList} onChangeUser={setUser}
+                                            isHome={false}/>}/>
                 <Route exact path="/sign-up"
-                       component={() => <SignUp professorsList={professorsList} onChangeUser={setUser}
-                                                isHome={false}/>}/>
+                    component={() => <SignUp professorsList={professorsList} onChangeUser={setUser}
+                    isHome={false}/>}/>
                 <Route render={() => <Redirect to={{pathname: "/"}}/>}/>
             </Switch>
             <Footer/>
