@@ -66,6 +66,7 @@ export const ApiRegister = async (name, surname, email, password, university, ty
     }
 }
 
+/*API to login users*/
 export const ApiLogin = async (email, password) => {
     try{
         /*withCredentials: true è per i cookies*/
@@ -90,6 +91,20 @@ export const ApiMail = async (email) => {
         const res = await axios.post("/api/email", {email})
 
     } catch (e) {
+        throw e;
+    }
+
+};
+
+/*API to send user's email*/
+export const ApiReviews = async (course_id, professor_id, num) => {
+    try{
+        const res = await axios.post("/api/reviews", {course_id, professor_id, num})
+
+    } catch (e) {
+        if(e.message === "Request failed with status code 400"){
+            return null;
+        }
         throw e;
     }
 
