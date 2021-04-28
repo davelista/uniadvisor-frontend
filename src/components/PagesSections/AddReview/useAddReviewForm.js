@@ -1,105 +1,98 @@
 import { useState } from "react";
 
+function useFormField(key, label, helperText = "", initialValue = null, validate = () => true) {
+    const [value, setValue] = useState(initialValue);
+    const [error, setError] = useState(false);
+
+    return {
+        key,
+        value,
+        setValue,
+        error,
+        setError,
+        helperText,
+        label,
+        validate,
+    };
+}
+
+const currentDate = () => {
+    const now = new Date();
+    return (
+        [now.getFullYear(), now.getMonth() + 1, now.getDate()].join("-") +
+        " " +
+        [now.getHours(), now.getMinutes(), now.getSeconds()].join(":")
+    );
+};
+
 export default function useAddReviewForm() {
+    // todo: questi due potrebbero auto settarsi usando come initial value i valori di argomenti passati all'hook
+    const professor_id = useFormField("professor_id", null, null, "");
+    const user_id = useFormField("user_id", null, null, "");
+    
+    const corso_id = useFormField("corso_id", null, "Seleziona un corso", null, (value) => value !== null);
+    
+    const titolo = useFormField("titolo", "Titolo della recensione", "Il campo non può essere vuoto", "", (value) => value?.length > 0);
+    const corpo = useFormField("corpo", "Testo della recensione", "Il campo non può essere vuoto", "", (value) => value?.length > 0);
 
-    // todo: questi tre potrebbero auto settarsi usando come initial value i valori di argomenti passati all'hook
-    const [corso_id, setCorso_id] = useState("")
-    const [professor_id, setProfessor_id] = useState("")
-    const [user_id, setUser_id] = useState("");
+    const stato = useFormField("stato", "", "", "TO_CHECK");
+    const data_creazione = useFormField("data_creazione", "Data recensione", "", currentDate());
+    const anno_accademico = useFormField("anno_accademico", "Anno accademico", "Seleziona un anno accademico", "", (value) => value.length > 0);
+    const voto = useFormField("voto", "Voto esame", "Inserisci un voto valido", "0", (value) => parseInt(value) > 0 && parseInt(value) <= 30);
+    const anonimo = useFormField("anonimo", "Resta anonimo", "", false);
 
-    const [titolo, setTitolo] = useState("");
-    const [corpo, setCorpo] = useState("");
+    const chiarezza_spiegazione_prof = useFormField("chiarezza_spiegazione_prof", "Chiarezza spiegazioni", "Imposta un valore", 0, (value) => value > 0);
+    const materiale_didattico_prof = useFormField("materiale_didattico_prof", "Materiale didattico", "Imposta un valore", 0, (value) => value > 0);
+    const correzione_compiti_prof = useFormField("correzione_compiti_prof", "Correzione compiti", "Imposta un valore", 0, (value) => value > 0);
+    const disponibilita_prof = useFormField("disponibilita_prof", "Disponibilità", "Imposta un valore", 0, (value) => value > 0);
 
-    const [stato, setStato] = useState("TO_CHECK")
-    const [data_creazione, setData_creazione] = useState(""); // todo : metti data corrente come data(%Y-%m-%d %H:%M:%S)
-    const [anno_accademico, setAnno_accademico] = useState("");
-    const [voto, setVoto] = useState("");
-    const [anonimo, setAnonimo] = useState(true);
+    const difficolta_argomenti_corso = useFormField("difficolta_argomenti_corso", "Difficoltà argomenti", "Imposta un valore", 0, (value) => value > 0);
+    const difficolta_esame_corso = useFormField("difficolta_esame_corso", "Difficoltà esami", "Imposta un valore", 0, (value) => value > 0);
+    const interesse_argomenti_corso = useFormField("interesse_argomenti_corso", "Interesse argomenti", "Imposta un valore", 0, (value) => value > 0);
+    const lo_consiglieresti_corso = useFormField("lo_consiglieresti_corso", "Lo consiglieresti", "Imposta un valore", 0, (value) => value > 0);
 
-    const [chiarezza_spiegazione_prof, setChiarezza_spiegazione_prof] = useState(0);
-    const [materiale_didattico_prof, setMateriale_didattico_prof] = useState(0);
-    const [correzione_compiti_prof, setCorrezione_compiti_prof] = useState(0);
-    const [disponibilita_prof, setDisponibilita_prof] = useState(0);
-
-    const [difficolta_argomenti_corso, setDifficolta_argomenti_corso] = useState(0);
-    const [difficolta_esame_corso, setDifficolta_esame_corso] = useState(0);
-    const [interesse_argomenti_corso, setInteresse_argomenti_corso] = useState(0);
-    const [lo_consiglieresti_corso, setLo_consiglieresti_corso] = useState(0);
 
     const form = {
-        titolo: {
-            key: "titolo",
-            value: titolo,
-            set: setTitolo,
-            label: "Titolo della recensione",
-            validate: (value) => value.length > 0,
-        },
-        corpo: {
-            key: "corpo",
-            value: corpo,
-            set: setCorpo,
-            label: "Testo della recensione",
-            validate: (value) => value.length > 0,
-        },
-        chiarezza_spiegazione_prof: {
-            key: "chiarezza_spiegazione_prof",
-            value: chiarezza_spiegazione_prof,
-            set: setChiarezza_spiegazione_prof,
-            label: "Chiarezza spiegazioni",
-            validate: () => true,
-        },
-        materiale_didattico_prof: {
-            key: "materiale_didattico_prof",
-            value: materiale_didattico_prof,
-            set: setMateriale_didattico_prof,
-            label: "Materiale didattico",
-            validate: () => true,
-        },
-        correzione_compiti_prof: {
-            key: "correzione_compiti_prof",
-            value: correzione_compiti_prof,
-            set: setCorrezione_compiti_prof,
-            label: "Correzione compiti",
-            validate: () => true,
-        },
-        disponibilita_prof: {
-            key: "disponibilita_prof",
-            value: disponibilita_prof,
-            set: setDisponibilita_prof,
-            label: "Disponibilità",
-            validate: () => true,
-        },
-        difficolta_argomenti_corso: {
-            key: "difficolta_argomenti_corso",
-            value: difficolta_argomenti_corso,
-            set: setDifficolta_argomenti_corso,
-            label: "Difficoltà argomenti",
-            validate: () => true,
-        },
-        difficolta_esame_corso: {
-            key: "difficolta_esame_corso",
-            value: difficolta_esame_corso,
-            set: setDifficolta_esame_corso,
-            label: "Difficoltà esame",
-            validate: () => true,
-        },
-        interesse_argomenti_corso: {
-            key: "interesse_argomenti_corso",
-            value: interesse_argomenti_corso,
-            set: setInteresse_argomenti_corso,
-            label: "Interesse argomenti",
-            validate: () => true,
-        },
-        lo_consiglieresti_corso: {
-            key: "lo_consiglieresti_corso",
-            value: lo_consiglieresti_corso,
-            set: setLo_consiglieresti_corso,
-            label: "Lo consiglieresti",
-            validate: () => true,
-        },
+        corso_id,
+        professor_id,
+        user_id,
+        titolo,
+        corpo,
+        stato,
+        data_creazione,
+        anno_accademico,
+        voto,
+        anonimo,
+        chiarezza_spiegazione_prof,
+        materiale_didattico_prof,
+        correzione_compiti_prof,
+        disponibilita_prof,
+        difficolta_argomenti_corso,
+        difficolta_esame_corso,
+        interesse_argomenti_corso,
+        lo_consiglieresti_corso,
     };
 
-    return form;
+    const submit = () => {
+        let error = false;
+        for (const key in form) {
+            if (Object.hasOwnProperty.call(form, key)) {
+                const element = form[key];
+                if (!element.validate(element.value)) {
+                    console.log("wrong element with key: ", key, "\nElement is: ", element.value);
+                    element.setError(true);
+                    error = true;
+                }
+                else
+                    element.setError(false);
+            }
+        }
+
+        if (!error)
+            console.log("submitting ", form);
+    };
+
+    return [form, submit];
 }
 
 /**
@@ -116,13 +109,14 @@ const form: IForm;
 
 interface IForm {
     [apiID: string]: {
-        value: any;
+        key: apiID;
         label: string;
-        set: React.Dispatch<React.SetStateAction<any>>;
-        validate: (any) => boolwan;
-        error?: string;
+        value: any;
+        setValue: React.Dispatch<React.SetStateAction<any>>;
+        validate: (any) => boolean;
+        error: boolean;
+        setError: React.Dispatch<React.SetStateAction<boolean>>;
         type?: FormType;
-        apiID?: string;
     };
 }
 

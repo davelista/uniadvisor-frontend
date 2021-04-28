@@ -5,9 +5,9 @@ export default function AddReviewFormSection(props) {
     const { title, children } = props;
 
     return (
-        <div className={styles["form-section"]}>
-            <div className={styles["form-section-title"]}>{title}</div>
-            <div className={styles["form-section-body"]}>{children}</div>
+        <div className={styles.formSection}>
+            <div className={styles.formSectionTitle}>{title}</div>
+            <div>{children}</div>
         </div>
     );
 }

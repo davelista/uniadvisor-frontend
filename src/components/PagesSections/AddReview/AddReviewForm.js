@@ -1,129 +1,182 @@
 import TextField from "@material-ui/core/TextField";
-import { Radio } from "@material-ui/core";
-import Rating from "@material-ui/lab/Rating";
+import Radio from "@material-ui/core/Radio";
+import Checkbox from "@material-ui/core/Checkbox";
+import RatingBase from "@material-ui/lab/Rating";
+import MenuItem from "@material-ui/core/MenuItem";
 import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 import FiberManualRecordOutlinedIcon from "@material-ui/icons/FiberManualRecordOutlined";
-import React, { useState } from "react";
-import SearchBar from "../../SearchBar/SearchBar";
+import React from "react";
 import AddReviewFormSection from "./AddReviewFormSection";
 import styles from "./AddReview.module.css";
 import useAddReviewForm from "./useAddReviewForm";
+import { Button } from "../../Buttons/Button";
+import useProfessor from "../../../hooks/useProfessor";
 
 export default function AddReviewForm(props) {
-    const { professorsList } = props;
+    const [professor] = useProfessor(1355); // usa context poi con i dati già ottenuti
+    const [form, submit] = useAddReviewForm();
 
-    const [course, setCourse] = useState("");
+    // console.log(professor);
+    // console.log(getAcademicYears());
 
-    const form = useAddReviewForm();
+    if (!professor) return null;
+    else
+        return (
+            <div className={styles.section}>
+                <h2 className={styles.sectionTitle}>Crea una recensione</h2>
 
-    return (
-        <div className={styles["section"]}>
-            <h2 className={styles["section-title"]}>Crea una recensione</h2>
-
-            <div className={styles["search-section"]}>
-                <SearchBar professorsList={professorsList} />
-                <img className={styles["professor-img"]} alt="" />
-            </div>
-
-            <AddReviewFormSection title="nome del corso">
-                <div className={styles["form-item"]}>
-                    {[
-                        { id: "Nome del corso a", department: "Dipartimento", university: "Nome università" },
-                        { id: "Nome del corso b", department: "Dipartimento", university: "Nome università" },
-                        { id: "Nome del corso c", department: "Dipartimento", university: "Nome università" },
-                    ].map((c) => (
-                        <div className={styles["course"]} key={c.id}>
-                            <Radio checked={course === c.id} onChange={(e) => setCourse(e.target.value)} value={c.id} />
-                            <span className={styles["course-name"]}>{c.id}</span>
-                            <span className={styles["course-detail"]}>{c.department}</span>
-                            <span className={styles["course-detail"]}>{c.university}</span>
-                        </div>
-                    ))}
+                <div className={styles.professorBio}>
+                    <div>
+                        {professor.nome} {professor.cognome}
+                    </div>
+                    <img className={styles.professorImg} alt="" />
                 </div>
-            </AddReviewFormSection>
 
-            <AddReviewFormSection title="recensione">
-                <div className={styles["form-cols"]}>
-                    <div className={styles["form-cols-item"]} style={{ marginRight: "1.5rem" }}>
-                        <div className={styles["form-item"]}>
-                            <TextField
-                                label={form.titolo.label}
-                                value={form.titolo.value}
-                                onChange={(e) => form.titolo.set(e.target.value)}
-                                fullWidth
-                            />
+                <AddReviewFormSection title="nome del corso">
+                    <div className={styles.courseSelection}>
+                        {professor.corsi.map((course) => (
+                            <div className={styles.course} key={course.id}>
+                                <Radio
+                                    checked={course.id === form.corso_id.value}
+                                    onChange={() => form.corso_id.setValue(course.id)}
+                                />
+                                <span className={styles.courseName}>{course.name}</span>
+                                <span className={styles.courseDetail}>{course.school}</span>
+                                <span className={styles.courseDetail}>Università</span>
+                            </div>
+                        ))}
+                        {form.corso_id.error ? (
+                            <div className={styles.errorText}>{form.corso_id.helperText}</div>
+                        ) : null}
+                    </div>
+                </AddReviewFormSection>
+
+                <AddReviewFormSection title="recensione">
+                    <div className={styles.formColumnSection}>
+                        <div className={styles.formColumn} style={{ marginRight: "1.5rem" }}>
+                            <div className={styles.formField}>
+                                <TextField
+                                    label={form.titolo.label}
+                                    value={form.titolo.value}
+                                    error={form.titolo.error}
+                                    helperText={form.titolo.error ? form.titolo.helperText : null}
+                                    onChange={(e) => form.titolo.setValue(e.target.value)}
+                                    fullWidth
+                                />
+                            </div>
+                            <div className={styles.formField}>
+                                <TextField
+                                    label={form.corpo.label}
+                                    value={form.corpo.value}
+                                    error={form.corpo.error}
+                                    helperText={form.corpo.error ? form.corpo.helperText : null}
+                                    onChange={(e) => form.corpo.setValue(e.target.value)}
+                                    fullWidth
+                                    multiline
+                                    rows={6}
+                                    variant="outlined"
+                                />
+                            </div>
                         </div>
-                        <div className={styles["form-item"]}>
-                            <TextField
-                                label={form.corpo.label}
-                                value={form.corpo.value}
-                                onChange={(e) => form.corpo.set(e.target.value)}
-                                fullWidth
-                                multiline
-                                rows={4}
-                                variant="outlined"
-                            />
+
+                        <div className={styles.formColumn} style={{ marginLeft: "1.5rem", justifyContent: "flex-end" }}>
+                            <div className={styles.formField}>
+                                <TextField
+                                    select
+                                    label="Anno accademico"
+                                    value={form.anno_accademico.value}
+                                    error={form.anno_accademico.error}
+                                    helperText={form.anno_accademico.error ? form.anno_accademico.helperText : null}
+                                    onChange={(e) => form.anno_accademico.setValue(e.target.value)}
+                                    fullWidth
+                                >
+                                    {getAcademicYears().map((ayear) => (
+                                        <MenuItem value={ayear} key={ayear}>
+                                            {ayear}
+                                        </MenuItem>
+                                    ))}
+                                </TextField>
+                            </div>
+                            <div className={styles.formField}>
+                                <TextField
+                                    type="number"
+                                    label={form.voto.label}
+                                    value={parseInt(form.voto.value)}
+                                    error={form.voto.error}
+                                    helperText={form.voto.error ? form.voto.helperText : null}
+                                    onChange={(e) => form.voto.setValue(e.target.value)}
+                                />
+                                <div style={{ marginTop: "auto" }}>
+                                    <span className={styles.formLabel} style={{ paddingRight: "1rem" }}>
+                                        Lode
+                                    </span>
+                                    <Checkbox
+                                        checked={form.voto.value.endsWith("L")}
+                                        onChange={(_, checked) =>
+                                            checked
+                                                ? form.voto.setValue("30L")
+                                                : form.voto.setValue((v) => `${parseInt(v)}`)
+                                        }
+                                    />
+                                </div>
+                            </div>
+                            <div className={`${styles.formField} ${styles.underlined}`}>
+                                <span className={styles.formLabel}>{form.anonimo.label}</span>
+                                <Checkbox
+                                    checked={form.anonimo.value}
+                                    onChange={(_, checked) => form.anonimo.setValue(checked)}
+                                />
+                            </div>
                         </div>
                     </div>
-                    <div
-                        className={styles["form-cols-item"]}
-                        style={{ marginLeft: "1.5rem", justifyContent: "flex-end" }}
-                    >
-                        <div className={styles["form-item"]}>
-                            <div className={styles["form-label"]}>Valutazione complessiva</div>
-                            <Rating
-                                precision={0.5}
-                                emptyIcon={<FiberManualRecordOutlinedIcon style={{ fill: "#e53a1e" }} />}
-                                icon={<FiberManualRecordIcon style={{ fill: "#e53a1e" }} />}
-                            />
-                        </div>
-                        <div className={styles["form-item"]}>
-                            <TextField label="Anno accademico" fullWidth />
-                        </div>
+                </AddReviewFormSection>
+
+                <div className={styles.formColumnSection}>
+                    <div className={styles.formColumn} style={{ marginRight: "1.5rem" }}>
+                        <AddReviewFormSection title="docente">
+                            {[
+                                form.chiarezza_spiegazione_prof,
+                                form.materiale_didattico_prof,
+                                form.disponibilita_prof,
+                                form.correzione_compiti_prof,
+                            ].map((formItem) => (
+                                <Rating item={formItem} key={formItem.key} />
+                            ))}
+                        </AddReviewFormSection>
+                    </div>
+
+                    <div className={styles.formColumn} style={{ marginLeft: "1.5rem" }}>
+                        <AddReviewFormSection title="corso">
+                            {[
+                                form.difficolta_argomenti_corso,
+                                form.difficolta_esame_corso,
+                                form.interesse_argomenti_corso,
+                                form.lo_consiglieresti_corso,
+                            ].map((formItem) => (
+                                <Rating item={formItem} key={formItem.key} />
+                            ))}
+                        </AddReviewFormSection>
                     </div>
                 </div>
-            </AddReviewFormSection>
 
-            <div className={styles["form-cols"]}>
-                <div className={styles["form-cols-item"]} style={{ marginRight: "1.5rem" }}>
-                    <AddReviewFormSection title="docente">
-                        {[
-                            form.chiarezza_spiegazione_prof,
-                            form.materiale_didattico_prof,
-                            form.disponibilita_prof,
-                            form.correzione_compiti_prof,
-                        ].map((formItem) => (
-                            <RankingNode item={formItem} key={formItem.key} />
-                        ))}
-                    </AddReviewFormSection>
-                </div>
-
-                <div className={styles["form-cols-item"]} style={{ marginLeft: "1.5rem" }}>
-                    <AddReviewFormSection title="corso">
-                        {[
-                            form.difficolta_argomenti_corso,
-                            form.difficolta_esame_corso,
-                            form.interesse_argomenti_corso,
-                            form.lo_consiglieresti_corso,
-                        ].map((formItem) => (
-                            <RankingNode item={formItem} key={formItem.key} />
-                        ))}
-                    </AddReviewFormSection>
+                <div className={styles.submitButton}>
+                    <Button buttonStyle="btn--outline" onClick={submit}>
+                        Invia recensione
+                    </Button>
                 </div>
             </div>
-        </div>
-    );
+        );
 }
 
-function RankingNode(props) {
+function Rating(props) {
     const { item } = props;
 
     return (
-        <div className={styles["ranking-node"]}>
-            <span className={styles["ranking-label"]}>{item.label}</span>
-            <Rating
+        <div className={`${styles.formField} ${styles.underlined}`}>
+            <span className={styles.formLabel}>{item.label}</span>
+            <RatingBase
                 value={item.value}
-                onChange={(_, value) => item.set(value)}
+                onChange={(_, value) => item.setValue(value)}
                 precision={0.5}
                 emptyIcon={<FiberManualRecordOutlinedIcon style={{ fill: "#e53a1e" }} />}
                 icon={<FiberManualRecordIcon style={{ fill: "#e53a1e" }} />}
@@ -131,3 +184,13 @@ function RankingNode(props) {
         </div>
     );
 }
+
+const getAcademicYears = (n = 5) => {
+    const now = new Date();
+    let startingYear = now.getFullYear();
+    // if less than october, set academic year as lastYear/currentYear
+    if (now.getMonth() + 1 < 10) startingYear -= 1;
+    return Array(n)
+        .fill(0)
+        .map((_, i) => `${startingYear - i}/${startingYear - i + 1}`);
+};
