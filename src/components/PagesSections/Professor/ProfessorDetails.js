@@ -12,6 +12,8 @@ import WorkIcon from "@material-ui/icons/Work";
 import BusinessIcon from "@material-ui/icons/Business";
 import ProfessorEvaluation from "./ProfessorEvaluation";
 import ProfessorCourse from "./ProfessorCourse";
+import { Button } from '../../Buttons/Button';
+import { Link } from 'react-router-dom';
 
 function ProfessorDetails(props) {
     const {professor, professorImg} = props;
@@ -24,9 +26,14 @@ function ProfessorDetails(props) {
 
     return (
         <>
+            <Link to="/add-review">
+                <Button buttonStyle='btn--outline'><h6 style={{color: "white"}}>Scrivi una recensione</h6></Button>
+            </Link>
+
             <div className={"professor-card"}>
                 <img src={imgUser} className={"professor-img"} alt={imgUser}/>
                 {console.log(professorImg)}
+                {/* <img src="/api/professor_image/1355"/> */}
                 <div className="professor-detail">
                     <div className="professor-title">
                         <h1>{professor.nome} {professor.cognome}</h1>

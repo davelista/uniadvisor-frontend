@@ -1,17 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import Navbar from "../components/Navbar/Navbar";
 import AddReviewForm from "../components/PagesSections/AddReview/AddReviewForm";
+import { AppContext } from "../context/AppContext";
 
-export default function AddReview(props) {
-    const { user, professorsList, isHome, isLoadingList } = props;
+export default function AddReview() {
+    const appData = useContext(AppContext);
 
-    const userDetails = user !== null ? <div>USER DETAILS</div> : <div>EFFETTUA IL LOGIN PER ACCEDERE</div>;
+    const userDetails = appData.user.data !== null ? <div>USER DETAILS</div> : <div>EFFETTUA IL LOGIN PER ACCEDERE</div>;
 
     return (
         <>
-            <Navbar professorsList={professorsList} user={user} isHome={isHome} isLoadingList={isLoadingList} />
+            <Navbar />
             {userDetails}
-            <AddReviewForm professorsList={professorsList} />
+
+            {appData.professor.data !== null && appData.professor.image !== null ? (
+                <AddReviewForm professor={appData.professor.data} professorImg={appData.professor.image} />
+            ) : (
+                <div style={{ margin: "200px", display: "flex", justifyContent: "center" }}>LOADING PROFESSOR</div>
+            )}
         </>
     );
 }

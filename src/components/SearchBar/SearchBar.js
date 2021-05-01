@@ -24,7 +24,7 @@ function SearchBar(props) {
                                 filteredListLower
                                     .slice(0, 1)
                                     .map((x) => {
-                                        return <SearchBarResult key={x.id} professor={x} />
+                                        return <SearchBarResult key={x.professor_id} professor={x} />
                                     })
                             }
                         </div>

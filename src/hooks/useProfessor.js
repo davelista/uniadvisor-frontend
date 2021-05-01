@@ -1,31 +1,27 @@
-import {useEffect, useState} from 'react';
-import {ApiProfessor, ApiProfessorImage} from "../api";
+import { useCallback, useState } from "react";
+import { ApiProfessor, ApiProfessorImage } from "../api";
 
-const useProfessor = (ProfessorId) => {
-    const [state, setState] = useState();
-    const [professorImg, setProfessorImg] = useState();
-    const [isLoading, setLoading] = useState(true);
-    useEffect(() => {
-        setProfessor();
-    }, [ProfessorId]);
+const useProfessor = () => {
+    const [professor, setProfessor] = useState(null);
+    const [professorImg, setProfessorImg] = useState(null);
 
-    const setProfessor = async () => {
-        const professorId = ProfessorId ? ProfessorId : undefined;
-        if (professorId) {
-            setLoading(true);
-            const selectedProfessor = await ApiProfessor(professorId);
-            if(selectedProfessor === "No professor"){
-                setState(null);
-            } else {
-                const img = await ApiProfessorImage(professorId);
-                setState(selectedProfessor);
-                setProfessorImg(img);
-                setLoading(false);
-            }
-        }
+    const refresh = useCallback(
+        async (professorId) => {
+            setProfessor(null);
+            setProfessorImg(null);
+            
+            if (!professorId) return;
+        
+            const [professorData, imgData] = await Promise.all([ApiProfessor(professorId), ApiProfessorImage(professorId)])
+            if (professorData === "No professor") return;
+        
+            setProfessor(professorData);
+            setProfessorImg(imgData);
+        },
+        [],
+    )
 
-    };
-    return [state, professorImg, isLoading, setProfessor];
+    return [professor, professorImg, refresh];
 };
 
 export default useProfessor;

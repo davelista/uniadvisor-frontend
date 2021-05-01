@@ -46,7 +46,6 @@ const LoginForm = (props) => {
                                 className: "TextField",
 
                             }}
-                            id="outlined-textarea"
                             label="Username"
                             placeholder="Inserisci la tua mail"
                             variant="outlined"
@@ -61,7 +60,6 @@ const LoginForm = (props) => {
                                 className: "TextField",
                                 autoFocus: true
                             }}
-                            id="outlined-textarea"
                             label="Password"
                             placeholder="Inserisci la tua password"
                             variant="outlined"

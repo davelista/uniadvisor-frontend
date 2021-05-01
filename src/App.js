@@ -7,7 +7,7 @@ import ReactGA from 'react-ga';
 import {Dashboard, Home, Login, Professor, SignUp, AddReview} from './pages'
 import {Footer} from './components'
 import {Redirect} from "react-router";
-import useProfessorsList from "./hooks/useProfessorsList";
+import { AppContext, useAppContext } from './context/AppContext';
 
 const getCookie = (cname) => {
     let name = cname + "=";
@@ -40,29 +40,35 @@ function App() {
         ReactGA.pageview(window.location.pathname + window.location.search);
     }, [])
 
-    const [user, setUser] = useState(null);
-    const [professorsList, isLoadingList] = useProfessorsList();
+    const appData = useAppContext();
 
     return (
-        <Router>
-            <Switch>
-                <Route exact path='/'
-                    component={() => <Home professorsList={professorsList} user={user} isHome={true} isLoadingList={isLoadingList}/>}/>
-                <Route exact path="/professors/:professorId"
-                    component={() => <Professor professorsList={professorsList} user={user} isHome={false} isLoadingList={isLoadingList}/>}/>
-                <Route exact path="/dashboard"
-                    component={() => <Dashboard professorsList={professorsList} user={user} isHome={false} isLoadingList={isLoadingList}/>}/>
-                <Route exact path="/add-review" component={() => <AddReview professorsList={professorsList} user={user} isHome={false} isLoadingList={isLoadingList}/>}/>
-                <Route exact path="/login"
-                    component={() => <Login professorsList={professorsList} onChangeUser={setUser}
-                                            isHome={false}/>}/>
-                <Route exact path="/sign-up"
-                    component={() => <SignUp professorsList={professorsList} onChangeUser={setUser}
-                    isHome={false}/>}/>
-                <Route render={() => <Redirect to={{pathname: "/"}}/>}/>
-            </Switch>
-            <Footer/>
-        </Router>
+        <AppContext.Provider value={appData}>
+            <Router>
+                <Switch>
+                    <Route exact path='/'>
+                        <Home />
+                    </Route>
+                    <Route exact path="/professors/:professorId">
+                        <Professor />
+                    </Route>
+                    <Route exact path="/dashboard">
+                        <Dashboard />
+                    </Route>
+                    <Route exact path="/add-review">
+                        <AddReview />
+                    </Route> 
+                    <Route exact path="/login">
+                        <Login />
+                    </Route>
+                    <Route exact path="/sign-up">
+                        <SignUp />
+                    </Route>
+                    <Route render={() => <Redirect to={{pathname: "/"}}/>}/>
+                </Switch>
+                <Footer/>
+            </Router>
+        </AppContext.Provider>
 
     );
 

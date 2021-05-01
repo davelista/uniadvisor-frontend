@@ -1,11 +1,12 @@
 
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import LoginForm from "../components/PagesSections/Login-SignUp/LoginForm";
 import {Redirect} from "react-router";
 import Navbar from "../components/Navbar/Navbar";
+import { AppContext } from '../context/AppContext';
 
-const Login = (props) => {
-    const {onChangeUser, professorsList, isHome} = props
+const Login = () => {
+    const appData = useContext(AppContext);
 
     const [error, setError] = useState('');
 
@@ -13,12 +14,12 @@ const Login = (props) => {
     error !== false ? userPage = (
         <React.Fragment>
             {/* INIZIO --- DA TOGLIERE NEL MOMENTO IN CUI SI SOSTITUISCE COL POPUP */}
-            <Navbar professorsList={professorsList} user={''} isHome={isHome}/>
+            <Navbar />
             <div className={'element-center'}>
                 <div className={"title-red"}>Login</div>
             </div>
             {/* FINE */}
-            <LoginForm onChangeError={setError} onChangeUser={onChangeUser}/>
+            <LoginForm onChangeError={setError} onChangeUser={appData.user.refresh}/>
 
         </React.Fragment>
     ) : userPage = <Redirect to={'/dashboard'}/>

@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './HeroSection.css'
 import SearchBar from "../../../SearchBar/SearchBar";
 import heroImg from "../../../../img/hero-img.png";
+import { AppContext } from '../../../../context/AppContext';
 
 
-const HeroSection = (props) => {
-    const {professorsList, isLoadingList} = props;
+const HeroSection = () => {
+    const appData = useContext(AppContext);
 
     return (
         <>
@@ -14,8 +15,8 @@ const HeroSection = (props) => {
                     <div className={"title-hero"}>
                         <h2>Scopri com'è <br/> il tuo professore!</h2>
                     </div>
-                    {!isLoadingList ?
-                        <SearchBar professorsList={professorsList}/>
+                    {appData.professorsList !== null ?
+                        <SearchBar professorsList={appData.professorsList}/>
                         : <div> </div>
                     }
 
