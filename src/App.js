@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect} from 'react'
 import './App.css';
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import ReactGA from 'react-ga';
@@ -32,7 +32,6 @@ const setCookie = (cname, cvalue, exdays) => {
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
-
 function App() {
     useEffect(() => {
         ReactGA.initialize('UA-185661222-1 ');
@@ -55,7 +54,7 @@ function App() {
                     <Route exact path="/dashboard">
                         <Dashboard />
                     </Route>
-                    <Route exact path="/add-review">
+                    <Route exact path="/add-review/professors/:professorId">
                         <AddReview />
                     </Route> 
                     <Route exact path="/login">

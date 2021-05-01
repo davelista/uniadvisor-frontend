@@ -1,10 +1,17 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
+import { useParams } from "react-router";
 import Navbar from "../components/Navbar/Navbar";
 import AddReviewForm from "../components/PagesSections/AddReview/AddReviewForm";
 import { AppContext } from "../context/AppContext";
 
 export default function AddReview() {
     const appData = useContext(AppContext);
+    const { professorId } = useParams();
+
+    useEffect(() => {
+        if (appData.professor.data?.id == professorId) return;
+        appData.professor.refresh(professorId);
+    }, [professorId])
 
     const userDetails = appData.user.data !== null ? <div>USER DETAILS</div> : <div>EFFETTUA IL LOGIN PER ACCEDERE</div>;
 

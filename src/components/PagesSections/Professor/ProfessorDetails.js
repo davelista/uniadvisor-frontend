@@ -26,7 +26,7 @@ function ProfessorDetails(props) {
 
     return (
         <>
-            <Link to="/add-review">
+            <Link to={"/add-review/professors/" + professor.id}>
                 <Button buttonStyle='btn--outline'><h6 style={{color: "white"}}>Scrivi una recensione</h6></Button>
             </Link>
 

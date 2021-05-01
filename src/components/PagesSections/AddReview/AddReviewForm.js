@@ -24,7 +24,7 @@ export default function AddReviewForm(props) {
                 <div>
                     {professor.nome} {professor.cognome}
                 </div>
-                <img className={styles.professorImg} alt="" />
+                <img className={styles.professorImg} src={"/api/professor_image/" + professor.id} alt="Professor" />
             </div>
 
             <AddReviewFormSection title="nome del corso">
@@ -168,6 +168,7 @@ function Rating(props) {
         <div className={`${styles.formField} ${styles.underlined}`}>
             <span className={styles.formLabel}>{item.label}</span>
             <RatingBase
+                name={item.label}
                 value={item.value}
                 onChange={(_, value) => item.setValue(value)}
                 precision={0.5}
