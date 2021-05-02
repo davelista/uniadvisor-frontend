@@ -97,10 +97,10 @@ export const ApiMail = async (email) => {
 };
 
 /*API to send user's email*/
-export const ApiReviews = async (course_id, professor_id, num) => {
+export const ApiReviews = async (corso_id, professor_id, num) => {
     try{
-        const res = await axios.post("/api/reviews", {course_id, professor_id, num})
-
+        const res = await axios.get("/api/reviews", { params: { corso_id, professor_id, num } });
+        return res.data.results;
     } catch (e) {
         if(e.message === "Request failed with status code 400"){
             return null;

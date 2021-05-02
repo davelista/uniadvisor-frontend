@@ -14,6 +14,7 @@ import ProfessorEvaluation from "./ProfessorEvaluation";
 import ProfessorCourse from "./ProfessorCourse";
 import { Button } from '../../Buttons/Button';
 import { Link } from 'react-router-dom';
+import ProfessorReviews from "./ProfessorReviews";
 
 function ProfessorDetails(props) {
     const {professor} = props;
@@ -26,14 +27,12 @@ function ProfessorDetails(props) {
 
     return (
         <>
-            <Link to={"/add-review/professors/" + professor.id}>
-                <Button buttonStyle="btn--outline">
-                    <h6 style={{ color: "white" }}>Scrivi una recensione</h6>
-                </Button>
-            </Link>
-
             <div className={"professor-card"}>
-                <img src={"/api/professor_image/" + professor.id} className={"professor-img"} alt={`${professor.nome} ${professor.cognome}`} />
+                <img
+                    src={"/api/professor_image/" + professor.id}
+                    className={"professor-img"}
+                    alt={`${professor.nome} ${professor.cognome}`}
+                />
                 <div className="professor-detail">
                     <div className="professor-title">
                         <h1>
@@ -100,39 +99,34 @@ function ProfessorDetails(props) {
                 </div>
             </div>
             <div className={"professor-title-courses"}>
-                {professor.corsi.map((x, i) => {
+                {professor.corsi.map((course, i) => (
+                    <h4
+                        className={"course-title-button"}
+                        onClick={() => {
+                            setCouseId(i);
+                        }}
+                        style={{ color: courseId === i ? "#e53a1e" : "#c9c9c9" }}
+                    >
+                        {course.name}
+                    </h4>
+                ))}
+                {/* {professor.corsi.map((x, i) => {
                     return Object.entries(x)
                         .filter(([key, value]) => key === "name")
                         .map(([key, value]) => {
                             return (
-                                <>
-                                    {courseId === i ? (
-                                        <h4
-                                            className={"course-title-button"}
-                                            onClick={() => {
-                                                setCouseId(i);
-                                            }}
-                                            style={{ color: "#e53a1e" }}
-                                        >
-                                            {" "}
-                                            {value}
-                                        </h4>
-                                    ) : (
-                                        <h4
-                                            className={"course-title-button"}
-                                            onClick={() => {
-                                                setCouseId(i);
-                                            }}
-                                            style={{ color: "#c9c9c9" }}
-                                        >
-                                            {" "}
-                                            {value}
-                                        </h4>
-                                    )}{" "}
-                                </>
+                                <h4
+                                    className={"course-title-button"}
+                                    onClick={() => {
+                                        setCouseId(i);
+                                    }}
+                                    style={{ color: courseId === i ? "#e53a1e" : "#c9c9c9" }}
+                                >
+                                    {value}
+                                </h4>
                             );
                         });
-                })}
+                })} */}
             </div>
 
             <div className={"professor-courses"}>
@@ -146,6 +140,20 @@ function ProfessorDetails(props) {
                     })}
                 </div>
             </div>
+
+            <div className={"reviews-section"}>
+                <div className={"reviews-section-title"}>
+                    <h2>Leggi le recensioni</h2>
+                    <Link to={"/add-review/professors/" + professor.id}>
+                        <Button buttonStyle="btn--outline">
+                            <h6 style={{ color: "white" }}>Scrivi una recensione</h6>
+                        </Button>
+                    </Link>
+                </div>
+                <ProfessorReviews professor={professor} icourse={courseId} />
+            </div>
+
+            {console.log(professor)}
         </>
     );
 }
