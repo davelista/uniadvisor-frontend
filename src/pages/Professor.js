@@ -15,8 +15,8 @@ function Professor() {
     return (
         <div>
             <Navbar />
-            {appData.professor.data !== null && appData.professor.image !== null ? (
-                <ProfessorDetails professor={appData.professor.data} professorImg={appData.professor.image} />
+            {appData.professor.data !== null ? (
+                <ProfessorDetails professor={appData.professor.data} />
             ) : (
                 <div style={{ margin: "200px", display: "flex", justifyContent: "center" }}>LOADING PROFESSOR</div>
             )}

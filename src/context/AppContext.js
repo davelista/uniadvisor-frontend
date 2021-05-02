@@ -10,7 +10,7 @@ const defaultContext = {
     },
     professor: {
         data: null,
-        image: null,
+        // image: null,
         refresh: (idProfessor) => {},
     },
 };
@@ -19,7 +19,7 @@ export const AppContext = React.createContext(defaultContext);
 
 export function useAppContext() {
     const professorsList = useProfessorsList();
-    const [professor, professorImg, refreshProfessor] = useProfessor();
+    const [professor, refreshProfessor] = useProfessor();
     const [user, setUser] = useState(null);
 
     return useMemo(
@@ -31,10 +31,9 @@ export function useAppContext() {
             },
             professor: {
                 data: professor,
-                image: professorImg,
                 refresh: refreshProfessor,
             },
         }),
-        [professorsList, professor, professorImg, refreshProfessor, user]
+        [professorsList, professor, refreshProfessor, user]
     );
 }

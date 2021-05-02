@@ -39,7 +39,7 @@ export interface IProfessor {
             };
         }[];
     };
-    image: {};
+    // image: {};
     refresh: (id: number) => Promise<void>;
 }
 

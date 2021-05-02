@@ -9,7 +9,7 @@ export default function AddReview() {
     const { professorId } = useParams();
 
     useEffect(() => {
-        if (appData.professor.data?.id == professorId) return;
+        if (appData.professor.data?.id == professorId) return;  // non mettere "===" (id: number, professorId: string)
         appData.professor.refresh(professorId);
     }, [professorId])
 
@@ -20,8 +20,8 @@ export default function AddReview() {
             <Navbar />
             {userDetails}
 
-            {appData.professor.data !== null && appData.professor.image !== null ? (
-                <AddReviewForm professor={appData.professor.data} professorImg={appData.professor.image} />
+            {appData.professor.data !== null ? (
+                <AddReviewForm professor={appData.professor.data} />
             ) : (
                 <div style={{ margin: "200px", display: "flex", justifyContent: "center" }}>LOADING PROFESSOR</div>
             )}

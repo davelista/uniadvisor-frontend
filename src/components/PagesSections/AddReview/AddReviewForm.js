@@ -12,7 +12,7 @@ import useAddReviewForm from "./useAddReviewForm";
 import { Button } from "../../Buttons/Button";
 
 export default function AddReviewForm(props) {
-    const { professor, professorImg } = props;
+    const { professor } = props;
 
     const [form, submit] = useAddReviewForm();
 
