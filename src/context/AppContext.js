@@ -1,5 +1,6 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import useProfessor from "../hooks/useProfessor";
+import useAuth from "../hooks/useAuth";
 import useProfessorsList from "../hooks/useProfessorsList";
 
 const defaultContext = {
@@ -20,20 +21,20 @@ export const AppContext = React.createContext(defaultContext);
 export function useAppContext() {
     const professorsList = useProfessorsList();
     const [professor, refreshProfessor] = useProfessor();
-    const [user, setUser] = useState(null);
+    const [user, login] = useAuth();
 
     return useMemo(
         () => ({
             professorsList,
             user: {
                 data: user,
-                refresh: setUser,
+                login,
             },
             professor: {
                 data: professor,
                 refresh: refreshProfessor,
             },
         }),
-        [professorsList, professor, refreshProfessor, user]
+        [professorsList, professor, refreshProfessor, user, login]
     );
 }

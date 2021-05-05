@@ -19,7 +19,7 @@ const Login = () => {
                 <div className={"title-red"}>Login</div>
             </div>
             {/* FINE */}
-            <LoginForm onChangeError={setError} onChangeUser={appData.user.refresh}/>
+            <LoginForm onChangeError={setError} login={appData.user.login}/>
 
         </React.Fragment>
     ) : userPage = <Redirect to={'/dashboard'}/>

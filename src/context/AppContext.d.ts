@@ -44,8 +44,14 @@ export interface IProfessor {
 }
 
 export interface IUser {
-    data: string;
-    refresh: (data: string) => void;
+    data: {
+        email: string;
+        name: string;
+        surname: string;
+        uniadvisor: string;
+        university: string;
+    };
+    login: (email: string, password: string) => Promise<boolean>;
 }
 
 export interface IProfessorListElem {

@@ -7,7 +7,7 @@ import {ApiLogin} from "../../../api";
 import LoginFacebook from "./LoginFacebook";
 
 const LoginForm = (props) => {
-    const {onChangeUser, onChangeError} = props;
+    const {login, onChangeError} = props;
 
 
     const [email, setEmail] = useState('');
@@ -18,19 +18,22 @@ const LoginForm = (props) => {
     const submit = async (e) => {
         if(e) e.preventDefault();
 
-        if (email !== '' && password !== '') {
-            try {
-                let result = await ApiLogin(email, password);
-                if (result !== null) {
-                    onChangeError(false);
-                    onChangeUser(email);
-                } else onChangeError(true);
-                setLoading(false);
-            } catch (e) {
-                throw e;
-            }
+        if (email !== "" && password !== "") {
+            const ok = await login(email, password);
+            if (ok) onChangeError(false);
+            else onChangeError(true);
+            // try {
+            //     let result = await ApiLogin(email, password);
+            //     if (result !== null) {
+            //         onChangeError(false);
+            //         onChangeUser(email);
+            //     } else onChangeError(true);
+            //     setLoading(false);
+            // } catch (e) {
+            //     throw e;
+            // }
         } else {
-                setMsgError("ATTENZIONE! I campi sono vuoti")
+            setMsgError("ATTENZIONE! I campi sono vuoti");
         }
     }
 

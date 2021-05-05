@@ -12,18 +12,17 @@ const UserDetails = (props) => {
     let image;
     userImg === "Not Found Image" ? image = (<img src={imgUser} className={"user-img"} alt={imgUser}/>) : image = (<img src={userImg} className={"user-img"} alt={userImg}/>)
 
-
     return (
         <>
             <div className={"user-introduction"}>
-                <p>Ciao {user}, benvenuto sul tuo profilo</p>
+                <p>Ciao {user.name}, benvenuto sul tuo profilo</p>
             <p>Qui puoi visualizare tutti i tuoi dati e le tue recensioni</p>
             </div>
             <div className={"user-card"}>
                 {image}
                 <div className="user-detail">
                     <div className="user-title">
-                        {/*{user.name}*/}Nome Cognome
+                        {user.name} {user.surname}
                         {/*{professor.finalEvaluation.filter(x => x.title === "Overall")
                             .map((x) => {
                                 return (
@@ -39,10 +38,10 @@ const UserDetails = (props) => {
                                 )
                             })}*/}
                     </div>
-                    <div className={"user-info-row"}><AccountBalanceIcon fontSize="small" style={{ marginRight: "1%"}}/>università</div>
+                    <div className={"user-info-row"}><AccountBalanceIcon fontSize="small" style={{ marginRight: "1%"}}/>{user.university}</div>
                     <div className={"user-info-row"}><FaBirthdayCake fontSize="small" style={{marginRight: "1%"}}/><p>data di nascita</p></div>
-                    <div className={"user-info-row"}><EmailIcon fontSize="small" style={{marginRight: "1%"}}/><p>email</p></div>
-                    <div className={"user-info-row"}><BiCalendar fontSize="small" style={{marginRight: "1%"}}/><p>data di iscrizione</p></div>
+                    <div className={"user-info-row"}><EmailIcon fontSize="small" style={{marginRight: "1%"}}/><p>{user.email}</p></div>
+                    <div className={"user-info-row"}><BiCalendar fontSize="small" style={{marginRight: "1%"}}/><p>{user.uniadvisor}</p></div>
 
                     {/*<div className="professor-university-section">
                         <div className="professor-info">

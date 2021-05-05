@@ -12,7 +12,7 @@ const SignUp = () => {
 
     let signUp;
     !fbRegister ? signUp = (<SignUpForm onChangeUserFb={setUserFb} onChangeFb={setFacebookRegister}/>) :
-        signUp = <SignUpFb userFb={userFb} onChangeUser={appData.user.refresh}/>
+        signUp = <SignUpFb userFb={userFb} />
 
     return (
         <>

@@ -30,7 +30,7 @@ const Navbar = (props) => {
                 <Button buttonStyle='btn--outline'><h6 style={{color: "white"}}>{isMobile ? "Accedi" : "Accedi/Registrati"}</h6></Button>
             </Link>
         )
-        : button = (<Link to='/dashboard'><div>{appData.user.data}</div></Link>)
+        : button = (<Link to='/dashboard'><div>{appData.user.data.email}</div></Link>)
 
     let search;
     isHome === false && appData.professorsList !== null ? search=(<SearchBar professorsList={appData.professorsList} isHome={isHome}/>) : search=(<div></div>)
