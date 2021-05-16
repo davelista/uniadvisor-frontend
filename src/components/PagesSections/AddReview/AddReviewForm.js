@@ -10,6 +10,7 @@ import AddReviewFormSection from "./AddReviewFormSection";
 import styles from "./AddReview.module.css";
 import useAddReviewForm from "./useAddReviewForm";
 import { Button } from "../../Buttons/Button";
+import FormTextField from "../../Forms/FormTextField";
 
 export default function AddReviewForm(props) {
     const { professor } = props;
@@ -48,57 +49,25 @@ export default function AddReviewForm(props) {
                 <div className={styles.formColumnSection}>
                     <div className={styles.formColumn} style={{ marginRight: "1.5rem" }}>
                         <div className={styles.formField}>
-                            <TextField
-                                label={form.titolo.label}
-                                value={form.titolo.value}
-                                error={form.titolo.error}
-                                helperText={form.titolo.error ? form.titolo.helperText : null}
-                                onChange={(e) => form.titolo.setValue(e.target.value)}
-                                fullWidth
-                            />
+                            <FormTextField field={form.titolo} fullWidth />
                         </div>
                         <div className={styles.formField}>
-                            <TextField
-                                label={form.corpo.label}
-                                value={form.corpo.value}
-                                error={form.corpo.error}
-                                helperText={form.corpo.error ? form.corpo.helperText : null}
-                                onChange={(e) => form.corpo.setValue(e.target.value)}
-                                fullWidth
-                                multiline
-                                rows={6}
-                                variant="outlined"
-                            />
+                            <FormTextField field={form.corpo} fullWidth multiline rows={6} variant="outlined" />
                         </div>
                     </div>
 
                     <div className={styles.formColumn} style={{ marginLeft: "1.5rem", justifyContent: "flex-end" }}>
                         <div className={styles.formField}>
-                            <TextField
-                                select
-                                label="Anno accademico"
-                                value={form.anno_accademico.value}
-                                error={form.anno_accademico.error}
-                                helperText={form.anno_accademico.error ? form.anno_accademico.helperText : null}
-                                onChange={(e) => form.anno_accademico.setValue(e.target.value)}
-                                fullWidth
-                            >
-                                {getAcademicYears().map((ayear) => (
-                                    <MenuItem value={ayear} key={ayear}>
-                                        {ayear}
+                            <FormTextField field={form.anno_accademico} select fullWidth>
+                                {getAcademicYears().map((ay) => (
+                                    <MenuItem value={ay} key={ay}>
+                                        {ay}
                                     </MenuItem>
                                 ))}
-                            </TextField>
+                            </FormTextField>
                         </div>
                         <div className={styles.formField}>
-                            <TextField
-                                type="number"
-                                label={form.voto.label}
-                                value={parseInt(form.voto.value)}
-                                error={form.voto.error}
-                                helperText={form.voto.error ? form.voto.helperText : null}
-                                onChange={(e) => form.voto.setValue(e.target.value)}
-                            />
+                            <FormTextField field={form.voto} value={parseInt(form.voto.value)} type="number" />
                             <div style={{ marginTop: "auto" }}>
                                 <span className={styles.formLabel} style={{ paddingRight: "1rem" }}>
                                     Lode
