@@ -1,7 +1,4 @@
-import RatingBase from "@material-ui/lab/Rating";
 import MenuItem from "@material-ui/core/MenuItem";
-import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
-import FiberManualRecordOutlinedIcon from "@material-ui/icons/FiberManualRecordOutlined";
 import React from "react";
 import AddReviewFormSection from "./AddReviewFormSection";
 import styles from "./AddReview.module.css";
@@ -10,6 +7,7 @@ import { Button } from "../../Buttons/Button";
 import FormTextField from "../../Forms/FormTextField";
 import FormCheckbox from "../../Forms/FormCheckbox";
 import FormRadio from "../../Forms/FormRadio";
+import FormRating from "../../Forms/FormRating";
 
 export default function AddReviewForm(props) {
     const { professor } = props;
@@ -89,8 +87,10 @@ export default function AddReviewForm(props) {
                             form.materiale_didattico_prof,
                             form.disponibilita_prof,
                             form.correzione_compiti_prof,
-                        ].map((formItem) => (
-                            <Rating item={formItem} key={formItem.key} />
+                        ].map((field) => (
+                            <div className={styles.formField} key={field.key}>
+                                <FormRating field={field} fullWidth precision={0.5} />
+                            </div>
                         ))}
                     </AddReviewFormSection>
                 </div>
@@ -102,8 +102,10 @@ export default function AddReviewForm(props) {
                             form.difficolta_esame_corso,
                             form.interesse_argomenti_corso,
                             form.lo_consiglieresti_corso,
-                        ].map((formItem) => (
-                            <Rating item={formItem} key={formItem.key} />
+                        ].map((field) => (
+                            <div className={styles.formField} key={field.key}>
+                                <FormRating field={field} fullWidth precision={0.5} />
+                            </div>
                         ))}
                     </AddReviewFormSection>
                 </div>
@@ -114,24 +116,6 @@ export default function AddReviewForm(props) {
                     Invia recensione
                 </Button>
             </div>
-        </div>
-    );
-}
-
-function Rating(props) {
-    const { item } = props;
-
-    return (
-        <div className={`${styles.formField} ${styles.underlined}`}>
-            <span className={styles.formLabel}>{item.label}</span>
-            <RatingBase
-                name={item.label}
-                value={item.value}
-                onChange={(_, value) => item.setValue(value)}
-                precision={0.5}
-                emptyIcon={<FiberManualRecordOutlinedIcon style={{ fill: "#e53a1e" }} />}
-                icon={<FiberManualRecordIcon style={{ fill: "#e53a1e" }} />}
-            />
         </div>
     );
 }

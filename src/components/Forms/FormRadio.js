@@ -15,7 +15,7 @@ const CustomRadio = withStyles({
 export default function FormRadio({value, field, children, ...props}) {
     return (
         <>
-            <CustomRadio checked={value === field.value} onChange={() => field.setValue(value)} />
+            <CustomRadio checked={value === field.value} onChange={() => field.setValue(value)} {...props} />
             {children}
         </>
     )
