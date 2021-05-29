@@ -1,0 +1,20 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.container.fullwidth {
+    width: 100%;
+}
+
+.container.underlined {
+    border-bottom: 1px solid lightgrey;
+}
+
+.label {
+    padding-right: 1rem;
+    white-space: nowrap;
+    color: rgba(0, 0, 0, 0.54);
+}

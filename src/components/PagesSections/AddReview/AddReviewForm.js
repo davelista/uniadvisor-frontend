@@ -11,6 +11,7 @@ import styles from "./AddReview.module.css";
 import useAddReviewForm from "./useAddReviewForm";
 import { Button } from "../../Buttons/Button";
 import FormTextField from "../../Forms/FormTextField";
+import FormCheckbox from "../../Forms/FormCheckbox";
 
 export default function AddReviewForm(props) {
     const { professor } = props;
@@ -68,26 +69,17 @@ export default function AddReviewForm(props) {
                         </div>
                         <div className={styles.formField}>
                             <FormTextField field={form.voto} value={parseInt(form.voto.value)} type="number" />
-                            <div style={{ marginTop: "auto" }}>
-                                <span className={styles.formLabel} style={{ paddingRight: "1rem" }}>
-                                    Lode
-                                </span>
-                                <Checkbox
-                                    checked={form.voto.value.endsWith("L")}
-                                    onChange={(_, checked) =>
-                                        checked
-                                            ? form.voto.setValue("30L")
-                                            : form.voto.setValue((v) => `${parseInt(v)}`)
-                                    }
-                                />
-                            </div>
-                        </div>
-                        <div className={`${styles.formField} ${styles.underlined}`}>
-                            <span className={styles.formLabel}>{form.anonimo.label}</span>
-                            <Checkbox
-                                checked={form.anonimo.value}
-                                onChange={(_, checked) => form.anonimo.setValue(checked)}
+                            <FormCheckbox
+                                field={{ label: "Lode" }}
+                                checked={form.voto.value.endsWith("L")}
+                                onChange={(_, checked) =>
+                                    checked ? form.voto.setValue("30L") : form.voto.setValue((v) => `${parseInt(v)}`)
+                                }
+                                noUnderline
                             />
+                        </div>
+                        <div className={styles.formField}>
+                            <FormCheckbox field={form.anonimo} fullWidth />
                         </div>
                     </div>
                 </div>
