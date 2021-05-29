@@ -1,6 +1,3 @@
-import TextField from "@material-ui/core/TextField";
-import Radio from "@material-ui/core/Radio";
-import Checkbox from "@material-ui/core/Checkbox";
 import RatingBase from "@material-ui/lab/Rating";
 import MenuItem from "@material-ui/core/MenuItem";
 import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
@@ -12,6 +9,7 @@ import useAddReviewForm from "./useAddReviewForm";
 import { Button } from "../../Buttons/Button";
 import FormTextField from "../../Forms/FormTextField";
 import FormCheckbox from "../../Forms/FormCheckbox";
+import FormRadio from "../../Forms/FormRadio";
 
 export default function AddReviewForm(props) {
     const { professor } = props;
@@ -33,13 +31,11 @@ export default function AddReviewForm(props) {
                 <div className={styles.courseSelection}>
                     {professor.corsi.map((course) => (
                         <div className={styles.course} key={course.id}>
-                            <Radio
-                                checked={course.id === form.corso_id.value}
-                                onChange={() => form.corso_id.setValue(course.id)}
-                            />
-                            <span className={styles.courseName}>{course.name}</span>
-                            <span className={styles.courseDetail}>{course.school}</span>
-                            <span className={styles.courseDetail}>Università</span>
+                            <FormRadio value={course.id} field={form.corso_id}>
+                                <span className={styles.courseName}>{course.name}</span>
+                                <span className={styles.courseDetail}>{course.school}</span>
+                                <span className={styles.courseDetail}>Università</span>
+                            </FormRadio>
                         </div>
                     ))}
                     {form.corso_id.error ? <div className={styles.errorText}>{form.corso_id.helperText}</div> : null}
