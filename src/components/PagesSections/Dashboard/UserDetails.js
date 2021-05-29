@@ -1,69 +1,54 @@
-import React from 'react';
+import React from "react";
 import imgUser from "../../../img/user.jpg";
-import './UserDetails.css'
 import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
 import EmailIcon from "@material-ui/icons/Email";
-import {BiCalendar, FaBirthdayCake} from "react-icons/all";
+import { BiCalendar, FaBirthdayCake } from "react-icons/all";
+import styles from "./UserDashboard.module.css";
 
 const UserDetails = (props) => {
-    const {user} = props;
+    const { user } = props;
     const userImg = "Not Found Image";
 
     let image;
-    userImg === "Not Found Image" ? image = (<img src={imgUser} className={"user-img"} alt={imgUser}/>) : image = (<img src={userImg} className={"user-img"} alt={userImg}/>)
+    userImg === "Not Found Image"
+        ? (image = <img src={imgUser} className={"user-img"} alt={imgUser} />)
+        : (image = <img src={userImg} className={"user-img"} alt={userImg} />);
 
     return (
         <>
-            <div className={"user-introduction"}>
-                <p>Ciao {user.name}, benvenuto sul tuo profilo</p>
-            <p>Qui puoi visualizare tutti i tuoi dati e le tue recensioni</p>
-            </div>
-            <div className={"user-card"}>
-                {image}
-                <div className="user-detail">
-                    <div className="user-title">
-                        {user.name} {user.surname}
-                        {/*{professor.finalEvaluation.filter(x => x.title === "Overall")
-                            .map((x) => {
-                                return (
-                                    <div className={"bubble-rating"}>
-                                        <Rating name="half-rating-read"
-                                                defaultValue={x.value}
-                                                precision={0.5}
-                                                readOnly
-                                                emptyIcon={<FiberManualRecordOutlinedIcon fontSize="large" style={{fill: "#e53a1e"}}/>}
-                                                icon={<FiberManualRecordIcon fontSize="large" style={{fill: "#e53a1e"}}/>}
-                                        />
-                                    </div>
-                                )
-                            })}*/}
-                    </div>
-                    <div className={"user-info-row"}><AccountBalanceIcon fontSize="small" style={{ marginRight: "1%"}}/>{user.university}</div>
-                    <div className={"user-info-row"}><FaBirthdayCake fontSize="small" style={{marginRight: "1%"}}/><p>data di nascita</p></div>
-                    <div className={"user-info-row"}><EmailIcon fontSize="small" style={{marginRight: "1%"}}/><p>{user.email}</p></div>
-                    <div className={"user-info-row"}><BiCalendar fontSize="small" style={{marginRight: "1%"}}/><p>{user.uniadvisor}</p></div>
+            <div className={styles.welcomeSection}>
+                <p className={styles.welcomeHeading}>Ciao {user.name}, benvenuto sul tuo profilo</p>
+                <p className={styles.welcomeSubheading}>
+                    Qui puoi visualizare tutte le tue recensioni e consultare i tuoi dati personali.
+                </p>
 
-                    {/*<div className="professor-university-section">
-                        <div className="professor-info">
-                            {professor.university.map((x) => {
-                                return <div className={"professor-info-row"}><AccountBalanceIcon fontSize="small" style={{fill: "#e53a1e", marginRight: "3%"}}/><h3 style={{color: "#e53a1e"}}>{x.name}</h3></div>
-                            })}
-                            {professor.university.map((x) => {
-                                return <div className={"professor-info-row"}><EmailIcon fontSize="small" style={{marginRight: "3%"}}/><p>{professor.email}</p></div>
-                            })}
-                            {professor.university.map((x) => {
-                                return <div className={"professor-info-row"}><WorkIcon fontSize="small" style={{marginRight: "3%"}}/><p>{x.typeContract}</p> </div>
-                            })}
-                            {professor.university.map((x) => {
-                                return <div className={"professor-info-row"}><BusinessIcon fontSize="small" style={{marginRight: "3%"}}/><p>{x.department}</p> </div>
-                            })}
+                <div className={styles.welcomeDetailsSection}>
+                    {image}
+                    <div className={styles.userDetailsSection}>
+                        <p className={styles.userName}>
+                            {user.name} {user.surname}
+                        </p>
+                        <div className={styles.userDetail}>
+                            <AccountBalanceIcon fontSize="small" style={{ marginRight: "1%" }} />
+                            {user.university}
                         </div>
-                        <ProfessorEvaluation finalEvaluation={professor.finalEvaluation}/>
-                    </div>*/}
+                        <div className={styles.userDetail}>
+                            <FaBirthdayCake fontSize="small" style={{ marginRight: "1%" }} />
+                            <p>Data di nascita</p>
+                        </div>
+                        <div className={styles.userDetail}>
+                            <EmailIcon fontSize="small" style={{ marginRight: "1%" }} />
+                            <p>{user.email}</p>
+                        </div>
+                        <div className={styles.userDetail}>
+                            <BiCalendar fontSize="small" style={{ marginRight: "1%" }} />
+                            <p>{user.uniadvisor}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </>
     );
-}
+};
 
 export default UserDetails;

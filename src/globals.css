@@ -1,0 +1,10 @@
+:root {
+    --primary-color: black;
+    --secondary-color: #e53a1e;
+    --bg-secondary-color: #efefef;
+
+    --main-page-padding: 5% 15%;
+
+    --title-border-bottom: 5px solid var(--secondary-color);
+
+}
