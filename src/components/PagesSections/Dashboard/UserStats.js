@@ -1,4 +1,5 @@
 import React from "react";
+import ProgressBar from "../../progress/ProgressBar";
 import styles from "./UserDashboard.module.css";
 
 export default function UserStats() {
@@ -32,13 +33,11 @@ function Statistics() {
             </div>
             <div className={styles.statsBadge}>
                 <div className={styles.heading}>crediti acquisiti</div>
-                <div className={styles.content}>9</div>
-
+                <ProgressBar value={104} max={180} />
             </div>
-            <div className={styles.statsBadge}>
+            <div className={styles.statsBadge} style={{gridColumn: "auto / span 2"}}>
                 <div className={styles.heading}>proiezione voto di laurea</div>
-                <div className={styles.content}>9</div>
-
+                <ProgressBar value={101.26} max={110} showResult decimals={0} />
             </div>
         </div>
     );
