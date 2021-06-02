@@ -1,52 +1,60 @@
-import React, {useEffect} from 'react'
-import './App.css';
+import React, { useEffect, useRef } from "react";
+import "./App.css";
 import "./globals.css";
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import ReactGA from 'react-ga';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import ReactGA from "react-ga";
 //import professorsList from './json/professorsList.json'
 //Pages
-import {Dashboard, Home, Login, Professor, SignUp, AddReview} from './pages'
-import {Footer} from './components'
-import {Redirect} from "react-router";
-import { AppContext, useAppContext } from './context/AppContext';
+import { Dashboard, Home, Login, Professor, SignUp, AddReview } from "./pages";
+import { Footer } from "./components";
+import { Redirect } from "react-router";
+import { AppContext, useAppContext } from "./context/AppContext";
 
-const getCookie = (cname) => {
-    let name = cname + "=";
-    let decodedCookie = decodeURIComponent(document.cookie);
-    let ca = decodedCookie.split(';');
-    for (let i = 0; i < ca.length; i++) {
-        let c = ca[i];
-        while (c.charAt(0) === ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) === 0) {
-            return c.substring(name.length, c.length);
-        }
-    }
-    return "";
-}
+// const getCookie = (cname) => {
+//     let name = cname + "=";
+//     let decodedCookie = decodeURIComponent(document.cookie);
+//     let ca = decodedCookie.split(';');
+//     for (let i = 0; i < ca.length; i++) {
+//         let c = ca[i];
+//         while (c.charAt(0) === ' ') {
+//             c = c.substring(1);
+//         }
+//         if (c.indexOf(name) === 0) {
+//             return c.substring(name.length, c.length);
+//         }
+//     }
+//     return "";
+// }
 
-const setCookie = (cname, cvalue, exdays) => {
-    let d = new Date();
-    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-    let expires = "expires=" + d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-}
+// const setCookie = (cname, cvalue, exdays) => {
+//     let d = new Date();
+//     d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+//     let expires = "expires=" + d.toUTCString();
+//     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+// }
 
 function App() {
+    const sessionValidationRequired = useRef(true);
+
     useEffect(() => {
-        ReactGA.initialize('UA-185661222-1 ');
+        ReactGA.initialize("UA-185661222-1 ");
         //to report page view
         ReactGA.pageview(window.location.pathname + window.location.search);
-    }, [])
+    }, []);
 
     const appData = useAppContext();
+
+    useEffect(() => {
+        if (sessionValidationRequired.current === false) return;
+        appData.user.validateSession();
+        sessionValidationRequired.current = false;
+    }, [appData.user]);
 
     return (
         <AppContext.Provider value={appData}>
             <Router>
                 <Switch>
-                    <Route exact path='/'>
+                    <Route exact path="/">
                         <Home />
                     </Route>
                     <Route exact path="/professors/:professorId">
@@ -57,19 +65,18 @@ function App() {
                     </Route>
                     <Route exact path="/add-review/professors/:professorId">
                         <AddReview />
-                    </Route> 
+                    </Route>
                     <Route exact path="/login">
                         <Login />
                     </Route>
                     <Route exact path="/sign-up">
                         <SignUp />
                     </Route>
-                    <Route render={() => <Redirect to={{pathname: "/"}}/>}/>
+                    <Route render={() => <Redirect to={{ pathname: "/" }} />} />
                 </Switch>
-                <Footer/>
+                <Footer />
             </Router>
         </AppContext.Provider>
-
     );
 
     /*

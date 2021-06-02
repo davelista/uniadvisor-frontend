@@ -1,22 +1,34 @@
 import { useCallback, useState } from "react";
-import { ApiLogin } from "../api";
+import { ApiLogin, ApiLoginResponse, ApiValidateSession, ApiValidateSessionResponse } from "../api";
 
 const useAuth = () => {
+    const [auth, setAuth] = useState("UNAUTH");
     const [user, setUser] = useState(null);
 
-    const login = useCallback(async (email, password) => {
-        setUser(null); // TODO: sign-out
+    const login = useCallback(
+        async (opts) => {
+            // setUser(null); // TODO: sign-out
 
-        if (!email || !password) return false;
+            if (auth === "OK") console.error("User already logged in. Logout is required before login.");
 
-        const data = await ApiLogin(email, password);
-        if (data === null) return false;
+            setAuth("VALIDATING");
+            const { res, data } = await ApiLogin(opts);
+            if (res === ApiLoginResponse.OK) setUser(data);
+            setAuth(res);
+        },
+        [auth]
+    );
 
-        setUser(data);
-        return true;
-    }, []);
+    const validateSession = useCallback(async () => {
+        if (auth === "OK") return;
 
-    return [user, login];
+        setAuth("VALIDATING");
+        const { res, data } = await ApiValidateSession();
+        if (res === ApiValidateSessionResponse.OK) setUser(data);
+        setAuth(res);
+    }, [auth]);
+
+    return [auth, user, login, validateSession];
 };
 
 export default useAuth;

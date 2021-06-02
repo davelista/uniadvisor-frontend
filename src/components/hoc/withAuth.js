@@ -1,13 +1,41 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../context/AppContext";
+import ProgressCirle from "../progress/ProgressCircle";
 
-const withAuth = (WrappedComponent, DefaultComponent) =>
+const withAuth = (
+    WrappedComponent,
+    UnauthorizedComponent = UnauthorizedComponentDefault,
+    LoadingComponent = LoadingComponentDefault
+) =>
     function ComponentWithAuth(props) {
         const appData = useContext(AppContext);
 
-        const isAuthenticated = appData.user.data !== null;
+        switch (appData.user.auth) {
+            case "OK":
+                return <WrappedComponent {...props} />;
 
-        return isAuthenticated ? <WrappedComponent {...props} /> : <DefaultComponent {...props} />;
+            case "VALIDATING":
+                return <LoadingComponent />;
+
+            default:
+                return <UnauthorizedComponent {...props} />;
+        }
     };
 
 export default withAuth;
+
+const LoadingComponentDefault = () => {
+    return (
+        <div style={{ margin: "10rem", display: "flex", justifyContent: "center" }}>
+            <ProgressCirle />
+        </div>
+    );
+};
+
+const UnauthorizedComponentDefault = () => {
+    return (
+        <div style={{ margin: "10rem", display: "flex", justifyContent: "center" }}>
+            Questo contenuto richiede l'accesso
+        </div>
+    );
+};

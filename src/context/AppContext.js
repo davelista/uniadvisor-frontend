@@ -7,12 +7,14 @@ const defaultContext = {
     professorsList: null,
     user: {
         data: null,
-        refresh: (data) => {},
+        login: () => {},
+        validateSession: () => {},
+        refresh: () => {},
     },
     professor: {
         data: null,
         // image: null,
-        refresh: (idProfessor) => {},
+        refresh: () => {},
     },
 };
 
@@ -21,20 +23,22 @@ export const AppContext = React.createContext(defaultContext);
 export function useAppContext() {
     const professorsList = useProfessorsList();
     const [professor, refreshProfessor] = useProfessor();
-    const [user, login] = useAuth();
+    const [auth, user, login, validateSession] = useAuth();
 
     return useMemo(
         () => ({
             professorsList,
             user: {
+                auth,
                 data: user,
                 login,
+                validateSession,
             },
             professor: {
                 data: professor,
                 refresh: refreshProfessor,
             },
         }),
-        [professorsList, professor, refreshProfessor, user, login]
+        [professorsList, professor, refreshProfessor, user, login, validateSession, auth]
     );
 }

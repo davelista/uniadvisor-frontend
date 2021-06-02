@@ -44,6 +44,7 @@ export interface IProfessor {
 }
 
 export interface IUser {
+    auth: "OK" | "UNAUTH" | "VALIDATING" | "REQUIRES_CONFIRM" | "INVALID_CREDENTIALS" | "MISSING_USER";
     data: {
         email: string;
         name: string;
@@ -51,7 +52,8 @@ export interface IUser {
         uniadvisor: string;
         university: string;
     };
-    login: (email: string, password: string) => Promise<boolean>;
+    login: (data: {email: string, password: string, rememberMe: boolean}) => Promise<void>;
+    validateSession: () => Promise<void>;
 }
 
 export interface IProfessorListElem {
@@ -61,8 +63,12 @@ export interface IProfessorListElem {
     university: string[];
 }
 
-export declare const AppContext: React.Context<{
+interface IAppContext {
     professorList: IProfessorListElem[];
     user: IUser;
     professor: IProfessor;
-}>;
+};
+
+export declare const AppContext: React.Context<IAppContext>;
+
+export declare const useAppContext: () => IAppContext;

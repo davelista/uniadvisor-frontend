@@ -1,101 +1,63 @@
-import React, {useState} from 'react';
+import React, { useContext, useEffect, useState } from "react";
 import TextField from "@material-ui/core/TextField";
-import './Login.css'
-import {Button} from "../../Buttons/Button";
-import {Link} from "react-router-dom";
-import {ApiLogin} from "../../../api";
+import "./Login.css";
+import { Button } from "../../Buttons/Button";
+import { Link } from "react-router-dom";
+import { ApiLogin } from "../../../api";
 import LoginFacebook from "./LoginFacebook";
+import { AppContext } from "../../../context/AppContext";
+import useLoginForm from "./useLoginForm";
+import FormTextField from "../../Forms/FormTextField";
+import FormCheckbox from "../../Forms/FormCheckbox";
 
-const LoginForm = (props) => {
-    const {login, onChangeError} = props;
+const LoginForm = () => {
+    const appData = useContext(AppContext);
 
+    const [form, submit] = useLoginForm(appData.user.login);
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [loading, setLoading] = useState(false);
-    const [msgError, setMsgError] = useState('');
-
-    const submit = async (e) => {
-        if(e) e.preventDefault();
-
-        if (email !== "" && password !== "") {
-            const ok = await login(email, password);
-            if (ok) onChangeError(false);
-            else onChangeError(true);
-            // try {
-            //     let result = await ApiLogin(email, password);
-            //     if (result !== null) {
-            //         onChangeError(false);
-            //         onChangeUser(email);
-            //     } else onChangeError(true);
-            //     setLoading(false);
-            // } catch (e) {
-            //     throw e;
-            // }
-        } else {
-            setMsgError("ATTENZIONE! I campi sono vuoti");
+    useEffect(() => {
+        switch (appData.user.auth) {
+            case "MISSING_USER":
+                form.email.setError(true);
+                break;
+            case "INVALID_CREDENTIALS":
+                form.password.setError(true);
+                break;
+            default:
+                break;
         }
-    }
+    }, [appData.user.auth, form.email, form.password]);
 
     return (
         <>
+            <div className={"element-center"}>
+                <div className={"title-red"}>Login</div>
+            </div>
             <div className={"form-container"}>
                 <form className={"login-form"} noValidate autoComplete="off" onSubmit={submit}>
                     <div className={"form-input"}>
-
-                        <TextField
-                            className={"TextField"}
-                            InputProps={{
-                                className: "TextField",
-
-                            }}
-                            label="Username"
-                            placeholder="Inserisci la tua mail"
-                            variant="outlined"
-                            type="email"
-                            onChange={e => setEmail(e.target.value)}
-                        />
+                        <FormTextField field={form.email} variant="outlined" type="email" />
                     </div>
                     <div className={"form-input"}>
-                        <TextField
-                            className={"TextField"}
-                            InputProps={{
-                                className: "TextField",
-                                autoFocus: true
-                            }}
-                            label="Password"
-                            placeholder="Inserisci la tua password"
-                            variant="outlined"
-                            type="password"
-                            onChange={e => setPassword(e.target.value)}
-                        />
+                        <FormTextField field={form.password} variant="outlined" type="password" />
                     </div>
+                    <FormCheckbox field={form.remember_me} noUnderline />
                     <div className={"form-input"}>
-                        <Button buttonStyle='btn--outline' type="submit"><h6 style={{color: "white"}}>Accedi</h6>
+                        <Button buttonStyle="btn--outline" type="submit">
+                            <h6 style={{ color: "white" }}>Accedi</h6>
                         </Button>
                     </div>
-                    {msgError !== '' ? <div>{msgError}</div> : null}
-                    {/*<FormControlLabel
-                        value="ricordami"
-                        control={<Checkbox color="primary" />}
-                        label="Ricordami"
-                        labelPlacement="end"
-                    />*/}
                     {/*<div>
                         oppure
                     </div>
                     <LoginFacebook onChangeUserFb={onChangeUser}/>*/}
                 </form>
-
-
             </div>
             <div className={"register-option-container"}>
-                <div className={"register-option-text"}>
-                    Non hai ancora un account?
-                </div>
+                <div className={"register-option-text"}>Non hai ancora un account?</div>
                 <div className={"register-option-button"}>
-                    <Link to='/sign-up'>
-                        <Button buttonStyle='btn--outline--white'>
+                    <Link to="/sign-up">
+                        <Button buttonStyle="btn--outline--white">
                             <h6>Registrati</h6>
                         </Button>
                     </Link>
@@ -103,6 +65,6 @@ const LoginForm = (props) => {
             </div>
         </>
     );
-}
+};
 
 export default LoginForm;

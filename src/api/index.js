@@ -1,12 +1,13 @@
 import axios from "axios";
+import ApiResponse from "./ApiResponse";
 
 /*API to request professor detail*/
 export const ApiProfessorsList = async () => {
-    try{
+    try {
         const res = await axios.get("/api/professors_list");
         return res.data.results;
-    } catch (e){
-        if(e != null){
+    } catch (e) {
+        if (e != null) {
             console.log(JSON.stringify(e));
             return null;
         }
@@ -16,11 +17,11 @@ export const ApiProfessorsList = async () => {
 
 /*API to request professor detail*/
 export const ApiProfessor = async (professorId) => {
-    try{
-        const res = await axios.get("/api/professors/"+professorId);
+    try {
+        const res = await axios.get("/api/professors/" + professorId);
         return res.data;
-    } catch (e){
-        switch (e.message){
+    } catch (e) {
+        switch (e.message) {
             case "Request failed with status code 400":
                 return "No professor";
             case "Request failed with status code 500":
@@ -34,11 +35,11 @@ export const ApiProfessor = async (professorId) => {
 
 /*API to request professor image*/
 export const ApiProfessorImage = async (professorId) => {
-    try{
-        const img = await axios.get("/api/professor_image/" + professorId)
+    try {
+        const img = await axios.get("/api/professor_image/" + professorId);
         return img;
-    } catch (e){
-        switch (e.message){
+    } catch (e) {
+        switch (e.message) {
             case "Request failed with status code 404":
                 return "Image Not Found";
             default:
@@ -49,65 +50,109 @@ export const ApiProfessorImage = async (professorId) => {
 };
 
 /*API to register new users*/
-export const ApiRegister = async (name, surname, email, password, university, type, externalId) =>{
-    try{
-        const res = await axios.post("/api/register", {name, surname, email, password, university});
+export const ApiRegister = async (name, surname, email, password, university, type, externalId) => {
+    try {
+        const res = await axios.post("/api/register", { name, surname, email, password, university });
         console.log(JSON.stringify(res));
         return res;
     } catch (e) {
         console.log(JSON.stringify(e));
-        if(e.message === "Request failed with status code 400"){
+        if (e.message === "Request failed with status code 400") {
             return "400";
         }
-        if(e.message === "Request failed with status code 303"){
+        if (e.message === "Request failed with status code 303") {
             return "303";
         }
         throw e;
     }
-}
+};
 
 /*API to login users*/
-export const ApiLogin = async (email, password) => {
-    try{
-        /*withCredentials: true è per i cookies*/
-        const res = await axios.post("/api/user_login", {email, password}, {withCredentials: true});
-        return res.data;
-    } catch (e) {
-        console.log(JSON.stringify(e));
-        if(e.message === "Request failed with status code 406"){
-            return null;
-        }
-        else if(e.message === "Request failed with status code 400"){
-            return null;
-        }
-        throw e;
+export const ApiLoginResponse = new ApiResponse(
+    "OK",
+    "REQUIRES_CONFIRM",
+    "INVALID_CREDENTIALS",
+    "MISSING_USER",
+    "UNAUTH"
+);
+/**
+ * Login
+ * @param {{email: string; password: string; remember_me: boolean}} data
+ * @returns {{void}}
+ */
+export const ApiLogin = async (data) => {
+    return axios
+        .post("/api/user_login", data, { withCredentials: true })
+        .then((res) => ({
+            res: ApiLoginResponse.OK,
+            data: res.data,
+        }))
+        .catch((err) => {
+            const { status } = err.response;
+            switch (status) {
+                case 406:
+                    return { res: ApiLoginResponse.MISSING_USER, data: null };
+                case 400:
+                    return { res: ApiLoginResponse.REQUIRES_CONFIRM, data: null };
+                default:
+                    return { res: ApiLoginResponse.INVALID_CREDENTIALS, data: null };
+            }
+        });
+};
+// export const ApiLogin = async (email, password, rememberMe = false) => {
+//     try {
+//         /*withCredentials: true è per i cookies*/
+//         const res = await axios.post(
+//             "/api/user_login",
+//             { email, password, remember_me: rememberMe },
+//             { withCredentials: true }
+//         );
+//         return res.data;
+//     } catch (e) {
+//         console.log(JSON.stringify(e));
+//         if (e.message === "Request failed with status code 406") {
+//             return null;
+//         } else if (e.message === "Request failed with status code 400") {
+//             return null;
+//         }
+//         throw e;
+//     }
+// };
 
-    }
-}
+export const ApiValidateSessionResponse = new ApiResponse("OK", "UNAUTH");
+export const ApiValidateSession = async () => {
+    return axios
+        .get("/api/test_cookies", { withCredentials: true })
+        .then((res) => ({
+            res: ApiValidateSessionResponse.OK,
+            data: res.data,
+        }))
+        .catch(() => ({
+            res: ApiValidateSessionResponse.UNAUTH,
+            data: null,
+        }));
+};
 
 /*API to send user's email*/
 export const ApiMail = async (email) => {
-    try{
-        const res = await axios.post("/api/email", {email})
-
+    try {
+        const res = await axios.post("/api/email", { email });
     } catch (e) {
         throw e;
     }
-
 };
 
 /*API to send user's email*/
 export const ApiReviews = async (corso_id, professor_id, num) => {
-    try{
-        const res = await axios.get("/api/reviews", { params: { corso_id, professor_id, num } });
+    try {
+        const res = await axios.get("/api/reviews_course", { params: { corso_id, professor_id, num } });
         return res.data.results;
     } catch (e) {
-        if(e.message === "Request failed with status code 400"){
+        if (e.message === "Request failed with status code 400") {
             return null;
         }
         throw e;
     }
-
 };
 
-export default {ApiProfessor, ApiMail, ApiRegister, ApiLogin};
+export default { ApiProfessor, ApiMail, ApiRegister, ApiLogin };

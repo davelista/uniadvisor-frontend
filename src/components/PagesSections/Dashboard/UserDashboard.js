@@ -15,8 +15,10 @@ function UserDashboard() {
     );
 }
 
-function LoginRequired() {
-    return <div> EFFETTUA IL LOGIN PER ACCEDERE </div>;
-}
+// function LoginRequired() {
+//     return <div> EFFETTUA IL LOGIN PER ACCEDERE </div>;
+// }
 
-export default withAuth(UserDashboard, LoginRequired);
+// export default withAuth(UserDashboard, LoginRequired);
+
+export default withAuth(UserDashboard);

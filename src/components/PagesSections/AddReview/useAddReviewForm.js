@@ -1,20 +1,4 @@
-import { useState } from "react";
-
-function useFormField(key, label, helperText = "", initialValue = null, validate = () => true) {
-    const [value, setValue] = useState(initialValue);
-    const [error, setError] = useState(false);
-
-    return {
-        key,
-        value,
-        setValue,
-        error,
-        setError,
-        helperText,
-        label,
-        validate,
-    };
-}
+import useFormField, { isFormValid } from "../../../hooks/useFormField";
 
 const currentDate = () => {
     const now = new Date();
@@ -74,21 +58,22 @@ export default function useAddReviewForm() {
     };
 
     const submit = () => {
-        let error = false;
-        for (const key in form) {
-            if (Object.hasOwnProperty.call(form, key)) {
-                const element = form[key];
-                if (!element.validate(element.value)) {
-                    console.log("wrong element with key: ", key, "\nElement is: ", element.value);
-                    element.setError(true);
-                    error = true;
-                }
-                else
-                    element.setError(false);
-            }
-        }
+        // let error = false;
+        // for (const key in form) {
+        //     if (Object.hasOwnProperty.call(form, key)) {
+        //         const element = form[key];
+        //         if (!element.validate(element.value)) {
+        //             console.log("wrong element with key: ", key, "\nElement is: ", element.value);
+        //             element.setError(true);
+        //             error = true;
+        //         }
+        //         else
+        //             element.setError(false);
+        //     }
+        // }
+        const ok = isFormValid(form);
 
-        if (!error)
+        if (ok)
             console.log("submitting ", form);
     };
 
