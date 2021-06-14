@@ -38,7 +38,6 @@ function ProfessorDetails(props) {
                         <h1>
                             {professor.nome} {professor.cognome}
                         </h1>
-                        {console.log(professor.metrics.overall)}
                         <div className={"bubble-rating"}>
                             <Rating
                                 name="half-rating-read"
@@ -72,9 +71,9 @@ function ProfessorDetails(props) {
                                 return (
                                     <div className={"professor-info-row"}>
                                         <EmailIcon fontSize="small" style={{ marginRight: "3%" }} />
-                                        <p>{professor.email}</p>
+                                        <p>{x.email}</p>
                                     </div>
-                                ); /*cambiare professor.email con x.email quando cambieranno json*/
+                                );
                             })}
                             {professor.university.map((x) => {
                                 return (

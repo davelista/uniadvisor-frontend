@@ -8,6 +8,9 @@ import SearchBar from "../SearchBar/SearchBar";
 import useMediaQuery, { Device } from '../../hooks/useMediaQuery';
 import SearchIcon from '@material-ui/icons/Search';
 import { AppContext } from '../../context/AppContext';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+
 
 const Navbar = (props) => {
 
@@ -18,10 +21,19 @@ const Navbar = (props) => {
     const [isOpenLoginForm, setOpenLoginForm] = useState(false);
     const isMobile = useMediaQuery(Device.sm);
     const [mobileSearchHidden, setMobileSearchHidden] = useState(true);
+    const [isOpenDropdown, setOpenDropdown] = React.useState(null);
 
     const handleOpenLoginForm = () => {
         setOpenLoginForm(!isOpenLoginForm);
     }
+
+    const handleClick = (event) => {
+        setOpenDropdown(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setOpenDropdown(null);
+    };
 
     let button;
     appData.user.data === null ? button = (
@@ -30,7 +42,20 @@ const Navbar = (props) => {
                 <Button buttonStyle='btn--outline'><h6 style={{color: "white"}}>{isMobile ? "Accedi" : "Accedi/Registrati"}</h6></Button>
             </Link>
         )
-        : button = (<Link to='/dashboard'><div>{appData.user.data.email}</div></Link>)
+        : button = (<>
+            <div onClick={handleClick}>{appData.user.data.email}</div>
+            <Menu
+                id="simple-menu"
+                anchorEl={isOpenDropdown}
+                keepMounted
+                open={Boolean(isOpenDropdown)}
+                onClose={handleClose}
+            >
+                <MenuItem onClick={handleClose}><Link to='/dashboard'>Profile</Link></MenuItem>
+                <MenuItem onClick={handleClose}>Logout</MenuItem>
+            </Menu>
+            </>
+        )
 
     let search;
     isHome === false && appData.professorsList !== null ? search=(<SearchBar professorsList={appData.professorsList} isHome={isHome}/>) : search=(<div></div>)
