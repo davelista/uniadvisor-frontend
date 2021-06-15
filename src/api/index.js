@@ -155,4 +155,15 @@ export const ApiReviews = async (corso_id, professor_id, num) => {
     }
 };
 
-export default { ApiProfessor, ApiMail, ApiRegister, ApiLogin };
+/*API to universities list*/
+export const ApiUniversitiesList = async () => {
+    try{
+        const res = await axios.get("/api/universities_list");
+        return res.data;
+    } catch (e) {
+        throw e;
+    }
+
+}
+
+export default { ApiProfessor, ApiMail, ApiRegister, ApiLogin, ApiUniversitiesList };

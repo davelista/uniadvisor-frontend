@@ -3,7 +3,6 @@ import "./App.css";
 import "./globals.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ReactGA from "react-ga";
-//import professorsList from './json/professorsList.json'
 //Pages
 import { Dashboard, Home, Login, Professor, SignUp, AddReview } from "./pages";
 import { Footer } from "./components";

@@ -11,6 +11,7 @@ function Home() {
             <div>
                 <Navbar isHome />
                 <HeroSection />
+
                 <AboutArea/>
                 <UniversitySection/>
             </div>
