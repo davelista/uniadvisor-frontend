@@ -4,6 +4,7 @@ import TextField from "@material-ui/core/TextField";
 
 const CustomTextField = withStyles({
     root: {
+
         "& label.Mui-focused": {
             color: "#E53A1E",
         },
@@ -11,8 +12,11 @@ const CustomTextField = withStyles({
             borderBottomColor: "#E53A1E"
         },
         "& .MuiOutlinedInput-root": {
+            borderRadius: "1.5rem",
+            width: "100%",
             "&.Mui-focused fieldset": {
-                borderColor: "#E53A1E"
+                borderColor: "#E53A1E",
+
             }
         }
     },

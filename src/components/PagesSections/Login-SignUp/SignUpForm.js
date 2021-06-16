@@ -1,13 +1,18 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import TextField from "@material-ui/core/TextField";
 import {Button} from "../../Buttons/Button";
 import {ApiRegister} from "../../../api";
 import {Redirect} from "react-router";
 import LoginFacebook from "./LoginFacebook";
+import FormTextField from "../../Forms/FormTextField";
+import MenuItem from "@material-ui/core/MenuItem";
+import SearchBar from "../../SearchBar/SearchBar";
+import {AppContext} from "../../../context/AppContext";
+import {FormControl, InputLabel, NativeSelect, Select} from "@material-ui/core";
 
 const SignUpForm = (props) => {
     const {onChangeUserFb, onChangeFb} = props;
-
+    const appData = useContext(AppContext);
     const [firstname, setFirstname] = useState('');
     const [lastname, setLastname] = useState('');
     const [email, setEmail] = useState('');
@@ -20,6 +25,10 @@ const SignUpForm = (props) => {
     const [typeError, setTypeError] = useState('');
     const [done, setDone] = useState(false);
 
+
+    const handleChange = (event) => {
+        setUniversity(event.target.value);
+    };
 
     const displayError = () => {
         switch (typeError) {
@@ -143,19 +152,31 @@ const SignUpForm = (props) => {
                         />
                     </div>
                     <div className={"form-input"}>
-                        <TextField
-                            className={"TextField"}
-                            InputProps={{
-                                className: "TextField"
-                            }}
-                            name="university"
-                            id="outlined-textarea"
-                            label="Università"
-                            placeholder="Inserisci la tua università"
-                            variant="outlined"
-                            aria-required="true"
-                            onChange={e => setUniversity(e.target.value)}
-                        />
+                        {appData.universitiesList !== null ?
+                            //console.log(appData.universitiesList)
+                            <FormControl>
+                                <InputLabel id="demo-simple-select-helper-label">Univeristà</InputLabel>
+
+                                    <NativeSelect
+                                        value={university}
+                                        onChange={handleChange}
+                                        inputProps={{
+                                            name: 'universities',
+                                            id: 'age-native-helper',
+                                        }}
+                                    >
+                                        {appData.universitiesList.universities
+                                            .map((university) => (
+                                                <option value={university} key={university}>
+                                                    {university}
+                                                </option>
+                                            ))}
+                                    </NativeSelect>
+
+                            </FormControl>
+                            : <div> </div>
+                        }
+
                     </div>
                     <div className={"form-row"}>
                         <div className={"form-input"}>

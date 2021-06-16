@@ -50,6 +50,39 @@ export const ApiProfessorImage = async (professorId) => {
 };
 
 /*API to register new users*/
+/*export const ApiRegisterResponse = new ApiResponse(
+    "OK",
+    "ALREADY_REGISTER",
+    "CONFIRM_EMAIL",
+    "INVALID_CREDENTIAL"
+);*/
+
+/**
+ * Register
+ * @param {{name: string; surname: string; email: string; password: string; university: string;}} data
+ * @returns {{void}}
+ */
+
+/*export const ApiRegister = async (data) => {
+    return axios
+        .post("/api/register", data)
+        .then((res) => res ({
+            res: ApiRegisterResponse.OK,
+            data: res.data,
+    }))
+        .catch((err) => {
+            const { status } = err.response;
+            switch ( status ){
+                case 202:
+                    return { res: ApiRegisterResponse.ALREADY_REGISTER, data: null};
+                case 303:
+                    return { res: ApiRegisterResponse.CONFIRM_EMAIL, data: null};
+                default:
+                    return { res: ApiRegisterResponse.INVALID_CREDENTIAL, data: null}
+            }
+        })
+}*/
+
 export const ApiRegister = async (name, surname, email, password, university, type, externalId) => {
     try {
         const res = await axios.post("/api/register", { name, surname, email, password, university });
@@ -99,25 +132,6 @@ export const ApiLogin = async (data) => {
             }
         });
 };
-// export const ApiLogin = async (email, password, rememberMe = false) => {
-//     try {
-//         /*withCredentials: true è per i cookies*/
-//         const res = await axios.post(
-//             "/api/user_login",
-//             { email, password, remember_me: rememberMe },
-//             { withCredentials: true }
-//         );
-//         return res.data;
-//     } catch (e) {
-//         console.log(JSON.stringify(e));
-//         if (e.message === "Request failed with status code 406") {
-//             return null;
-//         } else if (e.message === "Request failed with status code 400") {
-//             return null;
-//         }
-//         throw e;
-//     }
-// };
 
 export const ApiValidateSessionResponse = new ApiResponse("OK", "UNAUTH");
 export const ApiValidateSession = async () => {
