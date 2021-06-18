@@ -100,7 +100,7 @@ const Navbar = (props) => {
         )
 
     let search;
-    isHome === false && appData.professorsList !== null ? search=(<SearchBar professorsList={appData.professorsList} isHome={isHome}/>) : search=(<div></div>)
+    isHome === false && appData.professorsList !== null ? search=(<div className={'nav-search'}><SearchBar professorsList={appData.professorsList} isHome={isHome}/></div>) : search=(<div></div>)
 
     return (
         <>
@@ -108,7 +108,7 @@ const Navbar = (props) => {
                 <Link to='/' className="navbar-title">
                     <img src={logo} className={'logo'} alt={logo}/>
                 </Link>
-                {isMobile ? <SearchIcon onClick={() => setMobileSearchHidden(value => !value)} /> : search}
+                {isMobile ? <div className={'nav-search'}><SearchIcon onClick={() => setMobileSearchHidden(value => !value)} /></div> : search}
                 {/* LOGIN POPUP
                 <div className="menu-content">
                     <Button buttonStyle='btn--outline' onClick={handleOpenLoginForm}><h6 style={{color: "white"}}>Accedi/Registrati</h6></Button>

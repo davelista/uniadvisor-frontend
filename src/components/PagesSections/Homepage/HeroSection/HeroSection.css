@@ -23,6 +23,8 @@
 .hero-image {
     padding-top: 10%;
     padding-bottom: -10%;
+    max-width: 33%;
+    max-height: 100%;
 
 }
 
