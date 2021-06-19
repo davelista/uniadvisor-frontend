@@ -1,7 +1,16 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Navbar from "../components/Navbar/Navbar";
+import ChangePswForm from "../components/PagesSections/Settings/ChangePswForm";
 
 const Settings = () => {
+    const [showChangePsw, setShowChangePsw] = useState(false);
+    
+    const handleOpen = () => {
+        setShowChangePsw(!showChangePsw);
+    }
+
+    let changePswForm = (showChangePsw === true ? <ChangePswForm/> : <div></div>);
+
     return (
         <>
             <Navbar/>
@@ -11,9 +20,11 @@ const Settings = () => {
             <div>
                 Elimina account
             </div>
-            <div>
+            <div onClick={handleOpen}>
                 Cambia password
+
             </div>
+            {changePswForm}
         </>
     );
 }
