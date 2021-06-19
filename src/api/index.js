@@ -195,4 +195,25 @@ export const ApiUniversitiesList = async () => {
     }
 };
 
-export default { ApiProfessor, ApiMail, ApiRegister, ApiLogin, ApiUniversitiesList };
+/*API to download user's data*/
+export const ApiDownloadData = async () => {
+    try {
+        const res = await axios.get("api/download_user_data");
+        return res.data;
+    } catch (e){
+        throw e;
+    }
+};
+
+/* API to delete user */
+export const ApiDeleteUser = async () => {
+    try {
+        const res = await axios.get("api/eliminate_user");
+        return res.data;
+    } catch (e) {
+        throw e;
+    }
+
+};
+
+export default { ApiProfessor, ApiMail, ApiRegister, ApiLogin, ApiLogout, ApiUniversitiesList, ApiDownloadData, ApiDeleteUser };

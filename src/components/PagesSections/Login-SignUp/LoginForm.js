@@ -46,7 +46,9 @@ const LoginForm = () => {
                         <Button buttonStyle="btn--outline" type="submit">
                             <h6 style={{ color: "white" }}>Accedi</h6>
                         </Button>
+
                     </div>
+                    <div className={'forgot-psw'}>Hai dimenticato la password?</div>
                     {/*<div>
                         oppure
                     </div>

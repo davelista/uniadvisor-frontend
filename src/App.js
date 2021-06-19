@@ -4,7 +4,7 @@ import "./globals.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ReactGA from "react-ga";
 //Pages
-import { Dashboard, Home, Login, Professor, SignUp, AddReview } from "./pages";
+import {Dashboard, Home, Login, Professor, SignUp, AddReview, Settings} from "./pages";
 import { Footer } from "./components";
 import { Redirect } from "react-router";
 import { AppContext, useAppContext } from "./context/AppContext";
@@ -70,6 +70,9 @@ function App() {
                     </Route>
                     <Route exact path="/sign-up">
                         <SignUp />
+                    </Route>
+                    <Route exact path="/settings">
+                        <Settings />
                     </Route>
                     <Route render={() => <Redirect to={{ pathname: "/" }} />} />
                 </Switch>

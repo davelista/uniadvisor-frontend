@@ -11,6 +11,7 @@ import { AppContext } from '../../context/AppContext';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import {ClickAwayListener, Grow, MenuList, Paper, Popper} from "@material-ui/core";
+import {IoMdSettings} from "react-icons/all";
 
 
 const Navbar = (props) => {
@@ -84,6 +85,8 @@ const Navbar = (props) => {
                                     <MenuList autoFocusItem={isOpenDropdown} id="menu-list-grow" onKeyDown={handleListKeyDown}>
                                         <MenuItem onClick={handleClose}><Link to='/dashboard'>Profile</Link></MenuItem>
                                         <MenuItem onClick={handleLogout}><Link to="/">Logout</Link></MenuItem>
+                                        <MenuItem onClick={handleClose}><Link to='/settings'><IoMdSettings/></Link></MenuItem>
+
                                     </MenuList>
                                 </ClickAwayListener>
                             </Paper>

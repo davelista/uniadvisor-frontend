@@ -92,7 +92,6 @@ function ProfessorDetails(props) {
                                 );
                             })}
                         </div>
-                        {console.log(professor.metrics)}
                         <ProfessorEvaluation finalEvaluation={professor.metrics} />
                     </div>
                 </div>
@@ -109,23 +108,6 @@ function ProfessorDetails(props) {
                         {course.name}
                     </h4>
                 ))}
-                {/* {professor.corsi.map((x, i) => {
-                    return Object.entries(x)
-                        .filter(([key, value]) => key === "name")
-                        .map(([key, value]) => {
-                            return (
-                                <h4
-                                    className={"course-title-button"}
-                                    onClick={() => {
-                                        setCouseId(i);
-                                    }}
-                                    style={{ color: courseId === i ? "#e53a1e" : "#c9c9c9" }}
-                                >
-                                    {value}
-                                </h4>
-                            );
-                        });
-                })} */}
             </div>
 
             <div className={"professor-courses"}>
@@ -151,8 +133,6 @@ function ProfessorDetails(props) {
                 </div>
                 <ProfessorReviews professor={professor} icourse={courseId} />
             </div>
-
-            {console.log(professor)}
         </>
     );
 }

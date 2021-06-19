@@ -40,6 +40,14 @@
     width: 100%;
 }
 
+.forgot-psw{
+    padding-top: 2%;
+}
+.forgot-psw:hover{
+    color: #e53a1e;
+    cursor: pointer;
+}
+
 .register-option-container{
     display: flex;
     flex-direction: column;

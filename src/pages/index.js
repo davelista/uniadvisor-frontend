@@ -4,5 +4,6 @@ import Login from "./Login";
 import SignUp from "./SignUp";
 import Dashboard from "./Dashboard";
 import AddReview from "./AddReview";
+import Settings from "./Settings";
 
-export {Home, Professor, Login, SignUp, Dashboard, AddReview}
+export {Home, Professor, Login, SignUp, Dashboard, AddReview, Settings}
