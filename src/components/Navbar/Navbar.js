@@ -12,6 +12,7 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import {ClickAwayListener, Grow, MenuList, Paper, Popper} from "@material-ui/core";
 import {IoMdSettings} from "react-icons/all";
+import ProgressCirle from "../progress/ProgressCircle";
 
 
 const Navbar = (props) => {
@@ -61,7 +62,13 @@ const Navbar = (props) => {
             setOpenDropdown(false);
         }
     }
-
+    const LoadingComponent = () => {
+        return (
+            <div style={{ margin: "10rem", display: "flex", justifyContent: "center" }}>
+                <ProgressCirle />
+            </div>
+        );
+    };
     let button;
     appData.user.data === null ? button = (
             <Link to='/login' className="navbar-title">
@@ -86,29 +93,17 @@ const Navbar = (props) => {
                                         <MenuItem onClick={handleClose}><Link to='/dashboard'>Profile</Link></MenuItem>
                                         <MenuItem onClick={handleLogout}><Link to="/">Logout</Link></MenuItem>
                                         <MenuItem onClick={handleClose}><Link to='/settings'><IoMdSettings/></Link></MenuItem>
-
                                     </MenuList>
                                 </ClickAwayListener>
                             </Paper>
                         </Grow>
                     )}
                 </Popper>
-
-            {/* <Menu
-                id="simple-menu"
-                anchorEl={isOpenDropdown}
-                keepMounted
-                open={Boolean(isOpenDropdown)}
-                onClose={handleClose}
-            >
-                <MenuItem onClick={handleClose}><Link to='/dashboard'>Profile</Link></MenuItem>
-                <MenuItem onClick={handleClose}>Logout</MenuItem>
-            </Menu>*/}
             </>
         )
 
     let search;
-    isHome === false && appData.professorsList !== null ? search=(<div className={'nav-search'}><SearchBar professorsList={appData.professorsList} isHome={isHome}/></div>) : search=(<div></div>)
+    isHome === false && appData.professorsList !== null ? search=(<div className={'nav-search'}><SearchBar professorsList={appData.professorsList} isHome={isHome}/></div>) : search=(<div/>)
 
     return (
         <>

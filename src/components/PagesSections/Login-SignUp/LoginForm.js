@@ -14,6 +14,7 @@ const LoginForm = () => {
     const appData = useContext(AppContext);
 
     const [form, submit] = useLoginForm(appData.user.login);
+    const [forgotPsw, setForgotPsw] = useState(false);
 
     useEffect(() => {
         switch (appData.user.auth) {
@@ -28,6 +29,18 @@ const LoginForm = () => {
         }
     }, [appData.user.auth, form.email, form.password]);
 
+    const handleOpen = () => {
+        setForgotPsw(!forgotPsw);
+    }
+
+    let forgotForm = (forgotPsw ? <>
+        <div className={"form-input"}>
+            <FormTextField field={form.email} variant="outlined" type="email" />
+        </div>
+        <Button buttonStyle="btn--outline" type="submit">
+            <h6 style={{ color: "white" }}>Invia</h6>
+        </Button>
+    </> : null);
     return (
         <>
             <div className={"element-center"}>
@@ -46,9 +59,9 @@ const LoginForm = () => {
                         <Button buttonStyle="btn--outline" type="submit">
                             <h6 style={{ color: "white" }}>Accedi</h6>
                         </Button>
-
                     </div>
-                    <div className={'forgot-psw'}>Hai dimenticato la password?</div>
+                    <div className={'forgot-psw'} onClick={handleOpen}>Hai dimenticato la password?</div>
+                    {forgotForm}
                     {/*<div>
                         oppure
                     </div>

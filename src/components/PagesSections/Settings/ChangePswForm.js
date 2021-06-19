@@ -2,6 +2,7 @@ import React from 'react';
 import FormTextField from "../../Forms/FormTextField";
 import useChangePswForm from "./useChangePswForm";
 import styles from './Settings.module.css';
+import {Button} from "../../Buttons/Button";
 
 const ChangePswForm = (props) => {
 
@@ -20,6 +21,9 @@ const ChangePswForm = (props) => {
                     <div className={styles.formInput}>
                         <FormTextField field={form.repeatPassword} variant="outlined" type="password"  />
                     </div>
+                    <Button buttonStyle="btn--outline" type="submit">
+                        <h6 style={{ color: "white" }}>Invia</h6>
+                    </Button>
                 </form>
             </div>
         </>

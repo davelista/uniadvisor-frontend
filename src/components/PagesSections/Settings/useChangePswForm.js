@@ -13,8 +13,9 @@ export default function useChangePswForm(onSubmit) {
 
     const submit = async (e) => {
         if (e) e.preventDefault();
-
-        if (isFormValid(form)) onSubmit(formToSubmittable(form));
+        if(newPassword.value === repeatPassword.value){
+            if (isFormValid(form)) onSubmit(formToSubmittable(form));
+        }
     };
 
     return [form, submit];

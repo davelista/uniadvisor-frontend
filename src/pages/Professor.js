@@ -3,11 +3,19 @@ import { useParams } from "react-router";
 import Navbar from "../components/Navbar/Navbar";
 import ProfessorDetails from "../components/PagesSections/Professor/ProfessorDetails";
 import { AppContext } from "../context/AppContext";
+import ProgressCirle from "../components/progress/ProgressCircle";
 
-function Professor() {
+function Professor( ) {
     const appData = useContext(AppContext);
     const { professorId } = useParams();
 
+    const LoadingComponent = () => {
+        return (
+            <div style={{ margin: "10rem", display: "flex", justifyContent: "center" }}>
+                <ProgressCirle />
+            </div>
+        );
+    };
     useEffect(() => {
         appData.professor.refresh(professorId);
     }, [professorId, appData.professor.refresh]);
@@ -18,7 +26,7 @@ function Professor() {
             {appData.professor.data !== null ? (
                 <ProfessorDetails professor={appData.professor.data} />
             ) : (
-                <div style={{ margin: "200px", display: "flex", justifyContent: "center" }}>LOADING PROFESSOR</div>
+                <LoadingComponent />
             )}
         </div>
     );
