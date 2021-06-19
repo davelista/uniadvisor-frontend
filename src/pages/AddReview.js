@@ -9,19 +9,16 @@ export default function AddReview() {
     const { professorId } = useParams();
 
     useEffect(() => {
-        if (appData.professor.data?.id == professorId) return;  // non mettere "===" (id: number, professorId: string)
+        if (appData.professor.data?.id == professorId) return; // non mettere "===" (id: number, professorId: string)
         appData.professor.refresh(professorId);
-    }, [professorId])
-
-    const userDetails = appData.user.data !== null ? <div>USER DETAILS</div> : <div>EFFETTUA IL LOGIN PER ACCEDERE</div>;
+    }, [professorId]);
 
     return (
         <>
             <Navbar />
-            {userDetails}
 
             {appData.professor.data !== null ? (
-                <AddReviewForm professor={appData.professor.data} />
+                <AddReviewForm />
             ) : (
                 <div style={{ margin: "200px", display: "flex", justifyContent: "center" }}>LOADING PROFESSOR</div>
             )}

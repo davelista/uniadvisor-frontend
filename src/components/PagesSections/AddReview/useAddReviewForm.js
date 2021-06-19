@@ -1,4 +1,4 @@
-import useFormField, { isFormValid } from "../../../hooks/useFormField";
+import useFormField, { formToSubmittable, isFormValid } from "../../../hooks/useFormField";
 
 const currentDate = () => {
     const now = new Date();
@@ -9,18 +9,17 @@ const currentDate = () => {
     );
 };
 
-export default function useAddReviewForm() {
+export default function useAddReviewForm(professorId, userEmail, onSubmit) {
     // todo: questi due potrebbero auto settarsi usando come initial value i valori di argomenti passati all'hook
-    const professor_id = useFormField("professor_id", null, null, "");
-    const user_id = useFormField("user_id", null, null, "");
+    const professor_id = useFormField("professor_id", null, null, professorId);
+    const user_email = useFormField("user_email", null, null, userEmail);
     
     const corso_id = useFormField("corso_id", null, "Seleziona un corso", null, (value) => value !== null);
     
     const titolo = useFormField("titolo", "Titolo della recensione", "Il campo non può essere vuoto", "", (value) => value?.length > 0);
     const corpo = useFormField("corpo", "Testo della recensione", "Il campo non può essere vuoto", "", (value) => value?.length > 0);
 
-    const stato = useFormField("stato", "", "", "TO_CHECK");
-    const data_creazione = useFormField("data_creazione", "Data recensione", "", currentDate());
+    // const data_creazione = useFormField("data_creazione", "Data recensione", "", currentDate());
     const anno_accademico = useFormField("anno_accademico", "Anno accademico", "Seleziona un anno accademico", "", (value) => value.length > 0);
     const voto = useFormField("voto", "Voto esame", "Inserisci un voto valido", "0", (value) => parseInt(value) > 0 && parseInt(value) <= 30);
     const anonimo = useFormField("anonimo", "Resta anonimo", "", false);
@@ -39,11 +38,9 @@ export default function useAddReviewForm() {
     const form = {
         corso_id,
         professor_id,
-        user_id,
+        user_email,
         titolo,
         corpo,
-        stato,
-        data_creazione,
         anno_accademico,
         voto,
         anonimo,
@@ -57,24 +54,10 @@ export default function useAddReviewForm() {
         lo_consiglieresti_corso,
     };
 
-    const submit = () => {
-        // let error = false;
-        // for (const key in form) {
-        //     if (Object.hasOwnProperty.call(form, key)) {
-        //         const element = form[key];
-        //         if (!element.validate(element.value)) {
-        //             console.log("wrong element with key: ", key, "\nElement is: ", element.value);
-        //             element.setError(true);
-        //             error = true;
-        //         }
-        //         else
-        //             element.setError(false);
-        //     }
-        // }
-        const ok = isFormValid(form);
+    const submit = async (e) => {
+        if (e) e.preventDefault();
 
-        if (ok)
-            console.log("submitting ", form);
+        if (isFormValid(form)) onSubmit(formToSubmittable(form));
     };
 
     return [form, submit];

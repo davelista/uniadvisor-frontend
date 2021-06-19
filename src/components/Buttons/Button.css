@@ -19,7 +19,7 @@
     border-radius: 10px;
 }
 
-.btn--outline:hover {
+.btn--outline:hover:enabled {
     background-color: black;
     color: #e53a1e !important;
     padding: 8px 20px;
@@ -27,6 +27,15 @@
     transition: all 0.3s ease-out;
     border-radius: 10px;
     cursor: pointer;
+}
+
+.btn--outline:disabled {
+    background-color: #555;
+    color: white;
+    padding: 8px 20px;
+    border: 1px solid #222;
+    transition: all 0.3s ease-out;
+    border-radius: 10px;
 }
 
 .btn--outline--white {
@@ -40,7 +49,7 @@
 
 .btn--outline--white:hover {
     background-color: #e53a1e;
-    color: white!important;
+    color: white !important;
     padding: 8px 20px;
     border: 1px solid #e53a1e;
     transition: all 0.3s ease-out;

@@ -101,13 +101,7 @@ export const ApiRegister = async (name, surname, email, password, university, ty
 };
 
 /*API to login users*/
-export const ApiLoginResponse = new ApiResponse(
-    "OK",
-    "REQUIRES_CONFIRM",
-    "INVALID_CREDENTIALS",
-    "MISSING_USER",
-    "UNAUTH"
-);
+export const ApiLoginResponse = new ApiResponse("OK", "REQUIRES_CONFIRM", "INVALID_CREDENTIALS", "MISSING_USER", "UNAUTH");
 /**
  * Login
  * @param {{email: string; password: string; remember_me: boolean}} data
@@ -147,6 +141,18 @@ export const ApiValidateSession = async () => {
         }));
 };
 
+export const ApiAddProfessorReviewResponse = new ApiResponse("OK", "FAILED");
+export const ApiAddProfessorReview = async (data) => {
+    return axios
+        .post("/api/new_review", data)
+        .then(() => ({
+            res: ApiAddProfessorReviewResponse.OK,
+        }))
+        .catch(() => ({
+            res: ApiAddProfessorReviewResponse.FAILED,
+        }));
+};
+
 /*API to send user's email*/
 export const ApiMail = async (email) => {
     try {
@@ -171,13 +177,12 @@ export const ApiReviews = async (corso_id, professor_id, num) => {
 
 /*API to universities list*/
 export const ApiUniversitiesList = async () => {
-    try{
+    try {
         const res = await axios.get("/api/universities_list");
         return res.data;
     } catch (e) {
         throw e;
     }
-
-}
+};
 
 export default { ApiProfessor, ApiMail, ApiRegister, ApiLogin, ApiUniversitiesList };
