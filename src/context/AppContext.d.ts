@@ -52,8 +52,9 @@ export interface IUser {
         uniadvisor: string;
         university: string;
     };
-    login: (data: {email: string, password: string, rememberMe: boolean}) => Promise<void>;
+    login: (data: { email: string; password: string; rememberMe: boolean }) => Promise<void>;
     validateSession: () => Promise<void>;
+    logout: () => Promise<void>;
 }
 
 export interface IProfessorListElem {
@@ -67,7 +68,7 @@ interface IAppContext {
     professorList: IProfessorListElem[];
     user: IUser;
     professor: IProfessor;
-};
+}
 
 export declare const AppContext: React.Context<IAppContext>;
 

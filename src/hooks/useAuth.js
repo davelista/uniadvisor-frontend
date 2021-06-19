@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { ApiLogin, ApiLoginResponse, ApiValidateSession, ApiValidateSessionResponse } from "../api";
+import { ApiLogin, ApiLoginResponse, ApiLogout, ApiLogoutResponse, ApiValidateSession, ApiValidateSessionResponse } from "../api";
 
 const useAuth = () => {
     const [auth, setAuth] = useState("UNAUTH");
@@ -7,8 +7,6 @@ const useAuth = () => {
 
     const login = useCallback(
         async (opts) => {
-            // setUser(null); // TODO: sign-out
-
             if (auth === "OK") console.error("User already logged in. Logout is required before login.");
 
             setAuth("VALIDATING");
@@ -28,7 +26,16 @@ const useAuth = () => {
         setAuth(res);
     }, [auth]);
 
-    return [auth, user, login, validateSession];
+    const logout = useCallback(async () => {
+        if (auth !== "OK") return;
+        const { res } = await ApiLogout();
+        if (res === ApiLogoutResponse.OK) {
+            setAuth("UNAUTH");
+            setUser(null);
+        }
+    }, [auth]);
+
+    return [auth, user, login, validateSession, logout];
 };
 
 export default useAuth;

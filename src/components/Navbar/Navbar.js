@@ -41,6 +41,11 @@ const Navbar = (props) => {
         setOpenDropdown(null);
     };
 
+    const handleLogout = () => {
+        appData.user.logout();
+        handleClose();
+    }
+
     const prevOpen = React.useRef(isOpenDropdown);
     React.useEffect(() => {
         if (prevOpen.current === true && isOpenDropdown === false) {
@@ -78,7 +83,7 @@ const Navbar = (props) => {
                                 <ClickAwayListener onClickAway={handleClose}>
                                     <MenuList autoFocusItem={isOpenDropdown} id="menu-list-grow" onKeyDown={handleListKeyDown}>
                                         <MenuItem onClick={handleClose}><Link to='/dashboard'>Profile</Link></MenuItem>
-                                        <MenuItem onClick={handleClose}>Logout</MenuItem>
+                                        <MenuItem onClick={handleLogout}><Link to="/">Logout</Link></MenuItem>
                                     </MenuList>
                                 </ClickAwayListener>
                             </Paper>

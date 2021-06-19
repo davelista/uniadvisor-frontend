@@ -141,6 +141,16 @@ export const ApiValidateSession = async () => {
         }));
 };
 
+export const ApiLogoutResponse = new ApiResponse("OK", "FAILED");
+export const ApiLogout = async () => {
+    return axios
+        .post("/api/user_logout", {}, { withCredentials: true })
+        .then(() => ({ res: ApiLogoutResponse.OK }))
+        .catch(() => ({
+            res: ApiLogoutResponse.FAILED,
+        }));
+};
+
 export const ApiAddProfessorReviewResponse = new ApiResponse("OK", "FAILED");
 export const ApiAddProfessorReview = async (data) => {
     return axios
