@@ -1,30 +1,16 @@
 import React, {useState} from 'react';
 import Navbar from "../components/Navbar/Navbar";
-import ChangePswForm from "../components/PagesSections/Settings/ChangePswForm";
+import CardContainer from "../components/PagesSections/Settings/CardContainer";
+import SettingForm from "../components/PagesSections/Settings/SettingForm";
 
 const Settings = () => {
-    const [showChangePsw, setShowChangePsw] = useState(false);
-    
-    const handleOpen = () => {
-        setShowChangePsw(!showChangePsw);
-    }
-
-    let changePswForm = (showChangePsw === true ? <ChangePswForm/> : <div></div>);
+    const [selected, setSelected] = useState(null);
 
     return (
         <>
             <Navbar/>
-            <div>
-                Download dati
-            </div>
-            <div>
-                Elimina account
-            </div>
-            <div onClick={handleOpen}>
-                Cambia password
-
-            </div>
-            {changePswForm}
+            <CardContainer selected={selected} onChangeSelected={setSelected}/>
+            <SettingForm selected={selected}/>
         </>
     );
 }
