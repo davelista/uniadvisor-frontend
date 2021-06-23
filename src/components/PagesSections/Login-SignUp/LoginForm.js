@@ -72,7 +72,7 @@ const LoginForm = () => {
                 <div className={"register-option-text"}>Non hai ancora un account?</div>
                 <div className={"register-option-button"}>
                     <Link to="/sign-up">
-                        <Button buttonStyle="btn--outline--white">
+                        <Button buttonStyle="btn--outline--white" buttonSize={"btn--small"}>
                             <h6>Registrati</h6>
                         </Button>
                     </Link>

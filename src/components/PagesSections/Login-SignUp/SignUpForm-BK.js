@@ -192,7 +192,7 @@ const SignUpForm = (props) => {
                         </div>
                     </div>
                     <div className={"form-input"}>
-                        <Button buttonStyle='btn--outline' type="submit" onClick={validation}><h6
+                        <Button buttonStyle='btn--outline' buttonSize={"btn--small"} type="submit" onClick={validation}><h6
                             style={{color: "white"}}>Registrati</h6>
                         </Button>
                     </div>

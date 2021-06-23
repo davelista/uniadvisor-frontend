@@ -126,7 +126,7 @@ function ProfessorDetails(props) {
                 <div className={"reviews-section-title"}>
                     <h2>Leggi le recensioni</h2>
                     <Link to={"/add-review/professors/" + professor.id}>
-                        <Button buttonStyle="btn--outline">
+                        <Button buttonStyle="btn--outline" >
                             <h6 style={{ color: "white" }}>Scrivi una recensione</h6>
                         </Button>
                     </Link>

@@ -18,9 +18,7 @@ const Delete = (props) => {
                         <FormTextField field={form.email} variant="outlined" type="email"  />
                     </div>
                 </form>
-                <Button buttonStyle="btn--outline" buttonSize={"btn--small"} type="submit" >
-                    <h6 style={{ color: "white" }}>Elimina</h6>
-                </Button>
+
             </div>
         </>
     );
