@@ -1,20 +1,37 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styles from "./Card.module.css";
 
 const Card = (props) => {
 
-    const {title, text, onChangeSelected} = props;
+    const {isSelected, title, text, onChangeSelected} = props;
+
+
+    let card = (
+        <>
+            <div className={styles.title}>
+                {title}
+            </div>
+            <div className={styles.text}>
+                {text}
+            </div>
+        </>
+    );
 
     return (
         <>
-            <div className={styles.card} onClick={() => onChangeSelected(title)}>
-                <div  className={styles.title}>
-                    {title}
+            {isSelected ?
+                <div className={styles.cardActive}>
+                    {card}
                 </div>
-                <div className={styles.text}>
-                    {text}
-                </div>
-            </div>
+
+                :
+
+                <div className={styles.card} onClick={() => {
+                    onChangeSelected(title)
+                }}>
+                    {card}
+                </div>}
+
         </>
     );
 }

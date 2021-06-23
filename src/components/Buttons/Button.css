@@ -55,3 +55,7 @@
     transition: all 0.3s ease-out;
     border-radius: 10px;
 }
+
+.btn--small{
+    width: 20%;
+}

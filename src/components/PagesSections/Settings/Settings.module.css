@@ -7,11 +7,15 @@
     padding: 5%;
 }
 
+.title{
+    margin-bottom: 3%;
+}
+
 .formContainer{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 2% 0 0 0;
+    align-items: center;
 }
 
 .form{
@@ -25,7 +29,6 @@
 
 .formInput{
     display: flex;
-    margin-top:3%;
     border:none;
     padding: 5px 10px;
     outline: none;

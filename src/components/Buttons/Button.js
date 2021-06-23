@@ -3,7 +3,7 @@ import "./Button.css";
 
 const STYLES = ["btn--primary", "btn--outline", "btn--outline--white"];
 
-const SIZES = ["btn--medium", "btn--large", "btn--mobile", "btn--wide"];
+const SIZES = ["btn--small", "btn--medium", "btn--large", "btn--mobile", "btn--wide"];
 
 export const Button = ({ children, type, onClick, buttonStyle, buttonSize, buttonColor, ...props }) => {
     //Se è stato definito uno stile del bottone inserisci lo stile altrimenti consideri il primo nell'array (btn primary)

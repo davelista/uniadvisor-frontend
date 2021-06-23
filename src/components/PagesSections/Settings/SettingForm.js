@@ -1,6 +1,7 @@
 import React from 'react';
-import {ChangePswForm, Modify} from "./Forms";
+import {ChangePswForm, Delete, Modify} from "./index";
 import styles from './Settings.module.css'
+import {Button} from "../../Buttons/Button";
 
 const SettingForm = (props) => {
     const {selected} = props;
@@ -14,10 +15,12 @@ const SettingForm = (props) => {
             form = (<Modify/>);
             break;
         case "Elimina account":
-            form = (<div>elimina</div>);
+            form = (<Delete/>);
             break;
         case "Scarica dati":
-            form =  (<div>Scarica</div>);
+            form =  (<div><Button buttonStyle="btn--outline" type="submit" >
+                <h6 style={{ color: "white" }}>Dowload</h6>
+            </Button></div>);
             break;
         case "Contattaci":
             form = (<div>Contattaci</div>);
@@ -29,7 +32,8 @@ const SettingForm = (props) => {
     return (
         <>
             <div className={styles.section}>
-                <h2>{selected}</h2>
+                <h2 className={styles.title}>{selected}</h2>
+
                 {form}
             </div>
         </>

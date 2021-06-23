@@ -23,7 +23,7 @@ const ChangePswForm = (props) => {
                         <FormTextField field={form.repeatPassword} variant="outlined" type="password"  />
                     </div>
                 </form>
-                <Button buttonStyle="btn--outline" type="submit" >
+                <Button buttonStyle="btn--outline" buttonSize={"btn--small"} type="submit" >
                     <h6 style={{ color: "white" }}>Invia</h6>
                 </Button>
             </div>

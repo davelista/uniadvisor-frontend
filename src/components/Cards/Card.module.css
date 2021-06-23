@@ -27,3 +27,17 @@
     color: white;
     cursor: pointer;
 }
+.cardActive{
+    display: flex;
+    flex-direction: column;
+    padding: 2% 5% 2% 5%;
+    width: 28rem;
+    height: 18rem;
+    margin-bottom: 3%;
+    margin-right: 3%;
+    background-color: #e53a1e;
+    color: white;
+}
+.cardActive:hover{
+    cursor: pointer;
+}
