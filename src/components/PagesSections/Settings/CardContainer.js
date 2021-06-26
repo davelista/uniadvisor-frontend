@@ -5,17 +5,16 @@ import styles from './CardsContainer.module.css'
 const CardContainer = (props) => {
     const {selected, onChangeSelected} = props;
     const titles = ["Cambio password", "Modifica dati personali", "Elimina account", "Scarica dati", "Contattaci"];
-
-    const textPsw = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor " +
-        "incididunt ut labore et dolore magna aliqua.";
+    const texts = ["Clicca qui per cambiare la tua password.", "Clicca qui per modificare i tuoi dati.",
+        "Clicca qui per eliminare il tuo account. Attenzione, l'azione non è reversibile.", "Clicca qui per poter scaricare tutti i dati salvati sul sito.", "Hai delle segnalazioni da fare? Clicca qui per contattarci."]
 
 
     return (
         <>
             <div className={styles.container}>
-                {titles.map((title) =>
-                    selected === title ? <Card title={title} text={textPsw} isSelected={true} onChangeSelected={onChangeSelected}/>
-                        : <Card title={title} text={textPsw} isSelected={false} onChangeSelected={onChangeSelected}/> )}
+                {titles.map((title, i) =>
+                    selected === title ? <Card title={title} text={texts[i]} isSelected={true} onChangeSelected={onChangeSelected}/>
+                        : <Card title={title} text={texts[i]} isSelected={false} onChangeSelected={onChangeSelected}/> )}
             </div>
         </>
     );
