@@ -33,22 +33,6 @@ export const ApiProfessor = async (professorId) => {
     }
 };
 
-/*API to request professor image*/
-export const ApiProfessorImage = async (professorId) => {
-    try {
-        const img = await axios.get("/api/professor_image/" + professorId);
-        return img;
-    } catch (e) {
-        switch (e.message) {
-            case "Request failed with status code 404":
-                return "Image Not Found";
-            default:
-                break;
-        }
-        throw e;
-    }
-};
-
 /*API to register new users*/
 export const ApiRegisterResponse = new ApiResponse("OK", "ALREADY_REGISTERED", "FAILED");
 export const ApiRegister = async (data) => {
@@ -192,4 +176,22 @@ export const ApiDeleteUser = async () => {
     }
 };
 
-export default { ApiProfessor, ApiMail, ApiRegister, ApiLogin, ApiLogout, ApiUniversitiesList, ApiDownloadData, ApiDeleteUser };
+export const ApiForgotPassword = async (email) => {
+    try{
+        const res = await axios.post ( "/api/forgot_password", {email});
+        return res.data;
+    } catch (e) {
+        throw e;
+    }
+}
+
+export const ApiResetPassword = async (token, newPassword) => {
+    try{
+        const res = await axios.post ( "api/reset_password", {token, newPassword});
+        return res.data;
+    } catch (e) {
+        throw e;
+    }
+}
+
+export default { ApiProfessor, ApiMail, ApiRegister, ApiLogin, ApiLogout, ApiUniversitiesList, ApiDownloadData, ApiDeleteUser, ApiForgotPassword, ApiResetPassword };

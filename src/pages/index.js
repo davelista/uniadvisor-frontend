@@ -5,5 +5,6 @@ import SignUp from "./SignUp";
 import Dashboard from "./Dashboard";
 import AddReview from "./AddReview";
 import Settings from "./Settings";
+import ResetPassword from "./ResetPassword";
 
-export {Home, Professor, Login, SignUp, Dashboard, AddReview, Settings}
+export {Home, Professor, Login, SignUp, Dashboard, AddReview, Settings, ResetPassword}
