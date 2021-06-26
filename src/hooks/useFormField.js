@@ -21,12 +21,10 @@ export function isFormValid(form) {
     for (const key in form) {
         if (Object.hasOwnProperty.call(form, key)) {
             const element = form[key];
-            if (!element.validate(element.value)) {
+            if (!element.validate(element.value, form)) {
                 element.setError(true);
                 error = true;
-            }
-            else
-                element.setError(false);
+            } else element.setError(false);
         }
     }
     return !error;
@@ -34,7 +32,7 @@ export function isFormValid(form) {
 
 /**
  * Transform the frontend form object to an understandable one for backend
- * @param {object} form An object containing some fields produced by `useFormField(...)` 
+ * @param {object} form An object containing some fields produced by `useFormField(...)`
  * @returns {object} An object ready to be submitted
  */
 export function formToSubmittable(form) {

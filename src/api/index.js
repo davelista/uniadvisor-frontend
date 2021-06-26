@@ -50,54 +50,31 @@ export const ApiProfessorImage = async (professorId) => {
 };
 
 /*API to register new users*/
-/*export const ApiRegisterResponse = new ApiResponse(
-    "OK",
-    "ALREADY_REGISTER",
-    "CONFIRM_EMAIL",
-    "INVALID_CREDENTIAL"
-);*/
-
-/**
- * Register
- * @param {{name: string; surname: string; email: string; password: string; university: string;}} data
- * @returns {{void}}
- */
-
-/*export const ApiRegister = async (data) => {
+export const ApiRegisterResponse = new ApiResponse("OK", "ALREADY_REGISTERED", "FAILED");
+export const ApiRegister = async (data) => {
     return axios
         .post("/api/register", data)
-        .then((res) => res ({
-            res: ApiRegisterResponse.OK,
-            data: res.data,
-    }))
-        .catch((err) => {
-            const { status } = err.response;
-            switch ( status ){
+        .then((res) => {
+            switch (res.status) {
+                case 201:
+                    return { res: ApiRegisterResponse.OK };
                 case 202:
-                    return { res: ApiRegisterResponse.ALREADY_REGISTER, data: null};
-                case 303:
-                    return { res: ApiRegisterResponse.CONFIRM_EMAIL, data: null};
+                    return { res: ApiRegisterResponse.ALREADY_REGISTERED };
                 default:
-                    return { res: ApiRegisterResponse.INVALID_CREDENTIAL, data: null}
+                    return { res: ApiRegisterResponse.OK };
             }
         })
-}*/
-
-export const ApiRegister = async (name, surname, email, password, university, type, externalId) => {
-    try {
-        const res = await axios.post("/api/register", { name, surname, email, password, university });
-        console.log(JSON.stringify(res));
-        return res;
-    } catch (e) {
-        console.log(JSON.stringify(e));
-        if (e.message === "Request failed with status code 400") {
-            return "400";
-        }
-        if (e.message === "Request failed with status code 303") {
-            return "303";
-        }
-        throw e;
-    }
+        .catch((err) => {
+            const { status } = err.response;
+            switch (status) {
+                case 303:
+                    return { res: ApiRegisterResponse.OK };
+                case 400:
+                    return { res: ApiRegisterResponse.FAILED };
+                default:
+                    return { res: ApiRegisterResponse.FAILED };
+            }
+        });
 };
 
 /*API to login users*/
@@ -200,7 +177,7 @@ export const ApiDownloadData = async () => {
     try {
         const res = await axios.get("api/download_user_data");
         return res.data;
-    } catch (e){
+    } catch (e) {
         throw e;
     }
 };
@@ -213,7 +190,6 @@ export const ApiDeleteUser = async () => {
     } catch (e) {
         throw e;
     }
-
 };
 
 export default { ApiProfessor, ApiMail, ApiRegister, ApiLogin, ApiLogout, ApiUniversitiesList, ApiDownloadData, ApiDeleteUser };

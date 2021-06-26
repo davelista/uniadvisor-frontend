@@ -1,0 +1,15 @@
+.doneSection {
+    padding: var(--main-page-padding);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.doneTitle {
+    color: var(--secondary-color);
+}
+
+.doneBody {
+    color: var(--primary-color);
+}
