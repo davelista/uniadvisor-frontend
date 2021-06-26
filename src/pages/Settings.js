@@ -1,18 +1,14 @@
-import React, {useState} from 'react';
+import React from "react";
 import Navbar from "../components/Navbar/Navbar";
-import CardContainer from "../components/PagesSections/Settings/CardContainer";
-import SettingForm from "../components/PagesSections/Settings/SettingForm";
+import UserSettings from "../components/PagesSections/Settings/UserSettings";
 
 const Settings = () => {
-    const [selected, setSelected] = useState(null);
-
     return (
         <>
-            <Navbar/>
-            <CardContainer selected={selected} onChangeSelected={setSelected}/>
-            <SettingForm selected={selected}/>
+            <Navbar />
+            <UserSettings />
         </>
     );
-}
+};
 
 export default Settings;
