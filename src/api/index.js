@@ -156,6 +156,17 @@ export const ApiUniversitiesList = async () => {
     }
 };
 
+/*API to change logged user password */
+export const ApiChangePasswordResponse = new ApiResponse("OK", "FAILED");
+export const ApiChangePassword = async (data) => {
+    return axios
+        .post("/api/change_password", data)
+        .then(() => ({ res: ApiChangePasswordResponse.OK }))
+        .catch(() => ({
+            res: ApiChangePasswordResponse.FAILED,
+        }));
+};
+
 /*API to download user's data*/
 export const ApiDownloadData = async () => {
     try {
@@ -177,21 +188,32 @@ export const ApiDeleteUser = async () => {
 };
 
 export const ApiForgotPassword = async (email) => {
-    try{
-        const res = await axios.post ( "/api/forgot_password", {email});
+    try {
+        const res = await axios.post("/api/forgot_password", { email });
         return res.data;
     } catch (e) {
         throw e;
     }
-}
+};
 
 export const ApiResetPassword = async (token, newPassword) => {
-    try{
-        const res = await axios.post ( "api/reset_password", {token, newPassword});
+    try {
+        const res = await axios.post("api/reset_password", { token, newPassword });
         return res.data;
     } catch (e) {
         throw e;
     }
-}
+};
 
-export default { ApiProfessor, ApiMail, ApiRegister, ApiLogin, ApiLogout, ApiUniversitiesList, ApiDownloadData, ApiDeleteUser, ApiForgotPassword, ApiResetPassword };
+export default {
+    ApiProfessor,
+    ApiMail,
+    ApiRegister,
+    ApiLogin,
+    ApiLogout,
+    ApiUniversitiesList,
+    ApiDownloadData,
+    ApiDeleteUser,
+    ApiForgotPassword,
+    ApiResetPassword,
+};

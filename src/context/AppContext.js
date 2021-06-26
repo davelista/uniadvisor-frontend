@@ -26,7 +26,7 @@ export function useAppContext() {
     const professorsList = useProfessorsList();
     const universitiesList = useUniversityList();
     const [professor, refreshProfessor] = useProfessor();
-    const [auth, user, login, validateSession, logout] = useAuth();
+    const [auth, user, login, validateSession, logout, changePassword] = useAuth();
 
     return useMemo(
         () => ({
@@ -38,12 +38,13 @@ export function useAppContext() {
                 login,
                 validateSession,
                 logout,
+                changePassword,
             },
             professor: {
                 data: professor,
                 refresh: refreshProfessor,
             },
         }),
-        [professorsList, professor, refreshProfessor, user, login, validateSession, auth, logout]
+        [professorsList, universitiesList, professor, refreshProfessor, user, login, validateSession, auth, logout, changePassword]
     );
 }

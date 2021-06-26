@@ -10,7 +10,7 @@ const currentDate = () => {
 };
 
 export default function useAddReviewForm(professorId, userEmail, onSubmit) {
-    // todo: questi due potrebbero auto settarsi usando come initial value i valori di argomenti passati all'hook
+    // questi due valori si auto settano usando come initial value i valori di argomenti passati all'hook
     const professor_id = useFormField("professor_id", null, null, professorId);
     const user_email = useFormField("user_email", null, null, userEmail);
     

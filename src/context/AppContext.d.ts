@@ -55,6 +55,7 @@ export interface IUser {
     login: (data: { email: string; password: string; rememberMe: boolean }) => Promise<void>;
     validateSession: () => Promise<void>;
     logout: () => Promise<void>;
+    changePassword: (data: { email: string; old_password: string; new_password: string }) => Promise<bool>;
 }
 
 export interface IProfessorListElem {
