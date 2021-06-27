@@ -168,13 +168,15 @@ export const ApiChangePassword = async (data) => {
 };
 
 /*API to download user's data*/
-export const ApiDownloadData = async () => {
-    try {
-        const res = await axios.get("api/download_user_data");
-        return res.data;
-    } catch (e) {
-        throw e;
-    }
+export const ApiDownloadUserDataResponse = new ApiResponse("OK", "FAILED");
+export const ApiDownloadUserData = async () => {
+    return axios
+        .get("/api/download_user_data")
+        .then((res) => ({
+            res: ApiDownloadUserDataResponse.OK,
+            data: res.data,
+        }))
+        .catch(() => ({ res: ApiDownloadUserDataResponse.FAILED, data: null }));
 };
 
 /* API to delete user */
@@ -212,7 +214,7 @@ export default {
     ApiLogin,
     ApiLogout,
     ApiUniversitiesList,
-    ApiDownloadData,
+    ApiDownloadUserData,
     ApiDeleteUser,
     ApiForgotPassword,
     ApiResetPassword,

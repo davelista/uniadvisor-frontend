@@ -1,29 +1,30 @@
 import React from "react";
 import { ChangePswForm, Delete, Modify } from "./index";
 import styles from "./Settings.module.css";
-import { Button } from "../../Buttons/Button";
+// import { Button } from "../../Buttons/Button";
+import Download from "./Forms/Download";
 
 const SettingForm = (props) => {
     const { selected } = props;
     let form;
-    let txtButton;
+    // let txtButton;
 
     switch (selected) {
         case "Cambio password":
             form = <ChangePswForm />;
-            txtButton = "Invia";
+            // txtButton = "Invia";
             break;
         case "Modifica dati personali":
             form = <Modify />;
-            txtButton = "Invia";
+            // txtButton = "Invia";
             break;
         case "Elimina account":
             form = <Delete />;
-            txtButton = "Elimina";
+            // txtButton = "Elimina";
             break;
         case "Scarica dati":
-            form = <div></div>;
-            txtButton = "Download";
+            form = <Download />;
+            // txtButton = "Download";
             break;
         case "Contattaci":
             form = <div>Contattaci</div>;

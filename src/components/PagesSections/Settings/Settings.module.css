@@ -1,4 +1,4 @@
-.section{
+.section {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -7,18 +7,19 @@
     padding: 5%;
 }
 
-.title{
+.title {
     margin-bottom: 3%;
 }
 
-.formContainer{
+.formContainer {
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.form{
+.form {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -27,9 +28,9 @@
     margin-bottom: 3%;
 }
 
-.formInput{
+.formInput {
     display: flex;
-    border:none;
+    border: none;
     padding: 5px 10px;
     outline: none;
     width: 100%;
