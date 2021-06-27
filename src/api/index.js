@@ -180,13 +180,16 @@ export const ApiDownloadUserData = async () => {
 };
 
 /* API to delete user */
+export const ApiDeleteUserResponse = new ApiResponse("OK", "FAILED");
 export const ApiDeleteUser = async () => {
-    try {
-        const res = await axios.get("api/eliminate_user");
-        return res.data;
-    } catch (e) {
-        throw e;
-    }
+    return axios
+        .get("/api/eliminate_user")
+        .then(() => ({
+            res: ApiDeleteUserResponse.OK,
+        }))
+        .catch(() => ({
+            res: ApiDeleteUserResponse.FAILED,
+        }));
 };
 
 export const ApiForgotPassword = async (email) => {

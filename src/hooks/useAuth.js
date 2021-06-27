@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { ApiChangePassword, ApiChangePasswordResponse, ApiLogin, ApiLoginResponse, ApiLogout, ApiLogoutResponse, ApiValidateSession, ApiValidateSessionResponse } from "../api";
+import { ApiChangePassword, ApiChangePasswordResponse, ApiDeleteUser, ApiDeleteUserResponse, ApiLogin, ApiLoginResponse, ApiLogout, ApiLogoutResponse, ApiValidateSession, ApiValidateSessionResponse } from "../api";
 
 const useAuth = () => {
     const [auth, setAuth] = useState("UNAUTH");
@@ -41,8 +41,17 @@ const useAuth = () => {
         if (res === ApiChangePasswordResponse.OK) return true;
         return false;
     }, [auth])
+    
+    const deleteUser = useCallback(async () => {
+        if (auth !== "OK") return;
+        const { res } = await ApiDeleteUser();
+        if (res === ApiDeleteUserResponse.FAILED) return false;
+        setAuth("UNAUTH");
+        setUser(null);
+        return true;
+    }, [auth]);
 
-    return [auth, user, login, validateSession, logout, changePassword];
+    return [auth, user, login, validateSession, logout, changePassword, deleteUser];
 };
 
 export default useAuth;
