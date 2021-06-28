@@ -139,6 +139,7 @@
     padding-bottom: 1%;
     justify-content: space-between;
     align-items: center;
+    text-transform: uppercase;
 }
 
 .reviews-section{
@@ -316,6 +317,7 @@
     }
 
     /*Section reviews*/
+
     .reviews-section{
         padding: 2% 5% 2% 5%;
         display: flex;

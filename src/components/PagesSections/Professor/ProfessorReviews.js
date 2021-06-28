@@ -6,23 +6,25 @@ import ExpandableParagraph from "../../Text/ExpandableParagraph";
 import Rating from "@material-ui/lab/Rating";
 import FiberManualRecordOutlinedIcon from "@material-ui/icons/FiberManualRecordOutlined";
 import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
-import {IoIosArrowBack, IoIosArrowForward} from "react-icons/all";
+import {BsPencilSquare, FaPencilAlt, IoAddCircle, IoIosArrowBack, IoIosArrowForward} from "react-icons/all";
 import {Link} from "react-router-dom";
 import {Button} from "../../Buttons/Button";
+import useMediaQuery, {Device} from "../../../hooks/useMediaQuery";
 
 export default function ProfessorReviews(props) {
     const { professor, icourse } = props;
     const [num, setNum] = useState(1);
+    const isMobile = useMediaQuery(Device.sm);
     const reviews = useProfessorReviews(professor.corsi[icourse].id, professor.id, num);
     const nextPage = useProfessorReviews(professor.corsi[icourse].id, professor.id, num+1);
 
     let titleSection;
     reviews.length !== 0 ? titleSection = ( <div className={"reviews-section-title"}>
-            <h3>RECENSIONI</h3>
+            <h3>Recensioni</h3>
             <Link to={"/add-review/professors/" + professor.id}>
-                <Button buttonStyle="btn--outline" >
+                {isMobile ? <FaPencilAlt size={25} style={{fill: "#e53a1e"}}/> : <Button buttonStyle="btn--outline" >
                     <h6 style={{ color: "white" }}>Scrivi una recensione</h6>
-                </Button>
+                </Button>}
             </Link>
         </div>) : titleSection = (<div className={"no-reviews-section"}>
         <div className={"no-reviews-title"}>
@@ -114,6 +116,14 @@ export default function ProfessorReviews(props) {
                 {reviews.length !== 0 ? num : null}
                 {nextPage.length !== 0 ? <IoIosArrowForward onClick={() => setNum(num+1)}/> : null}
             </div>
+                <center>
+                    <Link to={"/add-review/professors/" + professor.id}>
+                        <Button buttonStyle="btn--outline" >
+                            <h6 style={{ color: "white" }}>Scrivi una recensione</h6>
+                        </Button>
+                    </Link>
+                </center>
+
             </div>
         </>
     );
