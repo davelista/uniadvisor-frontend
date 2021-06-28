@@ -34,7 +34,6 @@ const UserReview = (props) => {
                             <h4>
                                 {review.titolo} - <span style={{ color: "grey" }}>Pubblicata il {review.data_creazione.slice(0,10)}</span>
                             </h4>
-
                             <ExpandableParagraph>{review.corpo}</ExpandableParagraph>
                         </div>
                         <div>
@@ -105,8 +104,6 @@ const UserReview = (props) => {
                     {nextPage.length !== 0 ? <IoIosArrowForward onClick={() => setNum(num+1)}/> : null}
                 </div>
             </div>
-
-
         </>
     );
 }
