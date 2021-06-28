@@ -147,13 +147,13 @@ export const ApiReviews = async (corso_id, professor_id, num) => {
 
 /*API to see user's review*/
 export const ApiUserReviews = async (user_email, num) => {
-    try{
-        const res = await axios.get("/api/reviews_user", {params: {user_email, num}});
+    try {
+        const res = await axios.get("/api/reviews_user", { params: { user_email, num } });
         return res.data.results;
     } catch (e) {
         throw e;
     }
-}
+};
 
 /*API to universities list*/
 export const ApiUniversitiesList = async () => {
@@ -201,22 +201,38 @@ export const ApiDeleteUser = async () => {
         }));
 };
 
-export const ApiForgotPassword = async (email) => {
-    try {
-        const res = await axios.post("/api/forgot_password", { email });
-        return res.data;
-    } catch (e) {
-        throw e;
-    }
+export const ApiForgotPasswordResponse = new ApiResponse("OK", "FAILED", "MISSING_USER", "REQUIRES_CONFIRM");
+export const ApiForgotPassword = async (data) => {
+    return axios
+        .post("/api/forgot_password", data)
+        .then(() => ({
+            res: ApiForgotPasswordResponse.OK,
+        }))
+        .catch((err) => {
+            const { status } = err.response;
+            switch (status) {
+                case 400:
+                    return { res: ApiLoginResponse.FAILED };
+                case 409:
+                    return { res: ApiLoginResponse.MISSING_USER };
+                case 303:
+                    return { res: ApiLoginResponse.REQUIRES_CONFIRM };
+                default:
+                    return { res: ApiLoginResponse.FAILED };
+            }
+        });
 };
 
-export const ApiResetPassword = async (token, newPassword) => {
-    try {
-        const res = await axios.post("api/reset_password", { token, newPassword });
-        return res.data;
-    } catch (e) {
-        throw e;
-    }
+export const ApiResetPasswordResponse = new ApiResponse("OK", "FAILED");
+export const ApiResetPassword = async (data) => {
+    return axios
+        .post("/api/reset_password", data)
+        .then(() => ({
+            res: ApiForgotPasswordResponse.OK,
+        }))
+        .catch(() => ({
+            res: ApiResetPasswordResponse.FAILED,
+        }));
 };
 
 export default {
@@ -230,5 +246,5 @@ export default {
     ApiDeleteUser,
     ApiForgotPassword,
     ApiResetPassword,
-    ApiUserReviews
+    ApiUserReviews,
 };
