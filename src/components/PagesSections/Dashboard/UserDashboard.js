@@ -3,6 +3,7 @@ import { AppContext } from "../../../context/AppContext";
 import withAuth from "../../hoc/withAuth";
 import UserDetails from "./UserDetails";
 import UserStats from "./UserStats";
+import UserReview from "./UserReview";
 
 function UserDashboard() {
     const appData = useContext(AppContext);
@@ -11,7 +12,7 @@ function UserDashboard() {
         <>
             <UserDetails user={appData.user.data} />
             <UserStats />
-            
+            <UserReview user={appData.user.data}/>
         </>
     );
 }

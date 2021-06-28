@@ -133,7 +133,7 @@ export const ApiMail = async (email) => {
     }
 };
 
-/*API to send user's email*/
+/*API to see professor's reviews*/
 export const ApiReviews = async (corso_id, professor_id, num) => {
     try {
         const res = await axios.get("/api/reviews_course", { params: { corso_id, professor_id, num } });
@@ -145,6 +145,16 @@ export const ApiReviews = async (corso_id, professor_id, num) => {
         throw e;
     }
 };
+
+/*API to see user's review*/
+export const ApiUserReviews = async (user_email, num) => {
+    try{
+        const res = await axios.get("/api/reviews_user", {params: {user_email, num}});
+        return res.data.results;
+    } catch (e) {
+        throw e;
+    }
+}
 
 /*API to universities list*/
 export const ApiUniversitiesList = async () => {
@@ -221,4 +231,5 @@ export default {
     ApiDeleteUser,
     ApiForgotPassword,
     ApiResetPassword,
+    ApiUserReviews
 };

@@ -1,7 +1,6 @@
 import React from "react";
 import { ChangePswForm, Delete, Modify } from "./index";
 import styles from "./Settings.module.css";
-// import { Button } from "../../Buttons/Button";
 import Download from "./Forms/Download";
 
 const SettingForm = (props) => {
@@ -14,10 +13,10 @@ const SettingForm = (props) => {
             form = <ChangePswForm />;
             // txtButton = "Invia";
             break;
-        case "Modifica dati personali":
+        /*case "Modifica dati personali":
             form = <Modify />;
             // txtButton = "Invia";
-            break;
+            break;*/
         case "Elimina account":
             form = <Delete />;
             // txtButton = "Elimina";
@@ -26,9 +25,9 @@ const SettingForm = (props) => {
             form = <Download />;
             // txtButton = "Download";
             break;
-        case "Contattaci":
+        /*case "Contattaci":
             form = <div>Contattaci</div>;
-            break;
+            break;*/
         default:
             return <div />;
     }
