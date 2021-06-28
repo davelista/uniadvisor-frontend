@@ -47,7 +47,6 @@
 }
 
 /* User statistics */
-
 .statsSection {
     padding: var(--main-page-padding);
     display: flex;
@@ -80,7 +79,6 @@
 }
 
 /* Shared */
-
 .tabsContainer {
     border-bottom: var(--title-border-bottom);
     display: flex;
@@ -155,11 +153,89 @@
     font-size: 20px;
 }
 
-
 .pages{
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     padding: 2% 0 0 0;
+}
+
+@media screen and (max-width: 1000px){
+    .reviewsSection{
+        padding: 2% 5% 2% 5%;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .welcomeHeading {
+        font-size: large;
+        font-weight: 600;
+        text-align: center;
+    }
+
+    .welcomeSubheading{
+        text-align: center;
+    }
+
+    .userDetailsSection {
+        text-align: center;
+    }
+
+    .userDetail{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    .reviewsContainer{
+        flex-direction: column;
+        padding: 2% 0 2% 0;
+    }
+
+    .reviewsBody{
+        width: 100%;
+        padding: 2% 0;
+    }
+
+}
+
+@media screen and (max-width: 700px){
+    .reviewsHeader{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .reviewsContainer{
+        flex-direction: column;
+        padding: 5% 0 3% 0;
+    }
+
+    .reviewState{
+        margin-top: 5%
+    }
+
+    .infoSection{
+        display: flex;
+        flex-direction: column;
+    }
+    .welcomeDetailsSection{
+        display: flex;
+        flex-direction: column;
+        padding: 3rem 5% 0 5%;
+        align-items: center;
+    }
+
+    .welcomeDetailsSection img {
+        width: 7rem;
+        height: 7rem;
+        border-radius: 50%;
+        margin: 0;
+    }
+
+    .reviewsBody{
+        width: 100%;
+        padding: 5% 0;
+    }
+
 }

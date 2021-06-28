@@ -22,10 +22,10 @@ const UserReview = (props) => {
                     <>
                         <div className={styles.reviewsHeader}>
                             <div className={styles.infoSection}>
-                            <h5 className={styles.reviewsInfo}>
-                                {review.corso_name} | <span style={{ color: "grey" }}>{review.professor_name} {review.professor_surname}</span>
-                            </h5>
-                            <h5 className={styles.reviewsInfo} style={{ color: "grey" }}>A.A. {review.anno_accademico}</h5>
+                                <h5 className={styles.reviewsInfo}>
+                                    {review.corso_name} | <span style={{ color: "grey" }}>{review.professor_name} {review.professor_surname}</span>
+                                </h5>
+                                <h5 className={styles.reviewsInfo} style={{ color: "grey" }}>A.A. {review.anno_accademico}</h5>
                             </div>
                             <h5 className={styles.reviewState}>{review.stato}</h5>
                         </div>

@@ -11,8 +11,8 @@ const UserDetails = (props) => {
 
     let image;
     userImg === "Not Found Image"
-        ? (image = <img src={imgUser} className={"user-img"} alt={imgUser} />)
-        : (image = <img src={userImg} className={"user-img"} alt={userImg} />);
+        ? (image = <img src={imgUser} alt={imgUser} />)
+        : (image = <img src={userImg} alt={userImg} />);
 
     return (
         <>
