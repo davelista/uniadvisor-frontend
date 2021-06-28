@@ -110,7 +110,7 @@
 .infoSection{
     display: flex;
     flex-direction: row;
-    width: 50%;
+    width: 80%;
     align-items: center;
 }
 
@@ -154,6 +154,7 @@
     font-weight: 600;
     font-size: 20px;
 }
+
 
 .pages{
     display: flex;
