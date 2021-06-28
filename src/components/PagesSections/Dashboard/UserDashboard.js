@@ -11,7 +11,7 @@ function UserDashboard() {
     return (
         <>
             <UserDetails user={appData.user.data} />
-            <UserStats />
+            {/*<UserStats />*/}
             <UserReview user={appData.user.data}/>
         </>
     );
