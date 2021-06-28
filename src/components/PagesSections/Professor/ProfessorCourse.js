@@ -1,5 +1,6 @@
 import React from 'react';
 import './Professor.css';
+import ExpandableParagraph from "../../Text/ExpandableParagraph";
 
 
 function ProfessorCourse(props) {
@@ -18,9 +19,7 @@ function ProfessorCourse(props) {
                 <h4>Lingua: <span className={"subtitle-red"}>{course.language}</span></h4>
                 <h4>SSD: <span className={"subtitle-red"}>{course.ssd}</span></h4>
             </div>
-            <div className={"course-description"}>
-                {course.description}
-            </div>
+                <ExpandableParagraph>{course.description}</ExpandableParagraph>
         </>
     );
 }

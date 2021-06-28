@@ -11,7 +11,7 @@ const SearchBarResult = (props) => {
             <div className={"result-container"}>
                 <Link to={`/professors/${professorId}`}>
                     <div className={"search-bar-result"}>
-                        {professor.name} {professor.surname} {professor.professor_id} {professor.university.map((x) => <div>{x}</div>)}
+                        {professor.name} {professor.surname} {professor.university.map((x) => <div>{x}</div>)}
                     </div>
                 </Link>
             </div>
