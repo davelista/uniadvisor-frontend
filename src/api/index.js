@@ -8,7 +8,6 @@ export const ApiProfessorsList = async () => {
         return res.data.results;
     } catch (e) {
         if (e != null) {
-            console.log(JSON.stringify(e));
             return null;
         }
         throw e;

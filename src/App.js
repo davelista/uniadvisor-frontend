@@ -9,29 +9,6 @@ import { Footer } from "./components";
 import { Redirect } from "react-router";
 import { AppContext, useAppContext } from "./context/AppContext";
 
-// const getCookie = (cname) => {
-//     let name = cname + "=";
-//     let decodedCookie = decodeURIComponent(document.cookie);
-//     let ca = decodedCookie.split(';');
-//     for (let i = 0; i < ca.length; i++) {
-//         let c = ca[i];
-//         while (c.charAt(0) === ' ') {
-//             c = c.substring(1);
-//         }
-//         if (c.indexOf(name) === 0) {
-//             return c.substring(name.length, c.length);
-//         }
-//     }
-//     return "";
-// }
-
-// const setCookie = (cname, cvalue, exdays) => {
-//     let d = new Date();
-//     d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-//     let expires = "expires=" + d.toUTCString();
-//     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-// }
-
 function App() {
     const sessionValidationRequired = useRef(true);
 
@@ -83,22 +60,6 @@ function App() {
             </Router>
         </AppContext.Provider>
     );
-
-    /*
-        funzione per eliminare cookies
-        document.cookie = "session=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-
-        getCookie("session") === "" ? setUser(null) : ApiLogin("davide.lista.polimi@gmail.com", "prova"); /*Api speficia per i cookies
-
-        if(user !== null) {
-            setCookie("session", user, 7);
-            console.log(getCookie("session"));
-        }
-
-        const readCookie = () => {
-            getCookie("session");
-        }
-    */
 }
 
 export default App;
