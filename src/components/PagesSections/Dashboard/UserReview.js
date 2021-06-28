@@ -21,11 +21,13 @@ const UserReview = (props) => {
                 {reviews !== null ? reviews.map((review) => (
                     <>
                         <div className={styles.reviewsHeader}>
+                            <div className={styles.infoSection}>
                             <h5 className={styles.reviewsInfo}>
                                 Nome corso | <span style={{ color: "grey" }}>Professore</span>
                             </h5>
                             <h5 className={styles.reviewsInfo} style={{ color: "grey" }}>A.A. {review.anno_accademico}</h5>
-                            <h5 className={styles.reviewsInfo}>{review.stato}</h5>
+                            </div>
+                            <h5 className={styles.reviewState}>{review.stato}</h5>
                         </div>
                     <div className={styles.reviewsContainer}>
                         <div className={styles.reviewsBody}>
@@ -37,10 +39,11 @@ const UserReview = (props) => {
                         </div>
                         <div>
                             <h5 style={{
-                                marginBottom: "3%",
+                                marginBottom: "5%",
+                                borderBottom: "4px solid #e53a1e"
                             }}
                             >
-                                Valutazione professore:
+                                PROFESSORE:
                             </h5>
                             {[
                                 { title: "Chiarezza spiegazioni", value: review.chiarezza_spiegazione_prof },
@@ -66,10 +69,11 @@ const UserReview = (props) => {
                         <div>
                         <h5
                             style={{
-                                marginBottom: "3%",
+                                marginBottom: "5%",
+                                borderBottom: "4px solid #e53a1e"
                             }}
                         >
-                            Valutazione corso:
+                            CORSO:
                         </h5>
                         {[
                             { title: "Difficoltà argomenti", value: review.difficolta_argomenti_corso },
