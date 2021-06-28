@@ -9,6 +9,7 @@
     background: linear-gradient(to bottom, #efefef 70vh, white 20vh, white);
 }
 
+
 .search-section {
     display: flex;
     flex-direction: column;
@@ -21,11 +22,13 @@
 }
 
 .hero-image {
-    padding-top: 10%;
-    padding-bottom: -10%;
+    display: flex;
+    align-self: center;
+    justify-self: flex-end;
+    width: 35%;
+    object-fit: contain;
 }
 
-/*OTTIMIZZAZIONE TABLET*/
 @media (max-width: 1000px) {
     .hero-section {
         display: flex;

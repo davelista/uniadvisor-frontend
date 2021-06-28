@@ -19,8 +19,6 @@ const HeroSection = () => {
                         <SearchBar professorsList={appData.professorsList}/>
                         : <div> </div>
                     }
-                    {/*console.log(appData.universitiesList)*/}
-
                 </div>
                 <img src={heroImg} className={'hero-image'} alt={heroImg}/>
             </div>
