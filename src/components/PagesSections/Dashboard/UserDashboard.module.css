@@ -154,3 +154,11 @@
     font-weight: 600;
     font-size: 20px;
 }
+
+.pages{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 2% 0 0 0;
+}

@@ -1,24 +1,24 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styles from "./UserDashboard.module.css";
 import useUserReviews from "../../../hooks/useUserReviews";
 import ExpandableParagraph from "../../Text/ExpandableParagraph";
 import Rating from "@material-ui/lab/Rating";
 import FiberManualRecordOutlinedIcon from "@material-ui/icons/FiberManualRecordOutlined";
 import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
-import {DateRange} from "@material-ui/icons";
+import {IoIosArrowBack, IoIosArrowForward} from "react-icons/all";
 
 const UserReview = (props) => {
     const {user} = props
-    const reviews = useUserReviews(user.email, 1);
-
+    const [num, setNum] = useState(1);
+    const reviews = useUserReviews(user.email, num);
+    const nextPage = useUserReviews(user.email, num+1);
     return (
         <>
             <div className={styles.reviewsSection}>
                 <div className={styles.tabsContainer}>
                     <div className={styles.tabHeading}>Recensioni</div>
                 </div>
-                {console.log(reviews)}
-                {reviews !== null ? reviews.map((review) => (
+                {reviews.length !== 0 ? reviews.map((review) => (
                     <>
                         <div className={styles.reviewsHeader}>
                             <div className={styles.infoSection}>
@@ -96,8 +96,14 @@ const UserReview = (props) => {
                         ))}
                     </div>
                     </div>
+
                     </>
                 )) : <div>Ci dispiace! :( Non ci sono recensioni</div>}
+                <div className={styles.pages}>
+                    {num !== 1 ? <IoIosArrowBack onClick={() => setNum(num-1)}/> : null}
+                    {reviews.length !== 0 ? num : null}
+                    {nextPage.length !== 0 ? <IoIosArrowForward onClick={() => setNum(num+1)}/> : null}
+                </div>
             </div>
 
 

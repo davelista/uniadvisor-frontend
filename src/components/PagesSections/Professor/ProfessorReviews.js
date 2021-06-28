@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import imgUser from "../../../img/user.jpg";
 
 import useProfessorReviews from "../../../hooks/useProfessorReviews";
@@ -6,14 +6,42 @@ import ExpandableParagraph from "../../Text/ExpandableParagraph";
 import Rating from "@material-ui/lab/Rating";
 import FiberManualRecordOutlinedIcon from "@material-ui/icons/FiberManualRecordOutlined";
 import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
+import {IoIosArrowBack, IoIosArrowForward} from "react-icons/all";
+import {Link} from "react-router-dom";
+import {Button} from "../../Buttons/Button";
 
 export default function ProfessorReviews(props) {
     const { professor, icourse } = props;
+    const [num, setNum] = useState(1);
+    const reviews = useProfessorReviews(professor.corsi[icourse].id, professor.id, num);
+    const nextPage = useProfessorReviews(professor.corsi[icourse].id, professor.id, num+1);
 
-    const reviews = useProfessorReviews(professor.corsi[icourse].id, professor.id, 1);
+    let titleSection;
+    reviews.length !== 0 ? titleSection = ( <div className={"reviews-section-title"}>
+            <h3>RECENSIONI</h3>
+            <Link to={"/add-review/professors/" + professor.id}>
+                <Button buttonStyle="btn--outline" >
+                    <h6 style={{ color: "white" }}>Scrivi una recensione</h6>
+                </Button>
+            </Link>
+        </div>) : titleSection = (<div className={"no-reviews-section"}>
+        <div className={"no-reviews-title"}>
+            <h5>Il corso {professor.corsi[icourse].name} non ha ancora recensioni.</h5>
+            <p>Aiuta gli altri studenti recensendo il corso per primo!</p>
+        </div>
+        <Link to={"/add-review/professors/" + professor.id}>
+            <Button buttonStyle="btn--outline" >
+                <h6 style={{ color: "white" }}>Scrivi una recensione</h6>
+            </Button>
+        </Link>
+        </div>)
+
 
     return (
         <>
+
+            <div className={"reviews-section"}>
+                {titleSection}
             {reviews.map((review) => (
                 <div className={"reviews-container"}>
                     <img src={imgUser} className={"reviews-user-img"} alt={imgUser} />
@@ -77,8 +105,16 @@ export default function ProfessorReviews(props) {
                             </div>
                         ))}
                     </div>
+
+
                 </div>
             ))}
+            <div className={"pages"}>
+                {num !== 1 ? <IoIosArrowBack onClick={() => setNum(num-1)}/> : null}
+                {reviews.length !== 0 ? num : null}
+                {nextPage.length !== 0 ? <IoIosArrowForward onClick={() => setNum(num+1)}/> : null}
+            </div>
+            </div>
         </>
     );
 }
