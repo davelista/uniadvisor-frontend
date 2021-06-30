@@ -1,6 +1,7 @@
 import React from 'react'
 import './Footer.css'
 import {FiMail, RiFacebookFill, RiInstagramLine} from "react-icons/all";
+import {Link} from "react-router-dom";
 
 function Footer() {
     return (
@@ -16,9 +17,16 @@ function Footer() {
                 </div>
 
                 <div className="socials-footer">
-                    <RiInstagramLine class={'social-icon social-icon-bg'}/>
-                    <RiFacebookFill class={'social-icon social-icon-bg'}/>
-                    <FiMail class={'social-icon-bg social-icon'}/>
+                    <a href="https://www.instagram.com/spotted_polimi/?hl=it" target="_blank">
+                        <RiInstagramLine class={'social-icon social-icon-bg'}/>
+                    </a>
+                    <a href="https://www.facebook.com/PolimiSpotted/" target="_blank">
+                        <RiFacebookFill class={'social-icon social-icon-bg'}/>
+                    </a>
+                    <a href="mailto:info@uniadvisor.it" target="_blank">
+                        <FiMail class={'social-icon-bg social-icon'}/>
+                    </a>
+
                 </div>
             </div>
         </>

@@ -8,9 +8,9 @@ import SearchBar from "../SearchBar/SearchBar";
 import useMediaQuery, { Device } from '../../hooks/useMediaQuery';
 import SearchIcon from '@material-ui/icons/Search';
 import { AppContext } from '../../context/AppContext';
-import Menu from '@material-ui/core/Menu';
+import MuiMenuItem from "@material-ui/core/MenuItem";
 import MenuItem from '@material-ui/core/MenuItem';
-import {ClickAwayListener, Grow, MenuList, Paper, Popper} from "@material-ui/core";
+import {ClickAwayListener, Grow, MenuList, Paper, Popper, withStyles} from "@material-ui/core";
 import {IoMdSettings} from "react-icons/all";
 import ProgressCirle from "../progress/ProgressCircle";
 
@@ -26,6 +26,12 @@ const Navbar = (props) => {
     const [mobileSearchHidden, setMobileSearchHidden] = useState(true);
     const [isOpenDropdown, setOpenDropdown] = React.useState(null);
     const anchorRef = React.useRef(null);
+
+    const MenuItem = withStyles({
+        root: {
+            justifyContent: "center"
+        }
+    })(MuiMenuItem);
 
     const handleOpenLoginForm = () => {
         setOpenLoginForm(!isOpenLoginForm);
@@ -90,9 +96,9 @@ const Navbar = (props) => {
                             <Paper>
                                 <ClickAwayListener onClickAway={handleClose}>
                                     <MenuList autoFocusItem={isOpenDropdown} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-                                        <MenuItem onClick={handleClose}><Link to='/dashboard'>Profile</Link></MenuItem>
-                                        <MenuItem onClick={handleLogout}><Link to="/">Logout</Link></MenuItem>
-                                        <MenuItem onClick={handleClose}><Link to='/settings'><IoMdSettings/></Link></MenuItem>
+                                        <Link to='/dashboard'> <MenuItem onClick={handleClose}>Profile</MenuItem></Link>
+                                        <Link to="/"><MenuItem onClick={handleLogout}>Logout</MenuItem></Link>
+                                        <Link to='/settings'><MenuItem onClick={handleClose}><IoMdSettings/></MenuItem></Link>
                                     </MenuList>
                                 </ClickAwayListener>
                             </Paper>

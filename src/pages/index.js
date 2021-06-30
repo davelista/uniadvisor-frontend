@@ -6,5 +6,6 @@ import Dashboard from "./Dashboard";
 import AddReview from "./AddReview";
 import Settings from "./Settings";
 import ResetPassword from "./ResetPassword";
+import Admin from "./Admin"
 
-export {Home, Professor, Login, SignUp, Dashboard, AddReview, Settings, ResetPassword}
+export {Home, Professor, Login, SignUp, Dashboard, AddReview, Settings, ResetPassword, Admin}

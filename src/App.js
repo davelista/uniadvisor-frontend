@@ -4,7 +4,7 @@ import "./globals.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ReactGA from "react-ga";
 //Pages
-import { Dashboard, Home, Login, Professor, SignUp, AddReview, Settings, ResetPassword } from "./pages";
+import {Dashboard, Home, Login, Professor, SignUp, AddReview, Settings, ResetPassword, Admin} from "./pages";
 import { Footer } from "./components";
 import { Redirect } from "react-router";
 import { AppContext, useAppContext } from "./context/AppContext";
@@ -54,6 +54,9 @@ function App() {
                     <Route exact path="/reset_password/:token">
                         <ResetPassword />
                     </Route>
+                    {/*<Route exact path="/admin">
+                        <Admin />
+                    </Route>*/}
                     <Route render={() => <Redirect to={{ pathname: "/" }} />} />
                 </Switch>
                 <Footer />

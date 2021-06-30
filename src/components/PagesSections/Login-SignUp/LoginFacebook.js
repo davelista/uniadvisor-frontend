@@ -3,7 +3,8 @@ import FacebookLogin from 'react-facebook-login'
 import {FaFacebookF} from "react-icons/all";
 
 const LoginFacebook = (props) => {
-    const {onChangeUserFb, onChangeFb} = props;
+    const [onChangeUserFb, setOnChangeUserFb] = useState(null);
+    const [onChangeFb, setonChangeFb] = useState(null);
     const [loading, setLoading] = useState(true);
 
     const componentClicked = () => {
@@ -11,9 +12,10 @@ const LoginFacebook = (props) => {
     }
 
     const responseFacebook = async (response) => {
-        onChangeUserFb(response);
-        onChangeFb(true);
+        setOnChangeUserFb(response);
+        setonChangeFb(true);
         setLoading(false)
+        console.log(response)
     }
 
 

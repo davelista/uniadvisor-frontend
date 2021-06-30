@@ -1,9 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
-import TextField from "@material-ui/core/TextField";
 import "./Login.css";
 import { Button } from "../../Buttons/Button";
 import { Link } from "react-router-dom";
-import { ApiLogin } from "../../../api";
 import LoginFacebook from "./LoginFacebook";
 import { AppContext } from "../../../context/AppContext";
 import useLoginForm from "./useLoginForm";
@@ -93,7 +91,7 @@ const LoginForm = () => {
                     {/*<div>
                         oppure
                         </div>
-                    <LoginFacebook onChangeUserFb={onChangeUser}/>*/}
+                    <LoginFacebook />*/}
                 </form>
             </div>
             {forgotForm}

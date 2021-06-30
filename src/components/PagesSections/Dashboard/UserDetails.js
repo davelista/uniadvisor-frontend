@@ -42,7 +42,7 @@ const UserDetails = (props) => {
                         </div>
                         <div className={styles.userDetail}>
                             <BiCalendar fontSize="small" style={{ marginRight: "1%" }} />
-                            <p>{user.uniadvisor}</p>
+                            <p>{user.uniadvisor.slice(0,10)}</p>
                         </div>
                     </div>
                 </div>

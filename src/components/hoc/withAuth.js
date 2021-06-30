@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../context/AppContext";
 import ProgressCirle from "../progress/ProgressCircle";
+import {Button} from "../Buttons/Button";
+import {Link} from "react-router-dom";
 
 const withAuth = (
     WrappedComponent,
@@ -34,8 +36,16 @@ const LoadingComponentDefault = () => {
 
 const UnauthorizedComponentDefault = () => {
     return (
-        <div style={{ margin: "10rem", display: "flex", justifyContent: "center" }}>
-            Questo contenuto richiede l'accesso
+        <div style={{ padding: "10rem", display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center"}}>
+            <div style={{padding: "2rem"}}>Per visualizzare questa pagina bisogna effettuare l'accesso.</div>
+            <div style={{display: "flex", flexDirection:"row", justifyContent: "space-evenly", alignItems: "center"}}>
+                <Link to="/login">
+                    <Button buttonStyle="btn--outline--white" buttonSize={"btn--small"}>
+                        <h6>Login</h6>
+                    </Button>
+                </Link>
+            </div>
+
         </div>
     );
 };

@@ -20,12 +20,14 @@ export default function ProfessorReviews(props) {
 
     let titleSection;
     reviews.length !== 0 ? titleSection = ( <div className={"reviews-section-title"}>
-            <h3>Recensioni</h3>
-            <Link to={"/add-review/professors/" + professor.id}>
-                {isMobile ? <FaPencilAlt size={25} style={{fill: "#e53a1e"}}/> : <Button buttonStyle="btn--outline" >
-                    <h6 style={{ color: "white" }}>Scrivi una recensione</h6>
-                </Button>}
-            </Link>
+        {isMobile ? <h4>Recensioni</h4> : <h3>Recensioni</h3>}
+            <div style={{maxWidth: "50%"}}>
+                <Link to={"/add-review/professors/" + professor.id}>
+                        <Button buttonStyle="btn--outline" >
+                            <h6 style={{ color: "white" }}>Scrivi una recensione</h6>
+                        </Button>
+                </Link>
+            </div>
         </div>) : titleSection = (<div className={"no-reviews-section"}>
         <div className={"no-reviews-title"}>
             <h5>Il corso {professor.corsi[icourse].name} non ha ancora recensioni.</h5>
@@ -116,13 +118,13 @@ export default function ProfessorReviews(props) {
                 {reviews.length !== 0 ? num : null}
                 {nextPage.length !== 0 ? <IoIosArrowForward onClick={() => setNum(num+1)}/> : null}
             </div>
-                <center>
+                {isMobile ? (<center>
                     <Link to={"/add-review/professors/" + professor.id}>
-                        <Button buttonStyle="btn--outline" >
-                            <h6 style={{ color: "white" }}>Scrivi una recensione</h6>
+                        <Button buttonStyle="btn--outline">
+                            <h6 style={{color: "white"}}>Scrivi una recensione</h6>
                         </Button>
                     </Link>
-                </center>
+                </center>) : <div/>}
 
             </div>
         </>
