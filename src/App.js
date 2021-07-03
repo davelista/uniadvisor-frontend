@@ -54,9 +54,9 @@ function App() {
                     <Route exact path="/reset_password/:token">
                         <ResetPassword />
                     </Route>
-                    {/*<Route exact path="/admin">
+                    <Route exact path="/admin">
                         <Admin />
-                    </Route>*/}
+                    </Route>
                     <Route render={() => <Redirect to={{ pathname: "/" }} />} />
                 </Switch>
                 <Footer />

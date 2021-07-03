@@ -64,7 +64,7 @@ export const ApiRegister = async (data) => {
 export const ApiLoginResponse = new ApiResponse("OK", "REQUIRES_CONFIRM", "INVALID_CREDENTIALS", "MISSING_USER", "UNAUTH");
 /**
  * Login
- * @param {{email: string; password: string; remember_me: boolean}} data
+ * @param {{email: string; password: string; login_type: string; remember_me: boolean}} data
  * @returns {{void}}
  */
 export const ApiLogin = async (data) => {
@@ -154,6 +154,26 @@ export const ApiUserReviews = async (user_email, num) => {
         throw e;
     }
 };
+
+/*API to admin's page to approve or decline the reviews */
+export const ApiAdminReviews = async (user_email, num) => {
+    try {
+        const res = await axios.get("/api/admin", { params: { user_email, num } });
+        return res.data.results;
+    } catch (e) {
+        throw e;
+    }
+};
+
+/*API to change reviews status*/
+export const ApiChangeStatus = async (user_email, review_id, status) => {
+    try{
+        const res = await axios.post("/api/admin/change_status", null, {params: {user_email, review_id, status}});
+        return res.data;
+    } catch (e) {
+        throw e;
+    }
+}
 
 /*API to universities list*/
 export const ApiUniversitiesList = async () => {
@@ -247,4 +267,6 @@ export default {
     ApiForgotPassword,
     ApiResetPassword,
     ApiUserReviews,
+    ApiAdminReviews,
+    ApiChangeStatus,
 };

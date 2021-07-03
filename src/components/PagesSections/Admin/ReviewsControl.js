@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import withAuth from "../../hoc/withAuth";
 import styles from "./Admin.module.css";
 import cat from '../../../img/gatto.gif'
@@ -7,16 +7,44 @@ import Rating from "@material-ui/lab/Rating";
 import FiberManualRecordOutlinedIcon from "@material-ui/icons/FiberManualRecordOutlined";
 import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 import {IoIosArrowBack, IoIosArrowForward} from "react-icons/all";
+import useAdminReviews from "../../../hooks/useAdminReviews";
+import {AppContext} from "../../../context/AppContext";
+import {Button} from "../../Buttons/Button";
+import Popup from "../../Popup/Popup";
+import {ApiChangeStatus} from "../../../api";
 
 function ReviewsControl(props) {
+    const appData = useContext(AppContext);
     const [num, setNum] = useState(1);
+    const [status, setStatus] = useState(null);
+    const [popup, setPopup] = useState(false);
+    const [reviewsId, setReviewsId] = useState(null);
+    const reviews = useAdminReviews(appData.user.data.email, num);
+    const nextPage = useAdminReviews(appData.user.data.email, num+1);
+
+    const handleOpenPopup = () => {
+        setPopup(!popup);
+    };
+
+    const handleClick = (status) => {
+        let res = ApiChangeStatus(appData.user.data.email, reviewsId, status);
+        if (res != null) {
+            window.location.reload();
+        }
+    };
+
+    let children = (<div>Stai per cambiare lo stato della seguente recensione in {status} <br/> Sei sicuro? <br/><Button onClick={ () => {
+        handleClick(status);
+        handleOpenPopup()
+    }}>Sì</Button> <Button onClick={handleOpenPopup}>No</Button></div>);
+
     return (
         <>
             <div className={styles.reviewsSection}>
                 <div className={styles.tabsContainer}>
                     <div className={styles.tabHeading}>Recensioni da approvare</div>
                 </div>
-                {/*{reviews.length !== 0 ? reviews.map((review) => (
+                {reviews.length !== 0 ? reviews.map((review) => (
                     <>
                         <div className={styles.reviewsHeader}>
                             <div className={styles.infoSection}>
@@ -93,20 +121,26 @@ function ReviewsControl(props) {
                                 ))}
                             </div>
                         </div>
-
+                        <Button onClick={() => {
+                            setStatus("APPROVED");
+                            setPopup(true);
+                            setReviewsId(review.id)
+                        }}>Approva</Button>
+                        <Button onClick={() => {setStatus("REJECTED"); setPopup(true); setReviewsId(review.id)}}>Rifiuta</Button>
+                        {popup ? <Popup titleText={"Conferma"} onClose={handleOpenPopup} children={children}/> : null}
                     </>
                 )) : <div className={styles.noReviewsSection}>
         <div className={styles.noReviewsTitle}>
             <h5>Al momento non ci sono recensioni da controllare</h5>
             <p>Goditi un po' di riposo</p>
-            <img src={gatto} alt="Riposati..." />
+            <img src={cat} alt="Riposati..." />
         </div>
-        </div>}*/}
-                {/*<div className={styles.pages}>
+        </div>}
+                <div className={styles.pages}>
                     {num !== 1 ? <IoIosArrowBack onClick={() => setNum(num-1)}/> : null}
                     {reviews.length !== 0 ? num : null}
                     {nextPage.length !== 0 ? <IoIosArrowForward onClick={() => setNum(num+1)}/> : null}
-                </div>*/}
+                </div>
             </div>
         </>
     );

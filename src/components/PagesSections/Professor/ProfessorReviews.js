@@ -20,7 +20,7 @@ export default function ProfessorReviews(props) {
 
     let titleSection;
     reviews.length !== 0 ? titleSection = ( <div className={"reviews-section-title"}>
-        {isMobile ? <h4>Recensioni</h4> : <h3>Recensioni</h3>}
+        {isMobile ? <h4>Rec"Stai per cambiare lo stato della seguente recensione in\n" + status + "\nSei sicuro?"ensioni</h4> : <h3>Recensioni</h3>}
             <div style={{maxWidth: "50%"}}>
                 <Link to={"/add-review/professors/" + professor.id}>
                         <Button buttonStyle="btn--outline" >
@@ -48,7 +48,10 @@ export default function ProfessorReviews(props) {
                 {titleSection}
             {reviews.map((review) => (
                 <div className={"reviews-container"}>
-                    <img src={imgUser} className={"reviews-user-img"} alt={imgUser} />
+                    <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+                        <img src={imgUser} className={"reviews-user-img"} alt={imgUser} style={{marginBottom:"1rem"}}/>
+                        {review.anonimo ? <div>Anonimo</div> : null /*<div>{review.user}</div>*/}
+                    </div>
                     <div className={"reviews-body"}>
                         <h4>Titolo</h4>
                         <h5 style={{ color: "grey" }}>A.A. {review.anno_accademico}</h5>
