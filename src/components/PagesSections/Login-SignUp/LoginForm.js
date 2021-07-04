@@ -1,14 +1,15 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import "./Login.css";
 import { Button } from "../../Buttons/Button";
 import { Link } from "react-router-dom";
-import LoginFacebook from "./LoginFacebook";
 import { AppContext } from "../../../context/AppContext";
 import useLoginForm from "./useLoginForm";
 import FormTextField from "../../Forms/FormTextField";
 import FormCheckbox from "../../Forms/FormCheckbox";
 import useForgotPasswordForm from "./useForgotPasswordForm";
 import useForgotPassword from "../../../hooks/useForgotPassword";
+import FacebookLogin from "react-facebook-login";
+import { FaFacebookF } from "react-icons/all";
 
 const LoginForm = () => {
     const appData = useContext(AppContext);
@@ -18,6 +19,16 @@ const LoginForm = () => {
 
     const [requestForgot, resultForgot] = useForgotPassword();
     const [forgotPswForm, forgotPswSubmit] = useForgotPasswordForm(requestForgot);
+
+    const autoSubmitted = useRef(false);
+    const [autoSubmit, setAutoSubmit] = useState(false);
+
+    useEffect(() => {
+        if (!autoSubmit) return;
+        if (autoSubmitted.current) return;
+        autoSubmitted.current = true;
+        submit();
+    }, [submit, autoSubmit]);
 
     useEffect(() => {
         switch (appData.user.auth) {
@@ -64,8 +75,6 @@ const LoginForm = () => {
         </>
     ) : null;
 
-    console.log(resultForgot);
-
     return (
         <>
             <div className={"element-center"}>
@@ -80,18 +89,33 @@ const LoginForm = () => {
                         <FormTextField field={form.password} variant="outlined" type="password" />
                     </div>
                     <FormCheckbox field={form.remember_me} noUnderline />
+                    <div className={"forgot-psw"} onClick={handleOpen}>
+                        Hai dimenticato la password?
+                    </div>
                     <div className={"form-input"}>
                         <Button buttonStyle="btn--outline" type="submit">
                             <h6 style={{ color: "white" }}>Accedi</h6>
                         </Button>
                     </div>
-                    <div className={"forgot-psw"} onClick={handleOpen}>
-                        Hai dimenticato la password?
-                    </div>
-                   {/* <div>
-                        oppure
-                        </div>
-                    <LoginFacebook />*/}
+                    <>
+                        <div>oppure accedi con</div>
+                        <FacebookLogin
+                            appId="207812577218371"
+                            autoLoad={false}
+                            fields="email"
+                            // onClick={}
+                            callback={async (res) => {
+                                form.login_type.setValue("Facebook");
+                                form.email.setValue(res.email);
+                                form.external_id.setValue(res.id);
+                                form.remember_me.setValue(true);
+                                setAutoSubmit(true);
+                            }}
+                            textButton=""
+                            icon={<FaFacebookF style={{ fill: "white" }} />}
+                            cssClass="facebook-btn"
+                        />
+                    </>
                 </form>
             </div>
             {forgotForm}

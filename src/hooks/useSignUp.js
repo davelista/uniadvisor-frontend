@@ -1,21 +1,17 @@
 import { useCallback, useState } from "react";
-import { ApiRegister, ApiRegisterResponse } from "../api";
+import { ApiRegister } from "../api";
 
 const useSignUp = () => {
     const [sending, setSending] = useState(false);
-    const [requiresConfirm, setRequiresConfirm] = useState(false);
-    const [registered, setRegistered] = useState(false);
-    const [error, setError] = useState(false);
+    const [result, setResult] = useState(null);
 
     const signup = useCallback(async (data) => {
         setSending(true);
         const { res } = await ApiRegister(data);
-        if (res === ApiRegisterResponse.OK) setRequiresConfirm(true);
-        else if (res === ApiRegisterResponse.ALREADY_REGISTERED) setRegistered(true);
-        else setError(true);
+        setResult(res);
     }, []);
 
-    return [signup, sending, requiresConfirm, registered, error];
+    return [signup, sending, result];
 };
 
 export default useSignUp;
