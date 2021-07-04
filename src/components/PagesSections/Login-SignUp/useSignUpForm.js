@@ -4,6 +4,7 @@ export default function useSignUpForm(onSubmit) {
     const name = useFormField("name", "Nome", "Campo non valido", "", (value) => value?.length > 0);
     const surname = useFormField("surname", "Cognome", "Campo non valido", "", (value) => value?.length > 0);
     const email = useFormField("email", "Email", "Email non valida", "", (value) => value?.length > 0 && value.includes("@"));
+    const login_type = useFormField("", "", "", "Unihub");
     const password = useFormField("password", "Password", "Password troppo corta", "", (value) => value?.length >= 8);
     const passwordControl = useFormField(
         "passwordControl",
@@ -14,7 +15,7 @@ export default function useSignUpForm(onSubmit) {
     );
     const university = useFormField("university", "Università", "Seleziona un valore", "", (value) => value.length > 0);
 
-    const form = { name, surname, email, password, passwordControl, university };
+    const form = { name, surname, email, login_type, password, passwordControl, university };
 
     const submit = async (e) => {
         if (e) e.preventDefault();
