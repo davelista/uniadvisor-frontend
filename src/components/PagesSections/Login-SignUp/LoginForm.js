@@ -100,7 +100,7 @@ const LoginForm = () => {
                     <>
                         <div>oppure accedi con</div>
                         <FacebookLogin
-                            appId="207812577218371"
+                            appId="1542059002682443"
                             autoLoad={false}
                             fields="email"
                             // onClick={}

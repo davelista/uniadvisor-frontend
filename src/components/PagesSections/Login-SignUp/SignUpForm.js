@@ -73,7 +73,7 @@ const SignUpForm = () => {
                     <>
                         <div>oppure registrati con</div>
                         <FacebookLogin
-                            appId="207812577218371"
+                            appId="1542059002682443"
                             autoLoad={false}
                             fields="last_name, name, email, picture"
                             // onClick={}
