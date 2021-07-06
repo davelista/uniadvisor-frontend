@@ -11,7 +11,7 @@ import { AppContext } from '../../context/AppContext';
 import MuiMenuItem from "@material-ui/core/MenuItem";
 import MenuItem from '@material-ui/core/MenuItem';
 import {ClickAwayListener, Grow, MenuList, Paper, Popper, withStyles} from "@material-ui/core";
-import {IoMdSettings} from "react-icons/all";
+import {FaUser, IoMdSettings} from "react-icons/all";
 import ProgressCirle from "../progress/ProgressCircle";
 
 
@@ -82,11 +82,11 @@ const Navbar = (props) => {
                 <Button buttonStyle='btn--outline'><h6 style={{color: "white"}}>{isMobile ? "Accedi" : "Accedi/Registrati"}</h6></Button>
             </Link>
         ) : button = (<>
-            <div ref={anchorRef}
+            <div className={"user-icon"} ref={anchorRef}
                  aria-controls={isOpenDropdown ? 'menu-list-grow' : undefined}
                  aria-haspopup="true"
                  onClick={handleToggle}
-            >{appData.user.data.email}</div>
+            ><FaUser size={30}/></div>
                 <Popper open={isOpenDropdown} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
                     {({ TransitionProps, placement }) => (
                         <Grow

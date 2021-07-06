@@ -118,7 +118,7 @@ function RequiresConfirm() {
         <div className={styles.doneSection}>
             <h2 className={styles.doneTitle}>Utente registrato</h2>
             <div className={styles.doneBody}>
-                Una mail di conferma è stata inviata all'indirizzo specificato. <br />
+                Una mail di conferma è stata inviata all'indirizzo specificato. Se non trovi alcuna mail, controlla nello spam.<br />
                 Una volta confermata la registrazione, clicca il bottone sottostante per effettuare il login
             </div>
             <Link to="/login">

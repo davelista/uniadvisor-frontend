@@ -41,6 +41,10 @@ a{
     align-self: center;
 }
 
+.user-icon:hover{
+    cursor: pointer;
+}
+
 @media screen and (max-width: 1000px) {
     .navbar {
         /*permette di manterene la navbar sempre in cima anche se si scorre la pagina*/
@@ -48,7 +52,7 @@ a{
         position: sticky;
         border-bottom: solid 2px #efefef;
         padding: 0 5% 0 5%;
-        box-shadow: -21.213px 21.213px 30px 0px rgba(158, 158, 158, 0.3);
+        box-shadow: -21.213px 21.213px 30px 0 rgba(158, 158, 158, 0.3);
     }
 
     .logo{

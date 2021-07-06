@@ -53,7 +53,7 @@ export default function ProfessorReviews(props) {
                         {review.anonimo ? <div>Anonimo</div> : <div>{review.user.name} {review.user.surname}</div>}
                     </div>
                     <div className={"reviews-body"}>
-                        <h4>Titolo</h4>
+                        <h4>{review.titolo}</h4>
                         <h5 style={{ color: "grey" }}>A.A. {review.anno_accademico}</h5>
                         <ExpandableParagraph>{review.corpo}</ExpandableParagraph>
                     </div>
