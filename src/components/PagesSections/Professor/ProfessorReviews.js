@@ -50,7 +50,7 @@ export default function ProfessorReviews(props) {
                 <div className={"reviews-container"}>
                     <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
                         <img src={imgUser} className={"reviews-user-img"} alt={imgUser} style={{marginBottom:"1rem"}}/>
-                        {review.anonimo ? <div>Anonimo</div> : null /*<div>{review.user}</div>*/}
+                        {review.anonimo ? <div>Anonimo</div> : <div>{review.user.name} {review.user.surname}</div>}
                     </div>
                     <div className={"reviews-body"}>
                         <h4>Titolo</h4>
