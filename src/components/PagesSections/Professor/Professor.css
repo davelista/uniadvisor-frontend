@@ -229,11 +229,18 @@
         display: flex;
         flex-direction: row;
         padding: 5% 5% 2% 5%;
+        flex-wrap: wrap;
     }
     .professor-title-courses-selected{
         display: flex;
         flex-direction: row;
         padding: 5% 5% 2% 5%;
+    }
+
+    .course-title-button{
+        margin-right: 5%;
+        margin-bottom: 2%;
+        width: 25%;
     }
 
     .professor-courses{
@@ -286,7 +293,8 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 5% 5% 0% 5%;
+        justify-content: center;
+        padding: 5% 5% 0 5%;
     }
     .professor-title-courses-selected{
         display: flex;
@@ -298,6 +306,7 @@
         margin: 0;
         padding-bottom: 2%;
         text-align: center;
+        width: auto;
     }
 
     .professor-courses{
