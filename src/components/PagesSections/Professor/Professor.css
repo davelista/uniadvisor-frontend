@@ -50,6 +50,7 @@
     display: flex;
     flex-direction: row;
     padding: 5% 15% 2% 15%;
+    flex-wrap: wrap;
 }
 
 .professor-title-courses-selected{
@@ -88,6 +89,8 @@
 
 .course-title-button{
     margin-right: 5%;
+    margin-bottom: 2%;
+    width: 15%;
 }
 
 .professor-courses{
