@@ -112,8 +112,6 @@ export default function ProfessorReviews(props) {
                             </div>
                         ))}
                     </div>
-
-
                 </div>
             ))}
             <div className={"pages"}>

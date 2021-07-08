@@ -40,7 +40,7 @@ function ReviewsControl(props) {
 
     return (
         <>
-            <div className={styles.reviewsSection}>
+            {reviews === "NO-ADMIN" ? <div style={{textAlign: "center", padding: "20%"}}>Mi dispiace, non puoi accere a questa pagina</div> : <div className={styles.reviewsSection}>
                 <div className={styles.tabsContainer}>
                     <div className={styles.tabHeading}>Recensioni da approvare</div>
                 </div>
@@ -130,18 +130,19 @@ function ReviewsControl(props) {
                         {popup ? <Popup titleText={"Conferma"} onClose={handleOpenPopup} children={children}/> : null}
                     </>
                 )) : <div className={styles.noReviewsSection}>
-        <div className={styles.noReviewsTitle}>
-            <h5>Al momento non ci sono recensioni da controllare</h5>
-            <p>Goditi un po' di riposo</p>
-            <img src={cat} alt="Riposati..." />
-        </div>
-        </div>}
+                    <div className={styles.noReviewsTitle}>
+                        <h5>Al momento non ci sono recensioni da controllare</h5>
+                        <p>Goditi un po' di riposo</p>
+                        <img src={cat} alt="Riposati..." />
+                    </div>
+                </div>}
                 <div className={styles.pages}>
                     {num !== 1 ? <IoIosArrowBack onClick={() => setNum(num-1)}/> : null}
                     {reviews.length !== 0 ? num : null}
                     {nextPage.length !== 0 ? <IoIosArrowForward onClick={() => setNum(num+1)}/> : null}
                 </div>
-            </div>
+            </div>}
+
         </>
     );
 }

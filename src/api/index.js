@@ -160,17 +160,27 @@ export const ApiAdminReviews = async (user_email, num) => {
     try {
         const res = await axios.get("/api/admin", { params: { user_email, num } });
         return res.data.results;
+
     } catch (e) {
-        throw e;
+        const { status } = e.response;
+
+        switch (status) {
+            case 400:
+                return "NO-ADMIN" ;
+            default:
+                return "ERROR"
+        }
     }
 };
 
 /*API to change reviews status*/
 export const ApiChangeStatus = async (user_email, review_id, status) => {
+
     try{
         const res = await axios.post("/api/admin/change_status", null, {params: {user_email, review_id, status}});
         return res.data;
     } catch (e) {
+
         throw e;
     }
 }
