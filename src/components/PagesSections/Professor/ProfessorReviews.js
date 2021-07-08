@@ -20,7 +20,7 @@ export default function ProfessorReviews(props) {
 
     let titleSection;
     reviews.length !== 0 ? titleSection = ( <div className={"reviews-section-title"}>
-        {isMobile ? <h4>Rec"Stai per cambiare lo stato della seguente recensione in\n" + status + "\nSei sicuro?"ensioni</h4> : <h3>Recensioni</h3>}
+        {!isMobile ? <h4>Recensioni</h4> : <h3>Recensioni</h3>}
             <div style={{maxWidth: "50%"}}>
                 <Link to={"/add-review/professors/" + professor.id}>
                         <Button buttonStyle="btn--outline" >
