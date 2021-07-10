@@ -100,7 +100,7 @@ const LoginForm = () => {
                     <>
                         <div>oppure accedi con</div>
                         <FacebookLogin
-                            appId="1542059002682443"
+                            appId={process.env.NODE_ENV === "development" ? "207812577218371" : "1542059002682443"}
                             autoLoad={false}
                             fields="email"
                             // onClick={}

@@ -28,20 +28,18 @@ const SignUpForm = () => {
             </div>
             <div className={"form-container"}>
                 <form className={"login-form"} noValidate autoComplete="off" onSubmit={submit}>
+                    <div className={"form-row"}>
+                        <div className={"form-input"}>
+                            <FormTextField field={form.name} variant="outlined" fullWidth />
+                        </div>
+                        <div className={"form-input"}>
+                            <FormTextField field={form.surname} variant="outlined" fullWidth />
+                        </div>
+                    </div>
                     {form.login_type.value === "Unihub" ? (
-                        <>
-                            <div className={"form-row"}>
-                                <div className={"form-input"}>
-                                    <FormTextField field={form.name} variant="outlined" fullWidth />
-                                </div>
-                                <div className={"form-input"}>
-                                    <FormTextField field={form.surname} variant="outlined" fullWidth />
-                                </div>
-                            </div>
-                            <div className={"form-input"}>
-                                <FormTextField field={form.email} type="email" variant="outlined" fullWidth />
-                            </div>
-                        </>
+                        <div className={"form-input"}>
+                            <FormTextField field={form.email} type="email" variant="outlined" fullWidth />
+                        </div>
                     ) : null}
                     <div className={"form-input"}>
                         <FormTextField field={form.university} select fullWidth>
@@ -73,7 +71,7 @@ const SignUpForm = () => {
                     <>
                         <div>oppure registrati con</div>
                         <FacebookLogin
-                            appId="1542059002682443"
+                            appId={process.env.NODE_ENV === "development" ? "207812577218371" : "1542059002682443"}
                             autoLoad={false}
                             fields="last_name, name, email, picture"
                             // onClick={}

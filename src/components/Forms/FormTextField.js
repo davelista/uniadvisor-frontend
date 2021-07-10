@@ -1,28 +1,26 @@
-import React from 'react'
+import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 
 const CustomTextField = withStyles({
     root: {
-
         "& label.Mui-focused": {
             color: "#E53A1E",
         },
         "& .MuiInput-underline:after": {
-            borderBottomColor: "#E53A1E"
+            borderBottomColor: "#E53A1E",
         },
         "& .MuiOutlinedInput-root": {
-            borderRadius: "1.5rem",
+            borderRadius: "0.8rem",
             width: "100%",
             "&.Mui-focused fieldset": {
                 borderColor: "#E53A1E",
-
-            }
-        }
+            },
+        },
     },
 })(TextField);
 
-export default function FormTextField({field, ...props}) {
+export default function FormTextField({ field, ...props }) {
     return (
         <CustomTextField
             label={field.label}
