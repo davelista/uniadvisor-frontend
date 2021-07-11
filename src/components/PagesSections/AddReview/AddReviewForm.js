@@ -41,7 +41,7 @@ function AddReviewForm() {
                                 <FormRadio value={course.id} field={form.corso_id}>
                                     <span className={styles.courseName}>{course.name}</span>
                                     <span className={styles.courseDetail}>{course.school}</span>
-                                    <span className={styles.courseDetail}>Università</span>
+                                    <span className={styles.courseDetail}>{professor.university}</span>
                                 </FormRadio>
                             </div>
                         ))}
