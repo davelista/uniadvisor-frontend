@@ -19,6 +19,7 @@ export default function ProfessorReviews(props) {
     const nextPage = useProfessorReviews(professor.corsi[icourse].id, professor.id, num+1);
 
     let titleSection;
+
     reviews.length !== 0 ? titleSection = ( <div className={"reviews-section-title"}>
         {!isMobile ? <h4>Recensioni</h4> : <h3>Recensioni</h3>}
             <div style={{maxWidth: "50%"}}>
@@ -43,7 +44,7 @@ export default function ProfessorReviews(props) {
 
     return (
         <>
-
+            {professor.id === 3063 ? console.log(professor) : null}
             <div className={"reviews-section"}>
                 {titleSection}
             {reviews.map((review) => (

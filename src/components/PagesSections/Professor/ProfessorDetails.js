@@ -96,7 +96,9 @@ function ProfessorDetails(props) {
                     </div>
                 </div>
             </div>
-            <div className={"professor-title-courses"}>
+            {professor.corsi.length > 0 ?
+                <>
+                    <div className={"professor-title-courses"}>
                 {professor.corsi.map((course, i) => (
                     <h4
                         className={"course-title-button"}
@@ -107,7 +109,7 @@ function ProfessorDetails(props) {
                     >
                         {course.name}
                     </h4>
-                ))}
+                )) }
             </div>
 
             <div className={"professor-courses"}>
@@ -118,12 +120,18 @@ function ProfessorDetails(props) {
                                 {courseId === i ? <ProfessorCourse course={x} /> : null}
                             </div>
                         );
-                    })}
+                    })  }
                 </div>
             </div>
-
-
                 <ProfessorReviews professor={professor} icourse={courseId} />
+                </>
+                : <div className={"no-reviews-section"}>
+                <div className={"no-reviews-title"}>
+                <h5>Ci risulta attualmente che questo professore non abbia corsi attivi.</h5>
+                    <p>Se non è così scrivici una mail a <a style={{color:"#e53a1e"}} href="mailto:supporto@uniadvisor.it">supporto@uniadvisor.it</a>!</p>
+                </div>
+                </div>
+            }
         </>
     );
 }
