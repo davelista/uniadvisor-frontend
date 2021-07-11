@@ -36,6 +36,7 @@ function AddReviewForm() {
             <form className={styles.form} noValidate autoComplete="off" onSubmit={submit}>
                 <AddReviewFormSection title="nome del corso">
                     <div className={styles.courseSelection}>
+                        {console.log(professor.university)}
                         {professor.corsi.map((course) => (
                             <div className={styles.course} key={course.id}>
                                 <FormRadio value={course.id} field={form.corso_id}>
