@@ -36,13 +36,12 @@ function AddReviewForm() {
             <form className={styles.form} noValidate autoComplete="off" onSubmit={submit}>
                 <AddReviewFormSection title="nome del corso">
                     <div className={styles.courseSelection}>
-                        {console.log(professor.corsi)}
                         {professor.corsi.map((course) => (
                             <div className={styles.course} key={course.id}>
                                 <FormRadio value={course.id} field={form.corso_id}>
                                     <span className={styles.courseName}>{course.name}</span>
                                     <span className={styles.courseDetail}>{course.school}</span>
-                                    <span className={styles.courseDetail}>{professor.university.name}</span>
+                                    {/*<span className={styles.courseDetail}>{professor.university.name}</span>*/}
                                 </FormRadio>
                             </div>
                         ))}
