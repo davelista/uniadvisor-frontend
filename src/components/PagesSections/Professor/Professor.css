@@ -105,10 +105,17 @@
 
 }
 
+.course-info-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .course-info-section{
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 60%;
 
 }
 
@@ -132,7 +139,7 @@
 }
 
 .reviews-user-img{
-    height: 10em;
+    height: 7em;
 }
 
 .reviews-section-title{
@@ -146,7 +153,7 @@
 }
 
 .reviews-section{
-    padding: 2% 15% 2% 15%;
+    padding: 3rem 15% 3rem 15%;
     display: flex;
     flex-direction: column;
 }
@@ -186,7 +193,6 @@
 }
 
 .no-reviews-section{
-    margin: 5% 0 0 0;
     padding: 2% 5%;
     background: #eeeeee;
     display: flex;
@@ -318,8 +324,17 @@
         justify-content: center;
     }
 
+    .course-info-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        padding: 2rem 0.5rem;
+    }
+
     .course-info-section{
         width: 100%;
+        margin-bottom: 2rem;
     }
 
     .course-info{

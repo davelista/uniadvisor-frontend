@@ -6,7 +6,7 @@ import ExpandableParagraph from "../../Text/ExpandableParagraph";
 import Rating from "@material-ui/lab/Rating";
 import FiberManualRecordOutlinedIcon from "@material-ui/icons/FiberManualRecordOutlined";
 import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
-import {BsPencilSquare, FaPencilAlt, IoAddCircle, IoIosArrowBack, IoIosArrowForward} from "react-icons/all";
+import {IoIosArrowBack, IoIosArrowForward} from "react-icons/all";
 import {Link} from "react-router-dom";
 import {Button} from "../../Buttons/Button";
 import useMediaQuery, {Device} from "../../../hooks/useMediaQuery";
@@ -44,7 +44,6 @@ export default function ProfessorReviews(props) {
 
     return (
         <>
-            {professor.id === 3063 ? console.log(professor) : null}
             <div className={"reviews-section"}>
                 {titleSection}
             {reviews.map((review) => (
@@ -52,10 +51,11 @@ export default function ProfessorReviews(props) {
                     <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
                         <img src={imgUser} className={"reviews-user-img"} alt={imgUser} style={{marginBottom:"1rem"}}/>
                         {review.anonimo ? <div>Anonimo</div> : <div>{review.user.name} {review.user.surname}</div>}
+
                     </div>
                     <div className={"reviews-body"}>
                         <h4>{review.titolo}</h4>
-                        <h5 style={{ color: "grey" }}>A.A. {review.anno_accademico}</h5>
+                        <h5 style={{ color: "grey", margin:"0.5rem 0" }}>A.A. {review.anno_accademico} <span style={{fontWeight: "600", margin:"0 0.5rem"}}>-</span> Voto: <span style={{fontWeight: "600", color: "#e53a1e"}}>{review.voto}</span> / 30</h5>
                         <ExpandableParagraph>{review.corpo}</ExpandableParagraph>
                     </div>
                     <div className={"reviews-evaluation"}>
@@ -115,18 +115,18 @@ export default function ProfessorReviews(props) {
                     </div>
                 </div>
             ))}
-            <div className={"pages"}>
-                {num !== 1 ? <IoIosArrowBack onClick={() => setNum(num-1)}/> : null}
-                {reviews.length !== 0 ? num : null}
-                {nextPage.length !== 0 ? <IoIosArrowForward onClick={() => setNum(num+1)}/> : null}
-            </div>
-                {isMobile ? (<center>
-                    <Link to={"/add-review/professors/" + professor.id}>
-                        <Button buttonStyle="btn--outline">
-                            <h6 style={{color: "white"}}>Scrivi una recensione</h6>
-                        </Button>
-                    </Link>
-                </center>) : <div/>}
+                {reviews.length !== 0 ? <div className={"pages"}>
+                    {num !== 1 ? <IoIosArrowBack onClick={() => setNum(num-1)}/> : null}
+                    {reviews.length !== 0 ? num : null}
+                    {nextPage.length !== 0 ? <IoIosArrowForward onClick={() => setNum(num+1)}/> : null}
+                </div> : null}
+                    {isMobile ? (<center>
+                        <Link to={"/add-review/professors/" + professor.id}>
+                            <Button buttonStyle="btn--outline">
+                                <h6 style={{color: "white"}}>Scrivi una recensione</h6>
+                            </Button>
+                        </Link>
+                    </center>) : <div/>}
 
             </div>
         </>

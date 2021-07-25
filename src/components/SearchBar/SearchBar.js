@@ -47,7 +47,7 @@ function SearchBar(props) {
             }
         } else {
             professorDetails = (
-                <div className={"result"}>Non ci sono professori con questo nome</div>)
+                <div className={"result-container"}><div className={"search-bar-result"}>Non ci sono professori con questo nome :(</div></div>)
         }
         return (
             <>

@@ -1,4 +1,5 @@
 .expandable-paragraph-text {
+    text-align: justify;
     overflow: hidden;
 }
 

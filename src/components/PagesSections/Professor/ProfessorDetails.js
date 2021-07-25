@@ -20,11 +20,6 @@ function ProfessorDetails(props) {
     const {professor} = props;
     const [courseId, setCouseId] = useState(0);
 
-    // let image;
-    // professorImg === "Image Not Found" ? image = (
-    //     <img src={professorImg.data} className={"professor-img"} alt={imgUser}/>) : image = (
-    //     <img src={professorImg.data} className={"professor-img"} alt={professorImg}/>)
-
     return (
         <>
             <div className={"professor-card"}>
@@ -116,18 +111,33 @@ function ProfessorDetails(props) {
                 <div className="course-details-section">
                     {professor.corsi.map((x, i) => {
                         return (
-                            <div className={"course-info-section"}>
+                            <div >
                                 {courseId === i ? <ProfessorCourse course={x} /> : null}
+
                             </div>
                         );
                     })  }
                 </div>
             </div>
-                <ProfessorReviews professor={professor} icourse={courseId} />
+                    {professor.privacy ?
+                        <div className={"reviews-section"}>
+                            <div className={"no-reviews-section"}>
+                                <div className={"no-reviews-title"}>
+                                    <h5>Il professore ha chiesto (gentilmente) di nascondere le recensioni che lo riguardano.</h5>
+                                    <p>Lascia comunque una recensione per aiutare gli altri studenti!</p>
+                                </div>
+                                <Link to={"/add-review/professors/" + professor.id}>
+                                    <Button buttonStyle="btn--outline" >
+                                        <h6 style={{ color: "white" }}>Scrivi una recensione</h6>
+                                    </Button>
+                                </Link>
+                            </div>
+                        </div>: <ProfessorReviews professor={professor} icourse={courseId} />}
+
                 </>
                 : <div className={"no-reviews-section"}>
                 <div className={"no-reviews-title"}>
-                <h5>Ci risulta attualmente che questo professore non abbia corsi attivi.</h5>
+                <h5>Ci risulta che attualmente questo professore non abbia corsi attivi.</h5>
                     <p>Se non è così scrivici una mail a <a style={{color:"#e53a1e"}} href="mailto:supporto@uniadvisor.it">supporto@uniadvisor.it</a>!</p>
                 </div>
                 </div>
