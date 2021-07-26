@@ -1,86 +1,67 @@
-import React, {useState} from 'react';
-import './SearchBar.css'
+import React, { useState } from "react";
+import "./SearchBar.css";
 import SearchBarResult from "./SearchBarResult";
 
 function SearchBar(props) {
-    const {professorsList, isHome} = props;
-    const [search, setSearch] = useState('');
-    const handleChange = event => {
+    const { professorsList, isHome } = props;
+    const [search, setSearch] = useState("");
+    const handleChange = (event) => {
         setSearch(event.target.value);
     };
 
-    if(professorsList != null) {
-        const filteredListLower = professorsList
-            .filter(listItem => listItem.name.toLowerCase().includes(search.toLowerCase()) ||
-                listItem.surname.toLowerCase().includes(search.toLowerCase()));
+    if (professorsList != null) {
+        const filteredListLower = professorsList.filter(
+            (listItem) => listItem.name.toLowerCase().includes(search.toLowerCase()) || listItem.surname.toLowerCase().includes(search.toLowerCase())
+        );
         let professorDetails;
 
         if (filteredListLower.length > 0) {
-            if(isHome === false){
+            if (isHome === false) {
                 professorDetails = (
                     <React.Fragment>
                         <div>
-                            {
-                                filteredListLower
-                                    .slice(0, 1)
-                                    .map((x) => {
-                                        return <SearchBarResult key={x.professor_id} professor={x} />
-                                    })
-                            }
+                            {filteredListLower.slice(0, 1).map((x) => {
+                                return <SearchBarResult key={x.professor_id} professor={x} onClick={() => setSearch("")} />;
+                            })}
                         </div>
                     </React.Fragment>
-                )
+                );
             } else {
                 professorDetails = (
                     <React.Fragment>
                         <div>
-                            {
-                                filteredListLower
-                                    .slice(0, 3)
-                                    .map((x) => {
-                                        return <SearchBarResult key={x.professor_id} professor={x} />
-                                    })
-                            }
+                            {filteredListLower.slice(0, 3).map((x) => {
+                                return <SearchBarResult key={x.professor_id} professor={x} onClick={() => setSearch("")} />;
+                            })}
                         </div>
                     </React.Fragment>
-                )
+                );
             }
         } else {
             professorDetails = (
-                <div className={"result-container"}><div className={"search-bar-result"}>Non ci sono professori con questo nome :(</div></div>)
+                <div className={"result-container"}>
+                    <div className={"search-bar-result"}>Non ci sono professori con questo nome :(</div>
+                </div>
+            );
         }
         return (
             <>
                 <div>
-                    <input className={!isHome ? "search-input" : "search-navbar-input"}
-                           type="text"
-                           value={search}
-                           autoCapitalize="none"
-                           placeholder={"Cerca un professore..."}
-                           onChange={handleChange}
+                    <input
+                        className={!isHome ? "search-input" : "search-navbar-input"}
+                        type="text"
+                        value={search}
+                        autoCapitalize="none"
+                        placeholder={"Cerca un professore..."}
+                        onChange={handleChange}
                     />
-                    <div className={'search-bar'}>
-                        {
-                            search ? professorDetails : null
-                        }
-                    </div>
-
-
+                    <div className={"search-bar"}>{search ? professorDetails : null}</div>
                 </div>
-
             </>
         );
     } else {
-        return (
-            <div> Loading ... </div>
-        );
+        return <div> Loading ... </div>;
     }
-
-
-
-
-
 }
 
 export default SearchBar;
-
