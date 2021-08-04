@@ -50,6 +50,12 @@
     align-items: center;
 }
 
+.courseContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
 .courseName {
     font-weight: 600;
     padding-right: 1rem;
@@ -113,4 +119,37 @@
 
 .doneBody {
     color: var(--primary-color);
+}
+
+@media screen and (max-width: 640px) {
+    .section {
+        padding: 5% 5%;
+    }
+
+    .professorBio {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .course {
+        margin-bottom: 1rem;
+    }
+
+    .courseContainer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .courseName {
+        padding-right: 0;
+    }
+
+    .courseDetail {
+        padding: 0;
+        border-left: 0;
+    }
+
+    .formColumnSection {
+        flex-direction: column;
+    }
 }

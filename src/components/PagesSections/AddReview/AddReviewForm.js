@@ -11,6 +11,7 @@ import FormRating from "../../Forms/FormRating";
 import { AppContext } from "../../../context/AppContext";
 import withAuth from "../../hoc/withAuth";
 import useAddProfessorReview from "../../../hooks/useAddProfessorReview";
+import useMediaQuery, { Device } from "../../../hooks/useMediaQuery";
 
 function AddReviewForm() {
     const appData = useContext(AppContext);
@@ -18,6 +19,8 @@ function AddReviewForm() {
 
     const [send, sending, sent, error] = useAddProfessorReview();
     const [form, submit] = useAddReviewForm(professor.id, appData.user.data.email, send);
+
+    const isMobile = useMediaQuery(Device.sm);
 
     if (sent) return <FormSent />;
     if (error) return <FormError />;
@@ -39,8 +42,10 @@ function AddReviewForm() {
                         {professor.corsi.map((course) => (
                             <div className={styles.course} key={course.id}>
                                 <FormRadio value={course.id} field={form.corso_id}>
-                                    <span className={styles.courseName}>{course.name}</span>
-                                    <span className={styles.courseDetail}>{course.school}</span>
+                                    <div className={styles.courseContainer}>
+                                        <span className={styles.courseName}>{course.name}</span>
+                                        <span className={styles.courseDetail}>{course.school}</span>
+                                    </div>
                                     {/*<span className={styles.courseDetail}>{professor.university.name}</span>*/}
                                 </FormRadio>
                             </div>
@@ -51,7 +56,7 @@ function AddReviewForm() {
 
                 <AddReviewFormSection title="recensione">
                     <div className={styles.formColumnSection}>
-                        <div className={styles.formColumn} style={{ marginRight: "1.5rem" }}>
+                        <div className={styles.formColumn} style={{ marginRight: isMobile ? 0 : "1.5rem" }}>
                             <div className={styles.formField}>
                                 <FormTextField field={form.titolo} fullWidth />
                             </div>
@@ -60,7 +65,7 @@ function AddReviewForm() {
                             </div>
                         </div>
 
-                        <div className={styles.formColumn} style={{ marginLeft: "1.5rem", justifyContent: "flex-end" }}>
+                        <div className={styles.formColumn} style={{ marginLeft: isMobile ? 0 : "1.5rem", justifyContent: "flex-end" }}>
                             <div className={styles.formField}>
                                 <FormTextField field={form.anno_accademico} select fullWidth>
                                     {getAcademicYears().map((ay) => (
@@ -87,7 +92,7 @@ function AddReviewForm() {
                 </AddReviewFormSection>
 
                 <div className={styles.formColumnSection}>
-                    <div className={styles.formColumn} style={{ marginRight: "1.5rem" }}>
+                    <div className={styles.formColumn} style={{ marginRight: isMobile ? 0 : "1.5rem" }}>
                         <AddReviewFormSection title="docente">
                             {[
                                 form.chiarezza_spiegazione_prof,
@@ -102,7 +107,7 @@ function AddReviewForm() {
                         </AddReviewFormSection>
                     </div>
 
-                    <div className={styles.formColumn} style={{ marginLeft: "1.5rem" }}>
+                    <div className={styles.formColumn} style={{ marginLeft: isMobile ? 0 : "1.5rem" }}>
                         <AddReviewFormSection title="corso">
                             {[
                                 form.difficolta_argomenti_corso,
