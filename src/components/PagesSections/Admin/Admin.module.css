@@ -29,6 +29,10 @@
 
 .reviewsInfo{
     margin-right: 3%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .reviewsSection{
@@ -127,6 +131,7 @@
     .reviewsInfo{
         margin-right: 0;
         margin-bottom: 1rem;
+
     }
     .reviewsContainer{
         display: flex;

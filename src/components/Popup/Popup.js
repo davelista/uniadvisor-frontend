@@ -9,11 +9,10 @@ const Popup = (props) => {
 
     const {children} = props;
     return (
-
     <div className={styles.overlay}>
         <div className={styles.container}>
             <div className={styles.closeSection}>
-                <span className={styles.closeButton} onClick={onClose}><GrClose size={20}/></span>
+                <span onClick={onClose}><GrClose size={20}/></span>
             </div>
             <div className={styles.titleContainer}>
                 <div className={styles.title}>{titleText}</div>

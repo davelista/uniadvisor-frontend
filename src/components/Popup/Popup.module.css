@@ -44,10 +44,8 @@
 .body{
     color: black;
     justify-content: center;
-    /* background: linear-gradient(white, #515151);*/
     height: 20rem;
     width: 80%;
-
 }
 
 .closeSection{
@@ -73,12 +71,10 @@
 
 
 @media screen and (max-width: 960px) {
-
     .container{
-        height: 28rem;
+        height: 80%;
     }
     .body{
         height: 40%;
-
     }
 }

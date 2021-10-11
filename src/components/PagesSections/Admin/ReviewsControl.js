@@ -63,7 +63,7 @@ function ReviewsControl(props) {
                                     <h5 className={styles.reviewsInfo}>
                                         {review.corso_name} | <span style={{ color: "grey" }}>{review.professor_name} {review.professor_surname}</span>
                                     </h5>
-                                    <h5 className={styles.reviewsInfo} style={{ color: "grey" }}>A.A. {review.anno_accademico}</h5>
+                                    <div style={{ color: "grey" }} className={styles.reviewsInfo}><h5 style={{ color: "grey" }} >A.A. {review.anno_accademico}</h5>  - di {review.anonimo === true ? "anonimo" : <a href={"mailto:"+review.user.email}>{review.user.name}{review.user.surname}</a>}</div>
                                 </div>
                                 <h5 className={styles.reviewState}>{review.stato}</h5>
                             </div>
