@@ -1,6 +1,7 @@
 import React from 'react';
-import './Popup.css'
+import './Popup.module.css'
 import {GrClose} from "react-icons/all";
+import styles from "./Popup.module.css";
 
 const Popup = (props) => {
 
@@ -8,18 +9,21 @@ const Popup = (props) => {
 
     const {children} = props;
     return (
-        <div className='popup-overlay'>
-            <div className='popup'>
-                <div className={'title-popup'}>
-                    <div> </div>
-                    <div className={"title-red"}>{titleText}</div>
-                    <div className={'close-button'} onClick={onClose}><GrClose size={30}/></div>
-                </div>
-                <div className={'popup-container'}>
-                    {children}
-                </div>
+
+    <div className={styles.overlay}>
+        <div className={styles.container}>
+            <div className={styles.closeSection}>
+                <span className={styles.closeButton} onClick={onClose}><GrClose size={20}/></span>
+            </div>
+            <div className={styles.titleContainer}>
+                <div className={styles.title}>{titleText}</div>
+            </div>
+            <div className={styles.divider}/>
+            <div className={styles.body}>
+                {children}
             </div>
         </div>
+    </div>
     );
 };
 

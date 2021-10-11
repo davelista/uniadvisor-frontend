@@ -98,3 +98,43 @@
 .noReviewsTitle img{
     border-radius: 50%;
 }
+
+.popupButtons{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+@media screen and (max-width: 700px){
+    .reviewsSection{
+        padding: 2% 5% 2% 5%;
+    }
+    .reviewsHeader{
+        display: flex;
+        flex-direction: row;
+        padding: 2% 0 2% 0;
+        border-bottom: 1px solid #efefef;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+    .infoSection{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: flex-start;
+
+    }
+    .reviewsInfo{
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+    .reviewsContainer{
+        display: flex;
+        flex-direction: column;
+        padding: 2% 0 2% 0;
+        border-bottom: 1px solid #efefef;
+    }
+    .reviewsBody{
+        width: 100%;
+    }
+}
