@@ -5,9 +5,11 @@ import SearchBarResult from "./SearchBarResult";
 function SearchBar(props) {
     const { professorsList, isHome } = props;
     const [search, setSearch] = useState("");
+
     const handleChange = (event) => {
         setSearch(event.target.value);
     };
+
 
     if (professorsList != null) {
         const filteredListLower = professorsList.filter(
@@ -47,15 +49,16 @@ function SearchBar(props) {
         return (
             <>
                 <div>
+
                     <input
-                        className={!isHome ? "search-input" : "search-navbar-input"}
+                        className={search ? "search-input-active" : "search-input"}
                         type="text"
                         value={search}
                         autoCapitalize="none"
                         placeholder={"Cerca un professore..."}
                         onChange={handleChange}
                     />
-                    <div className={"search-bar"}>{search ? professorDetails : null}</div>
+                    {search ? <div className={"search-bar"}>{professorDetails}</div> : null}
                 </div>
             </>
         );

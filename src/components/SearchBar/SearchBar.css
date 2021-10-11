@@ -4,13 +4,13 @@
     justify-content: center;
     align-items: center;
     position: absolute;
-    border-radius: 34px;
+    border-bottom-left-radius: 34px;
+    border-bottom-right-radius: 34px;
     overflow: hidden;
     width: 25rem !important;
     height: auto;
     background-color: white;
-    border-right: 3px solid #e53a1e;
-    border-left: 3px solid #e53a1e;
+    border: 3px solid #e53a1e;
 }
 
 .search-input {
@@ -24,6 +24,26 @@
     font-size: 1em;
     border: 3px solid #e53a1e;
 }
+
+.search-input-active {
+    height: 4rem;
+    background: white !important;
+    width: 25rem !important;
+    box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+    border-top-left-radius: 34px ;
+    border-top-right-radius: 34px;
+    overflow: hidden;
+    padding-left: 35px !important;
+    font-size: 1em;
+    border-top: 3px solid #e53a1e;
+    border-right: 3px solid #e53a1e;
+    border-left: 3px solid #e53a1e;
+}
+
+.search-input-active:focus{
+    outline: none;
+}
+
 .search-input:focus {
     outline: none;
 }
@@ -44,7 +64,6 @@
     padding-left: 35px !important;
     /*font-family: Poppins,sans-serif !important;*/
     cursor: pointer;
-    border-radius: 34px;
 }
 
 .result-container {
@@ -66,7 +85,6 @@ a {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        border-radius: 34px;
         overflow: hidden;
         width: 20rem !important;
         height: auto;
@@ -78,11 +96,23 @@ a {
         background: white !important;
         width: 20rem !important;
         box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
-        border-radius: 34px;
         overflow: hidden;
         padding-left: 35px !important;
         font-size: 1em;
         border: 3px solid #e53a1e;
+    }
+
+    .search-input-active {
+        height: 4rem;
+        background: white !important;
+        width: 20rem !important;
+        box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+        overflow: hidden;
+        padding-left: 35px !important;
+        font-size: 1em;
+        border-top: 3px solid #e53a1e;
+        border-right: 3px solid #e53a1e;
+        border-left: 3px solid #e53a1e;
     }
 
     .search-bar-result {
@@ -92,7 +122,6 @@ a {
         /*font-family: Poppins,sans-serif !important;*/
         cursor: pointer;
         background: white !important;
-        border-radius: 34px;
         height: auto;
     }
 
