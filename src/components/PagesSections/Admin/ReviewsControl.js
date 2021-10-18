@@ -15,12 +15,10 @@ import {ApiChangeStatus} from "../../../api";
 
 function ReviewsControl(props) {
     const appData = useContext(AppContext);
-    const [num, setNum] = useState(1);
     const [status, setStatus] = useState(null);
     const [popup, setPopup] = useState(false);
     const [reviewsId, setReviewsId] = useState(null);
-    const reviews = useAdminReviews(appData.user.data.email, num);
-    const nextPage = useAdminReviews(appData.user.data.email, num+1);
+    const reviews = useAdminReviews(appData.user.data.email);
 
     const handleOpenPopup = () => {
         setPopup(!popup);
@@ -63,7 +61,12 @@ function ReviewsControl(props) {
                                     <h5 className={styles.reviewsInfo}>
                                         {review.corso_name} | <span style={{ color: "grey" }}>{review.professor_name} {review.professor_surname}</span>
                                     </h5>
-                                    <div style={{ color: "grey" }} className={styles.reviewsInfo}><h5 style={{ color: "grey" }} >A.A. {review.anno_accademico}</h5>  - di {review.anonimo === true ? "anonimo" : <a href={"mailto:"+review.user.email}>{review.user.name}{review.user.surname}</a>}</div>
+                                    <div style={{ color: "grey" }} className={styles.reviewsInfo}>
+                                        <h5 style={{ color: "grey", marginRight: "0.5rem"}} >A.A. {review.anno_accademico}</h5>
+                                        <span style={{marginRight:"0.5rem"}}>di</span>
+                                        {review.user.name === undefined ?
+                                            "anonimo" :
+                                            <a href={"mailto:"+review.user.email}>{review.user.name}{review.user.surname}</a>}</div>
                                 </div>
                                 <h5 className={styles.reviewState}>{review.stato}</h5>
                             </div>
@@ -153,11 +156,6 @@ function ReviewsControl(props) {
                             <img src={cat} alt="Riposati..." />
                         </div>
                     </div>}
-                    <div className={styles.pages}>
-                        {num !== 1 ? <IoIosArrowBack onClick={() => setNum(num-1)}/> : null}
-                        {reviews.length !== 0 ? num : null}
-                        {nextPage.length !== 0 ? <IoIosArrowForward onClick={() => setNum(num+1)}/> : null}
-                    </div>
                 </div>}
 
         </>

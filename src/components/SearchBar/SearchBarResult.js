@@ -12,7 +12,7 @@ const SearchBarResult = (props) => {
                 <Link to={`/professors/${professorId}`} onClick={onClick}>
                     <div className={"search-bar-result"}>
                         <div style={{ fontWeight: "600" }}>
-                            {professor.name} {professor.surname}
+                            {professor.completeName}
                         </div>{" "}
                         {professor.university.map((x) => (
                             <div>{x}</div>

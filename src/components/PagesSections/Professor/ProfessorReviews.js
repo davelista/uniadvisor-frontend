@@ -120,7 +120,7 @@ export default function ProfessorReviews(props) {
                     {reviews.length !== 0 ? num : null}
                     {nextPage.length !== 0 ? <IoIosArrowForward onClick={() => setNum(num+1)}/> : null}
                 </div> : null}
-                    {isMobile ? (<center>
+                    {isMobile && reviews.length !== 0 ? (<center>
                         <Link to={"/add-review/professors/" + professor.id}>
                             <Button buttonStyle="btn--outline">
                                 <h6 style={{color: "white"}}>Scrivi una recensione</h6>

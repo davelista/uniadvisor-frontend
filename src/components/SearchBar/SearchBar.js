@@ -1,19 +1,32 @@
 import React, { useState } from "react";
 import "./SearchBar.css";
 import SearchBarResult from "./SearchBarResult";
+import produce from "immer";
 
 function SearchBar(props) {
     const { professorsList, isHome } = props;
     const [search, setSearch] = useState("");
+    const [newProfessorsList, setNewProfessorsList] = useState([]);
+
+    professorsList.map((x, i) => {
+        newProfessorsList[i] = x;
+        newProfessorsList[i].completeName = x.name + " " + x.surname;
+        newProfessorsList[i].inverseName = x.surname + " " + x.name;
+    })
+
+    console.log("OLD", professorsList)
+    console.log("new", newProfessorsList)
+
 
     const handleChange = (event) => {
         setSearch(event.target.value);
     };
 
 
-    if (professorsList != null) {
-        const filteredListLower = professorsList.filter(
-            (listItem) => listItem.name.toLowerCase().includes(search.toLowerCase()) || listItem.surname.toLowerCase().includes(search.toLowerCase())
+    if (newProfessorsList != null) {
+        const filteredListLower = newProfessorsList.filter(
+            (listItem) => listItem.completeName.toLowerCase().includes(search.toLowerCase()) || listItem.inverseName.toLowerCase().includes(search.toLowerCase())
+
         );
         let professorDetails;
 
