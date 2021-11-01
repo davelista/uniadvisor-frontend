@@ -28,7 +28,7 @@ function Professor() {
             <Navbar />
             {appData.professor.data !== null ? (
                 <MetaTags>
-                    {/* <title>Page Title</title> */}
+                    <title>Uniadvisor.it - {appData.professor.data.nome} {appData.professor.data.cognome}</title>
                     <meta
                         name="title"
                         content={`${appData.professor.data.nome} ${appData.professor.data.cognome} - ${appData.professor.data.university[0].name}`}
