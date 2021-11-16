@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, {useRef, useState} from "react";
 import "./SearchBar.css";
 import SearchBarResult from "./SearchBarResult";
-import produce from "immer";
 
 function SearchBar(props) {
     const { professorsList, isHome } = props;
     const [search, setSearch] = useState("");
     const [newProfessorsList, setNewProfessorsList] = useState([]);
+    const [cursor, setCursor] = useState(null);
 
     professorsList.map((x, i) => {
         newProfessorsList[i] = x;
@@ -14,14 +14,32 @@ function SearchBar(props) {
         newProfessorsList[i].inverseName = x.surname + " " + x.name;
     })
 
-    console.log("OLD", professorsList)
-    console.log("new", newProfessorsList)
-
 
     const handleChange = (event) => {
         setSearch(event.target.value);
     };
 
+    const handleKeyDown = (event) => {
+        if (event.keyCode === 38) {
+            if(cursor > 0){
+                setCursor( cursor - 1)
+            } else {
+                setCursor(2);
+            }
+        } else if (event.keyCode === 40) {
+            if( cursor < 2 || cursor == null){
+                setCursor( cursor + 1)
+            } else {
+                setCursor(0)
+            }
+        } else if (event.keyCode === 13 && cursor !== null) {
+            console.log("Click!");
+        }
+    }
+
+  /*  const handleEnter = (event) => {
+
+    }*/
 
     if (newProfessorsList != null) {
         const filteredListLower = newProfessorsList.filter(
@@ -34,7 +52,7 @@ function SearchBar(props) {
             if (isHome === false) {
                 professorDetails = (
                     <React.Fragment>
-                        <div>
+                        <div >
                             {filteredListLower.slice(0, 1).map((x) => {
                                 return <SearchBarResult key={x.professor_id} professor={x} onClick={() => setSearch("")} />;
                             })}
@@ -44,9 +62,11 @@ function SearchBar(props) {
             } else {
                 professorDetails = (
                     <React.Fragment>
-                        <div>
-                            {filteredListLower.slice(0, 3).map((x) => {
-                                return <SearchBarResult key={x.professor_id} professor={x} onClick={() => setSearch("")} />;
+                        <div >
+                            {filteredListLower.slice(0, 3).map((x, i) => {
+                                return <SearchBarResult  hover={cursor === i} key={x.professor_id} professor={x} onClick={() => {
+                                    setSearch("");
+                                }} />;
                             })}
                         </div>
                     </React.Fragment>
@@ -59,9 +79,10 @@ function SearchBar(props) {
                 </div>
             );
         }
+
         return (
             <>
-                <div>
+                <div onKeyDown={handleKeyDown}>
 
                     <input
                         className={search ? "search-input-active" : "search-input"}
@@ -70,8 +91,9 @@ function SearchBar(props) {
                         autoCapitalize="none"
                         placeholder={"Cerca un professore..."}
                         onChange={handleChange}
+
                     />
-                    {search ? <div className={"search-bar"}>{professorDetails}</div> : null}
+                    {search ? <div className={"search-bar"} onKeyDown={handleKeyDown}>{professorDetails}</div> : null}
                 </div>
             </>
         );

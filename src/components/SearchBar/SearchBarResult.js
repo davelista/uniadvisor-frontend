@@ -1,16 +1,16 @@
-import React from "react";
+import React, {useState} from "react";
 import "./SearchBar.css";
 import { Link } from "react-router-dom";
 
 const SearchBarResult = (props) => {
-    const { professor, onClick } = props;
+    const { professor, onClick, hover, onKeyPress } = props;
     const professorId = professor.professor_id ? professor.professor_id : 1;
 
     return (
         <>
             <div className={"result-container"}>
-                <Link to={`/professors/${professorId}`} onClick={onClick}>
-                    <div className={"search-bar-result"}>
+                <Link to={`/professors/${professorId}`} onClick={onClick} >
+                    <div className={!hover ? "search-bar-result" : "search-bar-result-hover"}>
                         <div style={{ fontWeight: "600" }}>
                             {professor.completeName}
                         </div>{" "}

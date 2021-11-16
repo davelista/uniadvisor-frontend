@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import "./ExpandableParagraph.css";
 
 export default function ExpandableParagraph(props) {
-    const { lines = 10, expandText = "Visualizza altro", collapseText = "Visualizza meno" } = props;
+    const { lines = 4, expandText = "Visualizza altro", collapseText = "Visualizza meno" } = props;
 
     const paragraph = useRef(null);
     const [expanded, setExpanded] = useState(false);

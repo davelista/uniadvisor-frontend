@@ -21,14 +21,13 @@ function Professor() {
         appData.professor.refresh(professorId);
     }, [professorId, appData.professor.refresh]);
 
-    console.log(`appData`, appData);
 
     return (
         <div>
             <Navbar />
             {appData.professor.data !== null ? (
                 <MetaTags>
-                    <title>Uniadvisor.it - {appData.professor.data.nome} {appData.professor.data.cognome}</title>
+                    {/*<title>Uniadvisor.it - {appData.professor.data.nome} {appData.professor.data.cognome}</title>*/}
                     <meta
                         name="title"
                         content={`${appData.professor.data.nome} ${appData.professor.data.cognome} - ${appData.professor.data.university[0].name}`}

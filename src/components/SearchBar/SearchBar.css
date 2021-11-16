@@ -66,6 +66,15 @@
     cursor: pointer;
 }
 
+.search-bar-result-hover {
+    background-color: lightgray !important;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    padding-left: 35px !important;
+    cursor: pointer;
+    height: auto;
+}
+
 .result-container {
     border-top: 1px solid #e8eaed;
     padding-bottom: 0.1em;
@@ -119,7 +128,6 @@ a {
         padding-top: 5%;
         padding-bottom: 5%;
         padding-left: 35px !important;
-        /*font-family: Poppins,sans-serif !important;*/
         cursor: pointer;
         background: white !important;
         height: auto;
@@ -130,8 +138,15 @@ a {
         padding-top: 5%;
         padding-bottom: 5%;
         padding-left: 35px !important;
-        /*font-family: Poppins,sans-serif !important;*/
         cursor: pointer;
+    }
+    .search-bar-result-hover {
+        background-color: lightgray !important;
+        padding-top: 5%;
+        padding-bottom: 5%;
+        padding-left: 35px !important;
+        cursor: pointer;
+        height: auto;
     }
 
     .result-container {
